@@ -1,0 +1,16 @@
+{
+  "name": "upfim-dev.v2",
+  "version": "2.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\""
+  },
+  "keywords": [],
+  "author": "los casuas",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
