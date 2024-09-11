@@ -1,11 +1,10 @@
-const helmet = require('helmet')
+const helmet = require('helmet');
 
-// Security headers middware 
-
+// Security headers middleware
 const securityHeaders = helmet({
-    contentSecurityPolicy: false,
-    frameguard: { action: 'deny' },
-    referrerPolicy: { policy: 'same-origin'},
+  contentSecurityPolicy: false,
+  frameguard: { action: 'deny' },
+  referrerPolicy: { policy: 'same-origin' },
 });
 
-module.exports = {securityHeaders}
+module.exports = { securityHeaders };
