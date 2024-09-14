@@ -1,4 +1,5 @@
-import { FaSearch, FaCalendarAlt, FaCar } from "react-icons/fa";
+import { FaHandHoldingHeart, FaPeopleCarry } from "react-icons/fa";
+import { MdDiversity3 } from "react-icons/md";
 
 import car01 from "../assets/car01.png";
 import car02 from "../assets/car02.png";
@@ -10,24 +11,15 @@ import user03 from "../assets/user03.png";
 import user04 from "../assets/user04.png";
 
 export const intro = {
-  title: "Welcome to CarVista",
+  title: "Descubre Cultura & Deportes",
   description:
-    "Your ultimate destination for finding the perfect car. Explore our extensive collection and drive away in your dream vehicle today.",
+    "La cultura abarca conocimientos, creencias y expresiones que definen a una sociedad, mientras que el deporte es actividad física recreativa o competitiva. Incluyen arte, música, literatura, religión y deportes como atletismo y fútbol.",
 };
-
-export const menuItems = [
-  { name: "Blog", href: "#blog" },
-  { name: "Services", href: "#services" },
-  { name: "FAQs", href: "#faqs" },
-  { name: "About", href: "#about" },
-  { name: "Contact", href: "#contact" },
-  { name: "Team", href: "#team" },
-];
 
 export const carsInfo = [
   {
     name: "Fortuner",
-    purpose: "selling", 
+    purpose: "selling",
     image: car01,
   },
   {
@@ -44,92 +36,74 @@ export const carsInfo = [
 
 export const reviews = [
   {
-    name: "Emily Clark",
-    role: "Car Enthusiast",
+    name: "Mtra. Samantha Green Hernendez Hernandez gleed",
+    
     avatar: user01,
-    quote:
-      "I found my dream car here! The process was seamless and the staff was very helpful.",
-    rating: 4.9,
-    totalReviews: 45,
+    quote:" danza folklórica",
+    rating: "Deportivo",
+    
   },
   {
-    name: "Michael Brown",
-    role: "Professional Racer",
+    name: "Mtra. Samantha Green Hernendez Hernandez gleed",
+
     avatar: user02,
-    quote:
-      "Great selection of high-performance cars. The customer service is top-notch.",
-    rating: 5.0,
-    totalReviews: 60,
+    quote:"danza folklórica.",
+    rating: "Deportivo",
+
   },
   {
-    name: "Samantha Green",
-    role: "Mechanic",
+    name: "Mtra. Samantha Green Hernendez Hernandez gleed",
+  
     avatar: user03,
     quote:
-      "Bought a car for my workshop. The quality is excellent and the price was reasonable.",
-    rating: 4.7,
-    totalReviews: 30,
+      "danza folklórica",
+    rating: "Deportivo",
+
   },
   {
-    name: "James Wilson",
-    role: "SUV Lover",
+    name: "Mtra. Samantha Green Hernendez Hernandez gleed",
+   
     avatar: user04,
     quote:
-      "Fantastic range of SUVs. I am very satisfied with my purchase and the overall experience.",
-    rating: 4.8,
-    totalReviews: 38,
+      " danza folklórica",
+    rating: "Deportivo",
+
   },
   {
-    name: "Linda Johnson",
-    role: "Family Driver",
+    name: "Mtra. Samantha Green Hernendez Hernandez gleed",
     avatar: user03,
     quote:
-      "The perfect place to find a family car. Safe, reliable, and affordable options.",
-    rating: 4.9,
-    totalReviews: 52,
+      " danza folklórica",
+    rating: "Deportivo",
+ 
   },
   {
-    name: "Robert Davis",
-    role: "Classic Car Collector",
+    name: "Mtra. Samantha Green Hernendez Hernandez gleed",
     avatar: user02,
     quote:
-      "An amazing collection of classic cars. I found exactly what I was looking for.",
-    rating: 5.0,
-    totalReviews: 40,
+      " danza folklórica",
+    rating: "Deportivo",
+
   },
 ];
 
 export const steps = [
   {
-    icon: FaSearch,
+    img: MdDiversity3,
     bgFrom: "from-blue-500",
     bgTo: "to-purple-500",
-    title: "Browse Inventory",
-    description:
-      "Explore our extensive collection of cars to find the one that suits your needs.",
+    title: "Promover la inclusión y la diversidad",
   },
   {
-    icon: FaCalendarAlt,
+    img: FaHandHoldingHeart,
     bgFrom: "from-green-500",
     bgTo: "to-teal-500",
-    title: "Schedule a Test Drive",
-    description:
-      "Set up a test drive to experience the car and ensure it's the right fit for you.",
+    title: "Fomentar los valores y la ética",
   },
   {
-    icon: FaCar,
+    img: FaPeopleCarry,
     bgFrom: "from-red-500",
     bgTo: "to-pink-500",
-    title: "Finalize Your Purchase",
-    description: "Complete the paperwork and drive away in your new car!",
+    title: "Generar vínculos y cohesión comunitaria",
   },
 ];
-
-export const footer = {
-  title: "CarVista",
-  slogan: "See the Road Ahead",
-  description:
-    " CarVista offers the best selection of cars to help you find the perfect ride for your needs. Whether you're looking for a family car, a high-performance vehicle, or a classic collectible, we've got you covered.",
-};
-
- 
