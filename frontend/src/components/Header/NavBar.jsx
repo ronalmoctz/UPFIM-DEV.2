@@ -32,7 +32,7 @@ const NavBar = ({ handleDarkMode, darkMode }) => {
             <li className="w-full md:w-auto">
               <a
                 href="#home"
-                className="font-bold block rounded-sm p-2 px-4 hover:bg-gray-200 dark:hover:text-slate-500"
+                className="font-bold block rounded-lg p-2 px-4 hover:bg-gray-200 dark:hover:text-slate-500"
               >
                 Inicio
               </a>
@@ -41,7 +41,7 @@ const NavBar = ({ handleDarkMode, darkMode }) => {
             <li className="w-full md:w-auto">
               <a
                 href="#about"
-                className="font-bold block rounded-sm p-2 px-4 hover:bg-gray-200 dark:hover:text-slate-500"
+                className="font-bold block rounded-lg p-2 px-4 hover:bg-gray-200 dark:hover:text-slate-500"
               >
                 Talleres
               </a>
@@ -50,7 +50,7 @@ const NavBar = ({ handleDarkMode, darkMode }) => {
             <li className="w-full md:w-auto">
               <a
                 href="#services"
-                className="font-bold block rounded-sm p-2 px-4 hover:bg-gray-200 dark:hover:text-slate-500"
+                className="font-bold block rounded-lg p-2 px-4 hover:bg-gray-200 dark:hover:text-slate-500"
               >
                 Actividade
               </a>
@@ -59,7 +59,7 @@ const NavBar = ({ handleDarkMode, darkMode }) => {
             <li className="w-full md:w-auto">
               <a
                 href="#contact"
-                className="font-bold block rounded-sm p-2 px-4 hover:bg-gray-200 dark:hover:text-slate-500"
+                className="font-bold block rounded-lg p-2 px-4 hover:bg-gray-200 dark:hover:text-slate-500"
               >
                 Contacto
               </a>

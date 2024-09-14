@@ -17,7 +17,7 @@ const Footer = () => {
       <Container>
         <div className="flex flex-col gap-8 md:flex-row md:justify-between ">
 
-          {/* Sección de Cultura & Deporte */}
+
           <div className="flex-1 flex flex-col items-center text-center">
             <h3 className="mb-4 text-xl font-semibold text-gray-200">
               Cultura & Deporte
@@ -38,7 +38,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Sección de UPFIM */}
           <div className="flex-1 flex flex-col items-center text-center">
             <h3 className="mb-4 text-xl font-semibold text-gray-200">UPFIM</h3>
             <ul className="space-y-2 text-gray-300">
@@ -57,7 +56,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Sección de Contáctanos */}
+
           <div className="flex-1 flex flex-col items-center text-center">
             <h3 className="mb-4 text-xl font-semibold text-gray-200">
               Contáctanos
