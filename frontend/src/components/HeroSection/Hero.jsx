@@ -1,5 +1,5 @@
 import React from "react";
-import bg from "../../assets/bg.jpg";
+import bg from "../../assets/cuarto.webp";
 import Wave from "./Wave";
 import Intro from "./Intro";
 

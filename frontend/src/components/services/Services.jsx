@@ -6,11 +6,11 @@ import ServiceCard from "./ServiceCard";
 
 const Services = () => {
   return (
-    <section className="p-5 md:p-16 dark:bg-slate-700">
+    <section className="bg-slate-400 p-5 md:p-16 dark:bg-slate-700">
       <Container>
         <Title
-          title="Nuestros Servicios"
-          subtitle="Nosotros ofecemos un gran servicio para ayudarte a encontrar el carro perfecto que necesitas"
+          title="Nuestros talleres"
+          subtitle="Te ofrecemos los sifuientes talleres"
         />
         <div className="flex flex-col md:flex-row gap-5">
             {
