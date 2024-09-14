@@ -6,6 +6,8 @@ const { requestLogger } = require('./middleware/requestLogger');
 const { errorHandler } = require('./middleware/errorHandler');
 const { securityHeaders } = require('./config/security');
 const db = require('./database/db');
+const alumnosRoutes = require('./routers/alumnosRoutes');
+const actividadesRoutes = require('./routers/actividadesRoutes');
 
 const app = express();
 
@@ -18,22 +20,10 @@ app.use(requestLogger);
 // Middleware for handling errors
 app.use(errorHandler);
 
-// Define a route for GET requests to the root path '/'
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+app.use('/api/alumnos', alumnosRoutes);
+app.use('/api', actividadesRoutes);
 
-app.get('/test-db', async (req, res, next) => {
-  try {
-    const [rows] = await db.query('SELECT 1 + 1 AS solution');
-    res.status(200).json({
-      success: true,
-      data: rows[0].solution,
-    });
-  } catch (error) {
-    next(error);
-  }
-});
+module.exports = app;
 
 // Define the port where the server will listen
 const PORT = process.env.PORT || 3000;
