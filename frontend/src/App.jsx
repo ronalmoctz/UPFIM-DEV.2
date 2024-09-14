@@ -6,6 +6,7 @@ import Reviews from './components/Reviews/Reviews';
 import Info from './components/Info/Info';
 import StepGuide from './components/StepGuide/StepGuide';
 import Footer from './components/Footer/Footer';
+import Gallery from './components/Gallery/Gallery';
 // import Login from "./components/Login/Login";
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -19,6 +20,7 @@ const App = () => {
       <Hero darkMode={darkMode} />
       <Services />
       <Reviews />
+      <Gallery />
       <Info />
       <StepGuide />
       <Footer />
