@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../database/db');
 
-router.get('/', async (req, res) => {
+router.get('/getAlumnos', async (req, res) => {
   try {
     const [rows] = await db.query(
       'SELECT nombre, aPater, aMater, correo FROM alumnos'

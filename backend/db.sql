@@ -145,11 +145,12 @@ DELIMITER $$
 CREATE PROCEDURE insertTaller(
     IN p_nombre VARCHAR(45),
     IN p_tipo ENUM('deportiva', 'cultural'),
-    IN p_img_url VARCHAR(200)
+    IN p_img_url VARCHAR(200),
+    IN p_estatus INT
 )
 BEGIN
-    INSERT INTO taller (nombre, tipo, img_url)
-    VALUES (p_nombre, p_tipo, p_img_url);
+    INSERT INTO taller (nombre, tipo, img_url, estatus)
+    VALUES (p_nombre, p_tipo, p_img_url, p_estatus);
 END$$
 DELIMITER ;
 
@@ -245,3 +246,26 @@ DELIMITER ;
 
 --prueba
 CALL getDocentes();
+
+--proceso para consultar talleres
+DELIMITER $$
+
+CREATE PROCEDURE getTalleres()
+BEGIN
+    SELECT 
+        id_taller, 
+        nombre, 
+        tipo, 
+        img_url, 
+        CASE 
+            WHEN estatus = 1 THEN 'activo'
+            WHEN estatus = 0 THEN 'inactivo'
+        END AS estatus
+    FROM taller
+    ORDER BY id_taller;
+END$$
+
+DELIMITER ;
+
+
+

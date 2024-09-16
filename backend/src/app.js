@@ -6,7 +6,8 @@ const { securityHeaders } = require('./config/security');
 const alumnosRoutes = require('./routers/alumnosRoutes');
 const actividadesRoutes = require('./routers/actividadesRoutes');
 const authRoutes = require('./routers/auth');
-
+const docentesRoutes = require('./routers/docenteRoutes'); 
+const talleresRoutes = require('./routers/tallerRoutes'); 
 const app = express();
 
 // Parsing JSON
@@ -21,10 +22,14 @@ app.use(requestLogger);
 // Middleware for handling errors
 app.use(errorHandler);
 
-//Rutas
-app.use('/api/alumnos', alumnosRoutes);
-app.use('/api/actividades', actividadesRoutes);
+app.use('/api', docentesRoutes);
+app.use('/api', alumnosRoutes);
+app.use('/api', actividadesRoutes);
+app.use('/api', talleresRoutes);
 app.use('/api/auth', authRoutes);
+//example for access rute api --> http://localhost:3000/api/getTalleres
+
+module.exports = app;
 
 // Define the port where the server will listen
 const PORT = process.env.PORT || 3000;
