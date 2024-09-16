@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const { registerStudentsMassive } = require('../controllers/alumnoController');
 const db = require('../database/db');
 
 router.get('/getAlumnos', async (req, res) => {
@@ -19,5 +21,32 @@ router.get('/getAlumnos', async (req, res) => {
     });
   }
 });
+
+// Define the file filter to accept only Excel or CSV file
+const fileFilter = (req, file, cb) => {
+  const allowedTypes = [
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
+    'text/csv', // .csv
+  ];
+
+  if (allowedTypes.includes(file.mimetype)) {
+    cb(null, true); //File is valid
+  } else {
+    cb(
+      new Error('Invalid file type. Only Excel or CSV files are allowed.'),
+      false
+    ); //Rejec file
+  }
+};
+
+//Set up multer whith the fileFilter and destination folder
+const upload = multer({ dest: 'upload/', fileFilter });
+
+// Router for uploading the Excel/CSV file
+router.post(
+  '/alumno/update',
+  upload.single('ExcelFile'),
+  registerStudentsMassive
+);
 
 module.exports = router;
