@@ -1,3 +1,4 @@
+
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavBar from "./components/Generales/Header/NavBar";
@@ -11,10 +12,14 @@ import useDarkMode from "./Hooks/useDarkMode";
 import Contact from "./components/Contacto/ContactSection";
 // import FormInsertTaller from './components/Admin/FormInsertTaller'
 import ActividadMain from "./components/Actividades/ActividadMain";
+
 const App = () => {
   const [darkMode, toggleDarkMode] = useDarkMode();
   return (
-    <div className={`${darkMode ? "dark" : ""} font-onest`}>
+
+
+    <div className={`${darkMode ? 'dark' : ''} font-onest`}>
+
       <Router>
         <Routes>
           <Route

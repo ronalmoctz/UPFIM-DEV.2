@@ -3,12 +3,14 @@ const { logger } = require('./utils/logger');
 const { requestLogger } = require('./middleware/requestLogger');
 const { errorHandler } = require('./middleware/errorHandler');
 const { securityHeaders } = require('./config/security');
-const alumnosRoutes = require('./routers/alumnosRoutes');
+// const alumnosRoutes = require('./routers/alumnosRoutes');
 const actividadesRoutes = require('./routers/actividadesRoutes');
 const authRoutes = require('./routers/auth');
 const docentesRoutes = require('./routers/docenteRoutes');
 const talleresRoutes = require('./routers/tallerRoutes');
 const adminRoutes = require('./routers/adminRoutes');
+
+
 const app = express();
 const cors = require('cors');
 // Parsing JSON
@@ -26,7 +28,7 @@ app.use(requestLogger);
 app.use(errorHandler);
 
 app.use('/api', docentesRoutes);
-app.use('/api', alumnosRoutes);
+// app.use('/api', alumnosRoutes);
 app.use('/api', actividadesRoutes);
 app.use('/api', talleresRoutes);
 app.use('/api/auth', authRoutes);
