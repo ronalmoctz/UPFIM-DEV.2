@@ -243,13 +243,11 @@ BEGIN
     JOIN taller t ON dt.taller_fk = t.id_taller;
 END //
 DELIMITER ;
-
 --prueba
 CALL getDocentes();
 
 --proceso para consultar talleres
 DELIMITER $$
-
 CREATE PROCEDURE getTalleres()
 BEGIN
     SELECT 
@@ -264,8 +262,145 @@ BEGIN
     FROM taller
     ORDER BY id_taller;
 END$$
+DELIMITER ;
+
+
+
+DELIMITER //
+CREATE PROCEDURE getActividades()
+BEGIN
+    SELECT 
+        id,
+        titulo,
+        descripcion,
+        tipo,
+        fecha,
+        hora,
+        ubicacion,
+        img_url,
+        estado
+    FROM actividades;
+END //
 
 DELIMITER ;
 
 
 
+DELIMITER //
+CREATE PROCEDURE insertActividad(
+    IN p_titulo VARCHAR(255),
+    IN p_descripcion TEXT,
+    IN p_tipo ENUM('deportiva', 'cultural'),
+    IN p_fecha DATE,
+    IN p_hora TIME,
+    IN p_ubicacion VARCHAR(255),
+    IN p_img_url VARCHAR(255),
+    IN p_estado ENUM('activa', 'cancelada', 'finalizada')
+)
+BEGIN
+    INSERT INTO actividades (titulo, descripcion, tipo, fecha, hora, ubicacion, img_url, estado)
+    VALUES (p_titulo, p_descripcion, p_tipo, p_fecha, p_hora, p_ubicacion, p_img_url, p_estado);
+END //
+
+DELIMITER ;
+
+
+CALL insertActividad(
+    'Concierto de Rock',
+    'Evento cultural con bandas locales',
+    'cultural',
+    '2024-10-05',
+    '18:30:00',
+    'Auditorio Central',
+    'http://imagenconcierto.com/rock.jpg',
+    'activa'
+);
+
+CALL insertActividad(
+    'Carrera 10K',
+    'Competencia deportiva abierta al público',
+    'deportiva',
+    '2024-09-25',
+    '07:00:00',
+    'Parque Principal',
+    'http://imagencarrera.com/10k.jpg',
+    'activa'
+);
+
+CALL insertActividad(
+    'Obra de Teatro',
+    'Presentación de una obra clásica',
+    'cultural',
+    '2024-11-01',
+    '20:00:00',
+    'Teatro Municipal',
+    'http://imagenobra.com/teatro.jpg',
+    'activa'
+);
+
+CALL insertActividad(
+    'Torneo de Básquetbol',
+    'Torneo entre equipos locales',
+    'deportiva',
+    '2024-09-18',
+    '14:00:00',
+    'Gimnasio Deportivo',
+    'http://imagentorneo.com/basquet.jpg',
+    'activa'
+);
+
+CALL insertActividad(
+    'Exposición de Arte',
+    'Muestra cultural de artistas locales',
+    'cultural',
+    '2024-12-15',
+    '10:00:00',
+    'Centro Cultural',
+    'http://imagenexpo.com/arte.jpg',
+    'activa'
+);
+
+DELIMITER //
+
+CREATE PROCEDURE deleteActividad(
+    IN p_titulo VARCHAR(255)
+)
+BEGIN
+    DELETE FROM actividades
+    WHERE titulo = p_titulo;
+END //
+
+DELIMITER ;
+
+
+DELIMITER //
+
+CREATE PROCEDURE updateActividad(
+    IN p_id INT,
+    IN p_titulo VARCHAR(255),
+    IN p_descripcion TEXT,
+    IN p_tipo ENUM('deportiva', 'cultural'),
+    IN p_fecha DATE,
+    IN p_hora TIME,
+    IN p_ubicacion VARCHAR(255),
+    IN p_img_url VARCHAR(255),
+    IN p_estado ENUM('activa', 'cancelada', 'finalizada')
+)
+BEGIN
+    UPDATE actividades
+    SET 
+        titulo = p_titulo,
+        descripcion = p_descripcion,
+        tipo = p_tipo,
+        fecha = p_fecha,
+        hora = p_hora,
+        ubicacion = p_ubicacion,
+        img_url = p_img_url,
+        estado = p_estado
+    WHERE id = p_id;
+END //
+
+DELIMITER ;
+
+ALTER TABLE actividades ADD COLUMN titulo VARCHAR(255) NOT NULL;
+ALTER TABLE actividades ADD COLUMN ubicacion VARCHAR(255) NOT NULL;
