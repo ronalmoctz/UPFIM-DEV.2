@@ -5,13 +5,14 @@ import Metas from './Metas/Metas';
 // import Gallery from './Gallery/Gallery';
 import Taller from './TallerHome/Taller';
 import Docentes from './DocentesHome/Docentes';
+import Gallery from './Gallery/Gallery';
 
 const Home = ({ darkMode }) => {
   return (
     <>
       <Hero darkMode={darkMode} />
       <About />
-      {/* <Gallery /> */}
+      <Gallery />
       <Metas />
       <Taller />
       <Docentes />
