@@ -11,7 +11,6 @@ import useDarkMode from "./Hooks/useDarkMode";
 // import Contact from "./components/Contacto/ContactSection";
 import FormInsertTaller from "./components/Admin/Forms/FormInsertTaller";
 import ActividadMain from "./components/Actividades/ActividadMain";
-// import Taller from "./components/Inicio/TallerHome/Taller";
 import MainDash from './components/Admin/DashBoard/MainDash'
 const App = () => {
   const [darkMode, toggleDarkMode] = useDarkMode();

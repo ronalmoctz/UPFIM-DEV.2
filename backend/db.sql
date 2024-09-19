@@ -402,3 +402,36 @@ DELIMITER ;
 
 ALTER TABLE actividades ADD COLUMN titulo VARCHAR(255) NOT NULL;
 ALTER TABLE actividades ADD COLUMN ubicacion VARCHAR(255) NOT NULL;
+
+
+DELIMITER //
+CREATE PROCEDURE getInfoAlumno(IN matricula_alumno INT)
+BEGIN
+    SELECT 
+        CONCAT(a.nombre, ' ', a.aPater, ' ', a.aMater) AS nombre_completo_alumno,
+        a.correo,
+        p.namePrograma AS programa,
+        c.nameCuatri AS cuatrimestre,
+        per.namePeriodo AS periodo,
+        t.nombre AS nombre_taller,
+        g.grupo AS grupo_taller,
+        h.dia AS dia_taller,
+        h.hrEntrada AS hora_entrada,
+        h.hrSalida AS hora_salida,
+        CONCAT(d.nombre, ' ', d.aPater, ' ', d.aMater) AS nombre_completo_docente,
+        CASE WHEN ga.alumno_fk IS NOT NULL THEN 'Inscrito' ELSE 'No Inscrito' END AS estatus
+    FROM alumnos a
+    LEFT JOIN programa p ON a.programa_fk = p.id_programa
+    LEFT JOIN cuatrimestre c ON a.cuatrimestre_fk = c.id_cuatrimestre
+    LEFT JOIN grupo_alumno ga ON a.matricula = ga.alumno_fk
+    LEFT JOIN grupo g ON ga.grupo_fk = g.id_grupo
+    LEFT JOIN horarios h ON g.horarios_fk = h.id_horarios
+    LEFT JOIN docente_taller dt ON g.docente_taller_fk = dt.id_docente_taller
+    LEFT JOIN docente d ON dt.docente_fk = d.no_empleado
+    LEFT JOIN taller t ON dt.taller_fk = t.id_taller
+    LEFT JOIN periodo per ON ga.periodo_fk = per.id_periodo
+    WHERE a.matricula = matricula_alumno;
+    
+END //
+
+DELIMITER ;

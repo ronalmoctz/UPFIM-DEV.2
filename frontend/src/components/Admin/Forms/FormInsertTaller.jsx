@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { showAlert } from "../../Alerts/Alerts"; 
+import { showAlert } from "../../Alerts/Alerts";
+import { FaArrowRight } from "react-icons/fa"; 
 
 const InsertTallerForm = () => {
   const [nombre, setNombre] = useState("");
@@ -34,7 +35,7 @@ const InsertTallerForm = () => {
       });
       showAlert("success", "Éxito", response.data.message || "Datos insertados con éxito");
     } catch (err) {
-      showAlert("error", "Error", err.response?.data?.error || "Error al insertar taller"); 
+      showAlert("error", "Error", err.response?.data?.error || "Error al insertar taller");
     }
   };
 
@@ -53,7 +54,6 @@ const InsertTallerForm = () => {
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded-lg"
-              
             />
           </div>
 
@@ -66,7 +66,6 @@ const InsertTallerForm = () => {
               value={tipo}
               onChange={(e) => setTipo(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded-lg"
-              
             >
               <option value="">Selecciona un tipo</option>
               <option value="deportiva">Deportiva</option>
@@ -87,7 +86,6 @@ const InsertTallerForm = () => {
                   checked={estatus === "1"}
                   onChange={(e) => setEstatus(e.target.value)}
                   className="form-radio"
-                  
                 />
                 <span className="ml-2">Activo</span>
               </label>
@@ -99,7 +97,6 @@ const InsertTallerForm = () => {
                   checked={estatus === "0"}
                   onChange={(e) => setEstatus(e.target.value)}
                   className="form-radio"
-                  
                 />
                 <span className="ml-2">Inactivo</span>
               </label>
@@ -124,6 +121,16 @@ const InsertTallerForm = () => {
           >
             Insertar Taller
           </button>
+
+          <div className="mt-6 flex items-center justify-center">
+            <button
+              type="button"
+              className="flex items-center bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600"
+            >
+              Desea enlazar un docente
+              <FaArrowRight className="ml-2" /> 
+            </button>
+          </div>
         </form>
       </div>
     </div>
