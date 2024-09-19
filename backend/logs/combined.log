@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-09-18T18:53:48.488Z"}
 {"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-09-18T19:07:40.282Z"}
 {"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-09-18T23:45:17.788Z"}
@@ -23,3 +24,8 @@
 {"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-09-19T21:43:04.371Z"}
 {"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-09-19T21:44:28.817Z"}
 {"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-09-19T21:48:11.352Z"}
+=======
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-09-19T17:03:19.187Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-09-19T17:26:13.427Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-09-19T17:54:18.872Z"}
+>>>>>>> 8eec8846122298c4fa6127bc119ab9df4d20589d

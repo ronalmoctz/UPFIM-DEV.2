@@ -2,6 +2,69 @@ import piano from "../assets/piano.webp";
 import basket from "../assets/basket.webp";
 import yoga from "../assets/yoga.webp";
 
+
+
+import {
+  IoIosLogIn,
+  IoIosLogOut,
+} from "react-icons/io";
+import {
+  FaChartBar,
+  FaCalendarAlt,
+  FaFacebookMessenger,
+  FaUsersCog,
+  FaListAlt,
+} from "react-icons/fa";
+
+
+export const links = [
+  {
+    href: "#",
+    icon: FaChartBar,
+    text: "Dashboard",
+  },
+  {
+    href: "#",
+    icon: FaCalendarAlt,
+    text: "Kanban",
+    badge: {
+      text: "Pro",
+      color: "bg-gray-100 text-gray-800",
+      darkColor: "dark:bg-gray-700 dark:text-gray-300",
+    },
+  },
+  {
+    href: "#",
+    icon: FaFacebookMessenger,
+    text: "Inbox",
+    badge: {
+      text: "4",
+      color: "bg-blue-100 text-blue-800",
+      darkColor: "dark:bg-blue-900 dark:text-blue-300",
+    },
+  },
+  {
+    href: "#",
+    icon: FaUsersCog,
+    text: "Users",
+  },
+  {
+    href: "#",
+    icon: FaListAlt,
+    text: "Products",
+  },
+  {
+    href: "#",
+    icon: IoIosLogIn,
+    text: "Sign In",
+  },
+  {
+    href: "#",
+    icon: IoIosLogOut,
+    text: "Sign Up",
+  },
+];
+
 export const intro = {
   title: "Descubre Cultura & Deportes",
   description:
@@ -25,6 +88,8 @@ export const tallerInfo = [
     image: yoga,
   },
 ];
+
+
 
 
 
