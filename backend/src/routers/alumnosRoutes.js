@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const { registerStudentsMassive } = require('../controllers/alumnoController');
 const db = require('../database/db');
+const insertService = require('../service/testAlumnoInsert');
 
 router.get('/getAlumnos', async (req, res) => {
   try {
@@ -48,5 +49,47 @@ router.post(
   upload.single('ExcelFile'),
   registerStudentsMassive
 );
+
+router.post('/alumno/insert', async (req, res) => {
+  const {
+    idUser,
+    userName,
+    pass,
+    studentName,
+    surnameP,
+    surnameM,
+    studentGroup,
+    email,
+    sexo,
+    lengua,
+    programa,
+    cuatrimestre,
+  } = req.body;
+
+  try {
+    const result = await insertService.insertStudent({
+      idUser,
+      userName,
+      pass,
+      studentName,
+      surnameP,
+      surnameM,
+      studentGroup,
+      email,
+      sexo,
+      lengua,
+      programa,
+      cuatrimestre,
+    });
+
+    res.status(200).json({ message: 'Alumno insertado correctamente', result });
+  } catch (error) {
+    console.error('Error al insertar alumno:', error);
+    res.status(500).json({
+      message: 'Error al insertar alumno',
+      error: error.message || 'Error desconocido',
+    });
+  }
+});
 
 module.exports = router;
