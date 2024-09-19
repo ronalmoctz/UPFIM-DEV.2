@@ -1,6 +1,7 @@
 const multer = require("multer");
-const { storageTalleres } = require("../utils/cloudinaryConfig");
+const { storageTalleres, storageActividades } = require("../utils/cloudinaryConfig");
 
 const uploadTaller = multer({ storage: storageTalleres });
+const uploadActividad = multer({ storage: storageActividades });
 
-module.exports = uploadTaller;
+module.exports = uploadTaller, uploadActividad;

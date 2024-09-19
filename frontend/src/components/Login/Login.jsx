@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { FiMail, FiLock } from 'react-icons/fi';
-import { HiArrowRight } from 'react-icons/hi';
-import { FaHome } from "react-icons/fa";
-import { FaEye, FaEyeSlash } from 'react-icons/fa6'; 
 import { Link } from 'react-router-dom'; 
 import logo from '../../assets/logo-borde.webp';
 import fondoImg from '../../assets/poli.webp';
+import { TbUserHexagon,TbLock,TbArrowBigRightLineFilled,TbHomeUp,TbEyeClosed,TbEye } from "react-icons/tb";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false); 
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -38,18 +34,18 @@ const Login = () => {
           <form action="#">
             <div className="flex flex-col mb-6">
               <label htmlFor="email" className="font-semibold mb-1 text-xs sm:text-sm tracking-wide text-gray-900">
-                Correo Electronico:
+                Usuario:
               </label>
               <div className="relative">
                 <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-                  <FiMail className="h-6 w-6" />
+                  <TbUserHexagon className="h-6 w-6" />
                 </div>
                 <input
                   id="email"
                   type="email"
                   name="email"
                   className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-verde"
-                  placeholder="E-Mail Address"
+                  placeholder="Ingrese su matricula"
                 />
               </div>
             </div>
@@ -60,20 +56,20 @@ const Login = () => {
               </label>
               <div className="relative">
                 <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-                  <FiLock className="h-6 w-6" />
+                  <TbLock className="h-6 w-6" />
                 </div>
                 <input
                   id="password"
                   type={showPassword ? 'text' : 'password'} 
                   name="password"
                   className=" text-sm sm:text-base placeholder-gray-500 pl-10 pr-10 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-verde"
-                  placeholder="Password"
+                  placeholder="Ingrese su contraseña"
                 />
                 <div
                   className="inline-flex items-center justify-center absolute right-0 top-0 h-full w-10 text-gray-400 cursor-pointer"
                   onClick={togglePasswordVisibility} 
                 >
-                  {showPassword ? <FaEye className="h-6 w-6" /> : <FaEyeSlash className="h-6 w-6" />}
+                  {showPassword ? <TbEye className="h-6 w-6" /> : <TbEyeClosed className="h-6 w-6" />}
                 </div>
               </div>
             </div>
@@ -83,8 +79,8 @@ const Login = () => {
                 type="submit"
                 className="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-verde hover:bg-verdeHover rounded py-2 w-full transition duration-150 ease-in"
               >
-                <span className="mr-2 uppercase">Login</span>
-                <HiArrowRight className="h-6 w-6" />
+                <span className="mr-2 uppercase">Entrar</span>
+                <TbArrowBigRightLineFilled className="h-6 w-6" />
               </button>
             </div>
           </form>
@@ -92,7 +88,7 @@ const Login = () => {
 
         <div className="flex justify-center items-center mt-6">
           <Link to="/" className="inline-flex items-center font-bold text-white hover:text-gray-800 text-xs text-center">
-            <FaHome className="h-6 w-6" />
+            <TbHomeUp  className="h-6 w-6" />
             <span className="ml-2">¿Quieres regresar al inicio?</span>
           </Link>
         </div>

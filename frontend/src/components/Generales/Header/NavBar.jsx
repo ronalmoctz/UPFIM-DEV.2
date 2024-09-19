@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { BiMenuAltLeft } from "react-icons/bi";
-import { FaSun, FaMoon } from "react-icons/fa";
 import { Link } from "react-router-dom";  // Importar Link de react-router-dom
 import logo from "../../../assets/logo-borde.webp";
+import { TbMoonStars,TbSunHigh,TbMenu2 } from "react-icons/tb";
 
 const NavBar = ({ handleDarkMode, darkMode }) => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -18,10 +17,10 @@ const NavBar = ({ handleDarkMode, darkMode }) => {
             <img src={logo} alt="UPFIM Logo" className="h-10 w-auto md:h-12" />
           </Link>
           <button
-            className="cursor-pointer rounded-full bg-slate-500 p-1 text-slate-200 dark:bg-slate-100 dark:text-slate-500 md:hidden"
+            className="cursor-pointer rounded-full bg-verde p-1 text-slate-200 dark:bg-slate-100 dark:text-slate-500 md:hidden"
             onClick={handleToggleMenu}
           >
-            <BiMenuAltLeft className="text-2xl" />
+            <TbMenu2 className="text-2xl" />
           </button>
         </div>
         <div
@@ -79,7 +78,7 @@ const NavBar = ({ handleDarkMode, darkMode }) => {
             className="bg-verde mt-5 text-white rounded-lg p-2 dark:bg-slate-50 dark:text-verde md:ml-5 md:mt-0"
             onClick={handleDarkMode}
           >
-            {darkMode ? <FaSun /> : <FaMoon />}
+            {darkMode ? <TbSunHigh /> : <TbMoonStars />}
           </button>
         </div>
       </nav>
