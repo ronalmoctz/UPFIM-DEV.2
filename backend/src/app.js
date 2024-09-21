@@ -3,12 +3,15 @@ const { logger } = require('./utils/logger');
 const { requestLogger } = require('./middleware/requestLogger');
 const { errorHandler } = require('./middleware/errorHandler');
 const { securityHeaders } = require('./config/security');
-// const alumnosRoutes = require('./routers/alumnosRoutes');
+const alumnosRoutes = require('./routers/alumnosRoutes');
 const actividadesRoutes = require('./routers/actividadesRoutes');
 const authRoutes = require('./routers/auth');
 const docentesRoutes = require('./routers/docenteRoutes');
 const talleresRoutes = require('./routers/tallerRoutes');
+
+
 const { sendEmail } = require('./controllers/emailController');
+
 
 const app = express();
 const cors = require('cors');
@@ -26,12 +29,15 @@ app.use(requestLogger);
 // Middleware for handling errors
 app.use(errorHandler);
 
-// app.use('/api', alumnosRoutes);
+
 app.use('/api', docentesRoutes);
+app.use('/api', alumnosRoutes);
 app.use('/api', actividadesRoutes);
 app.use('/api', talleresRoutes);
 app.use('/api/auth', authRoutes);
+
 app.post('/api/sendEmail', sendEmail);
+
 //example for access rute api --> http://localhost:3000/api/getTalleres
 
 module.exports = app;

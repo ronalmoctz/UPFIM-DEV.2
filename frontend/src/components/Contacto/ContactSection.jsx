@@ -2,6 +2,7 @@ import React from "react";
 import ContactForm from "./ContactForm";
 import LocationSection from "./LocationSection";
 import Title from "../UI/Title";
+import MainQuestions from './Questions/MainQuestions'
 
 const ContactSection = () => {
   return (
@@ -12,6 +13,7 @@ const ContactSection = () => {
           subtitle="Puedes escribirnos por si tiene alguna duda o problema."
         />
         <ContactForm />
+        <MainQuestions/>
         <LocationSection />
       </div>
     </section>

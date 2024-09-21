@@ -6,7 +6,7 @@ import TallerCard from "./TallerCard";
 
 const Taller = () => {
   return (
-    <section className="bg-slate-400 p-5 md:p-16 dark:bg-slate-700">
+    <section className="bg-white p-5 md:p-16 dark:bg-slate-700">
       <Container>
         <Title
           title="Nuestros talleres"

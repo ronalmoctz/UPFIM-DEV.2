@@ -8,8 +8,8 @@ import Login from "./components/Login/Login";
 import Error404 from "./components/Generales/PageError/Error404";
 import Error408 from "./components/Generales/PageError/Error408";
 import useDarkMode from "./Hooks/useDarkMode";
-// import Contact from "./components/Contacto/ContactSection";
-import FormInsertTaller from "./components/Admin/Forms/FormInsertTaller";
+ import Contact from "./components/Contacto/ContactSection";
+// import FormInsertTaller from "./components/Admin/Forms/FormInsertTaller";
 import ActividadMain from "./components/Actividades/ActividadMain";
 import MainDash from './components/Admin/DashBoard/MainDash'
 const App = () => {
@@ -54,9 +54,8 @@ const App = () => {
               <>
                 <NavBar handleDarkMode={toggleDarkMode} darkMode={darkMode} />
                 {/* <MainDash/>*/}
-
-                {/* <Contact /> */}
-                <FormInsertTaller />
+                <Contact />
+                {/* <FormInsertTaller /> */}
                 <Footer />
               </>
             }

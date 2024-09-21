@@ -303,61 +303,6 @@ END //
 DELIMITER ;
 
 
-CALL insertActividad(
-    'Concierto de Rock',
-    'Evento cultural con bandas locales',
-    'cultural',
-    '2024-10-05',
-    '18:30:00',
-    'Auditorio Central',
-    'http://imagenconcierto.com/rock.jpg',
-    'activa'
-);
-
-CALL insertActividad(
-    'Carrera 10K',
-    'Competencia deportiva abierta al público',
-    'deportiva',
-    '2024-09-25',
-    '07:00:00',
-    'Parque Principal',
-    'http://imagencarrera.com/10k.jpg',
-    'activa'
-);
-
-CALL insertActividad(
-    'Obra de Teatro',
-    'Presentación de una obra clásica',
-    'cultural',
-    '2024-11-01',
-    '20:00:00',
-    'Teatro Municipal',
-    'http://imagenobra.com/teatro.jpg',
-    'activa'
-);
-
-CALL insertActividad(
-    'Torneo de Básquetbol',
-    'Torneo entre equipos locales',
-    'deportiva',
-    '2024-09-18',
-    '14:00:00',
-    'Gimnasio Deportivo',
-    'http://imagentorneo.com/basquet.jpg',
-    'activa'
-);
-
-CALL insertActividad(
-    'Exposición de Arte',
-    'Muestra cultural de artistas locales',
-    'cultural',
-    '2024-12-15',
-    '10:00:00',
-    'Centro Cultural',
-    'http://imagenexpo.com/arte.jpg',
-    'activa'
-);
-
 DELIMITER //
 
 CREATE PROCEDURE deleteActividad(
