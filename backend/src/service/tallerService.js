@@ -15,6 +15,49 @@ const AppError = require('../errors/AppError');
  * @returns {Promise<object>} Resultado de la inserción.
  * @throws {AppError} En caso de error en la inserción.
  */
+
+const checkDuplicateTaller = async (
+  nombre,
+  grupo,
+  dia,
+  hrEntrada,
+  hrSalida
+) => {
+  try {
+    console.log(
+      'Verificando duplicados con:',
+      nombre,
+      grupo,
+      dia,
+      hrEntrada,
+      hrSalida
+    );
+    const query = `
+      SELECT * FROM taller t
+      INNER JOIN docente_taller dt ON t.id_taller = dt.taller_fk
+      INNER JOIN grupo g ON dt.id_docente_taller = g.docente_taller_fk
+      INNER JOIN horarios h ON g.horarios_fk = h.id_horarios
+      WHERE t.nombre = ? AND g.grupo = ? AND h.dia = ? AND h.hrEntrada = ? AND h.hrSalida = ?
+    `;
+
+    const [result] = await db.query(query, [
+      nombre,
+      grupo,
+      dia,
+      hrEntrada,
+      hrSalida,
+    ]);
+
+    console.log('Resultado de verificacion: ', result);
+
+    // Devuelve el primer resultado si existe, de lo contrario null
+    return result.length > 0 ? result[0] : null;
+  } catch (error) {
+    console.error('Error al ejecutar la consulta de duplicados:', error);
+    throw new AppError('Error al verificar duplicados', 500);
+  }
+};
+
 const insertTallerGroupDocente = async (
   nombre,
   tipo,
@@ -53,4 +96,5 @@ const insertTallerGroupDocente = async (
 
 module.exports = {
   insertTallerGroupDocente,
+  checkDuplicateTaller,
 };

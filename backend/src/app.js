@@ -19,11 +19,11 @@ app.use(express.json());
 // Security headers with Helmet
 app.use(securityHeaders);
 
-// HTTP logging middleware with Morgan and Winston
-app.use(requestLogger);
-
 // Middleware for handling errors
 app.use(errorHandler);
+
+// HTTP logging middleware with Morgan and Winston
+app.use(requestLogger);
 
 app.use(
   cors({

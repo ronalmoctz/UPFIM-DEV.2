@@ -25,6 +25,21 @@ const insertTallerGroup = async (req, res, next) => {
   } = req.body;
 
   try {
+    // Verificar si existe
+    const ifExistTaller = await tallerService.checkDuplicateTaller(
+      nombre,
+      grupo,
+      dia,
+      hrEntrada,
+      hrSalida
+    );
+
+    if (ifExistTaller) {
+      return next(
+        new AppError('Ya existe este taller con los mismo valores', 400)
+      );
+    }
+
     const result = await tallerService.insertTallerGroupDocente(
       nombre,
       tipo,
