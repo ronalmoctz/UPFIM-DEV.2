@@ -1,7 +1,7 @@
 import { FaPaperPlane } from "react-icons/fa";
 import axios from "axios";
 import React, { useState } from "react";
-import { showAlert } from "../Alerts/Alerts";
+import { showAlert } from "../../Generales/Alerts/Alerts";
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     firstName: "",

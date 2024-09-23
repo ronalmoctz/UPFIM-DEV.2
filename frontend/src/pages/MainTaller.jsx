@@ -1,11 +1,11 @@
 import React from "react";
-import Container from "../UI/Container";
-import Title from "../UI/Title";
-import CardGrid from "./CardGrid";
+import Container from "../components/Generales/UI/Container";
+import Title from "../components/Generales/UI/Title";
+import CardGrid from "../components/Talleres/CardGrid";
 const Talleres = () => {
   return (
     <section className=" p-10 dark:bg-slate-700 md:p-20">
-        <div className="p-6"></div>
+      <div className="p-6"></div>
       <Container>
         <Title
           title="Talleres"

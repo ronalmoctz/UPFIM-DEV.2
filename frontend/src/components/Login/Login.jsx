@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
-import { TbEye, TbEyeClosed,TbArrowBigRightLineFilled,TbHomeMove,TbPasswordFingerprint,TbUserHexagon } from "react-icons/tb";
-import { Link, useNavigate} from 'react-router-dom';
-import logo from '../../assets/logo.webp';
-import fondoImg from '../../assets/poli.webp';
-import useAuth from '../../Hooks/useAuth';
-import { showAlert } from "../Alerts/Alerts"; 
+import React, { useState } from "react";
+import {
+  TbEye,
+  TbEyeClosed,
+  TbArrowBigRightLineFilled,
+  TbHomeMove,
+  TbPasswordFingerprint,
+  TbUserHexagon,
+} from "react-icons/tb";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.webp";
+import fondoImg from "../../assets/poli.webp";
+import useAuth from "../../Hooks/useAuth";
+import { showAlert } from "../Generales/Alerts/Alerts";
 
 const Login = () => {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { handleLogin } = useAuth();
   const navigate = useNavigate();
@@ -21,10 +28,10 @@ const Login = () => {
     e.preventDefault();
     try {
       await handleLogin(userName, password);
-      showAlert("success", "Bienvenido","Tus datos son correctos");
-      navigate('/dash');
+      showAlert("success", "Bienvenido", "Tus datos son correctos");
+      navigate("/dash");
     } catch (error) {
-      console.error('Error to sing in', error);
+      console.error("Error to sing in", error);
     }
   };
   return (
@@ -32,8 +39,8 @@ const Login = () => {
       className="min-h-screen flex flex-col items-center justify-center"
       style={{
         backgroundImage: `url(${fondoImg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <div className="flex flex-col  bg-opacity-30 backdrop-blur-lg  border-white border-2 shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
@@ -89,7 +96,7 @@ const Login = () => {
                   <TbPasswordFingerprint className="h-6 w-6" />
                 </div>
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   name="password"

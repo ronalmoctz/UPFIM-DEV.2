@@ -1,11 +1,18 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const {  getTalleres, insertTaller} = require("../controllers/tallerController");
-const uploadTaller = require("../middleware/uploadMiddleware");
+const {
+  getTalleres,
+  insertTaller,
+} = require('../controllers/tallerController');
+const { insertTallerGroup } = require('../controllers/groupTaller');
+const uploadTaller = require('../middleware/uploadMiddleware');
 
-router.get("/getTalleres", getTalleres);
-router.post("/insertTaller", uploadTaller.single("imagen"), insertTaller);
+router.post(
+  '/insertTallerGroup',
+  uploadTaller.single('imagen'),
+  insertTallerGroup
+);
+router.get('/getTalleres', getTalleres);
+router.post('/insertTaller', uploadTaller.single('imagen'), insertTaller);
 
 module.exports = router;
-
-  

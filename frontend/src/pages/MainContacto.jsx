@@ -1,8 +1,8 @@
 import React from "react";
-import ContactForm from "./ContactForm";
-import LocationSection from "./LocationSection";
-import Title from "../UI/Title";
-import MainQuestions from './Questions/MainQuestions'
+import ContactForm from "../components/Contacto/Formulario/ContactForm";
+import LocationSection from "../components/Contacto/Mapa/LocationSection";
+import Title from "../components/Generales/UI/Title";
+import MainQuestions from "../components/Contacto/Questions/MainQuestions";
 
 const ContactSection = () => {
   return (
@@ -13,7 +13,7 @@ const ContactSection = () => {
           subtitle="Puedes escribirnos por si tiene alguna duda o problema."
         />
         <ContactForm />
-        <MainQuestions/>
+        <MainQuestions />
         <LocationSection />
       </div>
     </section>

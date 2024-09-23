@@ -1,10 +1,14 @@
 import React from "react";
-import Container from "../../UI/Container";
+import Container from "../UI/Container";
 import Credits from "./Credits";
-import { TbUserSquare,TbMail,TbPhoneCall,TbMapPin,TbPhoneIncoming } from "react-icons/tb";
 import {
-  FaYoutube,
-} from "react-icons/fa";
+  TbUserSquare,
+  TbMail,
+  TbPhoneCall,
+  TbMapPin,
+  TbPhoneIncoming,
+} from "react-icons/tb";
+import { FaYoutube } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
 const Footer = () => {
@@ -13,9 +17,7 @@ const Footer = () => {
       <Container>
         <div className="flex flex-col gap-8 md:flex-row md:justify-between ">
           <div className="flex-1 flex flex-col items-center text-center">
-            <h3 className="mb-4 text-xl font-semibold text-white">
-              Contactos
-            </h3>
+            <h3 className="mb-4 text-xl font-semibold text-white">Contactos</h3>
             <ul className="space-y-2 text-white">
               <li className="flex hover:text-gray-500 transition-colors duration-300">
                 <TbUserSquare className="mr-2" />
@@ -51,9 +53,7 @@ const Footer = () => {
           </div>
 
           <div className="flex-1 flex flex-col items-center text-center">
-            <h3 className="mb-4 text-xl font-semibold text-white">
-              Siguenos
-            </h3>
+            <h3 className="mb-4 text-xl font-semibold text-white">Siguenos</h3>
             <ul className="flex justify-center space-x-4">
               <li>
                 <a

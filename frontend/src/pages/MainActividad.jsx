@@ -1,6 +1,6 @@
-import Container from "../UI/Container";
-import Title from "../UI/Title";
-import ActividadesGrid from "./ActividadesGrid";
+import Container from "../components/Generales/UI/Container";
+import Title from "../components/Generales/UI/Title";
+import ActividadesGrid from "../components/Actividades/ActividadesGrid";
 const ActividadMain = () => {
   return (
     <section className=" p-10 dark:bg-slate-700 md:p-20">

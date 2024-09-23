@@ -1,6 +1,6 @@
 import React from "react";
-import Title from "../../UI/Title";
-import Container from "../../UI/Container";
+import Title from "../../Generales/UI/Title";
+import Container from "../../Generales/UI/Container";
 import { tallerInfo } from "../../../constants";
 import TallerCard from "./TallerCard";
 

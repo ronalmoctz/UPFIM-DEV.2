@@ -6,7 +6,6 @@ const LocationSection = () => {
       <h2 className="text-3xl font-extrabold text-center text-gray-900 mb-4">
         Ubícanos
       </h2>
-      {/* Mapa incrustado */}
       <div className="flex justify-center">
         <iframe
           title="Mapa de ubicación"

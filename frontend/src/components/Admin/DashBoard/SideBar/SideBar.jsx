@@ -11,11 +11,9 @@ const SideBar = ({ isSidebarOpen }) => {
     >
       <div className="h-full px-3 pb-4 overflow-y-auto">
         <ul className="space-y-2 font-semibold">
-          {
-            links.map((link, index) => (
-              <LinksItem key={index} {...link} />
-          ))
-          }
+          {links.map((link, index) => (
+            <LinksItem key={index} {...link} />
+          ))}
         </ul>
       </div>
     </aside>

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Actividad from './Actividad';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Actividad from "./ActividadCard";
 
 const ActividadesGrid = () => {
   const [actividades, setActividades] = useState([]);
@@ -8,10 +8,12 @@ const ActividadesGrid = () => {
   useEffect(() => {
     const fetchActividades = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/getActividades');
+        const response = await axios.get(
+          "http://localhost:3000/api/getActividades"
+        );
         setActividades(response.data);
       } catch (error) {
-        console.error('Error fetching actividades:', error);
+        console.error("Error fetching actividades:", error);
       }
     };
 
