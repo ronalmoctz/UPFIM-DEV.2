@@ -32,6 +32,7 @@ const loginController = async (req, res) => {
 
     // Devolver el token al cliente
     res.json({ token, message: 'Inicio de sesión exitoso' });
+    console.log('Token generated and sent to client:', token);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error interno del servidor' });

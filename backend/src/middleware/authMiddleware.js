@@ -1,28 +1,36 @@
 const jwt = require('jsonwebtoken');
+const AppError = require('../errors/AppError');
 
 const verifyToken = (req, res, next) => {
-  const token = req.headers['authorization'];
+  console.log('Verifying token...');
+  const authHeader = req.headers['authorization'];
 
-  if (!token) {
-    return res.status(401).json({ message: 'No token provided' });
+  if (!authHeader || !authHeader.startsWith('Bearer')) {
+    return next(new AppError('No token provided', 401)); // Usamos AppError
   }
 
+  const token = authHeader.split(' ')[1];
+  console.log('Received token:', token);
+
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_TOKEN);
+    console.log('Token decoded: ', decoded);
     req.user = decoded;
     next();
   } catch (error) {
-    return res.status(401).json({ message: 'Token no valido' });
+    console.error('Token verification failed', error);
+    return next(new AppError('Token no válido', 401)); // Usamos AppError
   }
 };
 
-// Para verificar si es admin
+// Verificación de si es admin
 const isAdmin = (req, res, next) => {
   if (req.user.role !== 'admin') {
-    return res
-      .status(403)
-      .json({ message: 'Acceso denegado. Solo para administradores' });
+    return next(
+      new AppError('Acceso denegado. Solo para administradores', 403)
+    );
   }
+  next();
 };
 
 module.exports = { verifyToken, isAdmin };
