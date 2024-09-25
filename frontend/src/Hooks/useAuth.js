@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { login, logout, isAuthenticated } from '../services/authService';
+import { login, logout } from '../services/authService';
 
 export default function useAuth() {
-  const [auth, setAuth] = useState(isAuthenticated());
+  const [auth, setAuth] = useState(false);
 
   const handleLogin = async (userName, password) => {
     try {
@@ -14,9 +14,13 @@ export default function useAuth() {
     }
   };
 
-  const handleLogout = () => {
-    logout();
-    setAuth(false);
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setAuth(false);
+    } catch (error) {
+      console.error('Error al cerrar sesion', error);
+    }
   };
 
   return {

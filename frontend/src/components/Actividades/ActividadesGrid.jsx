@@ -1,33 +1,65 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Actividad from "./ActividadCard";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
+// import Actividad from "./ActividadCard";
 
 const ActividadesGrid = () => {
-  const [actividades, setActividades] = useState([]);
-
-  useEffect(() => {
-    const fetchActividades = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:3000/api/getActividades"
-        );
-        setActividades(response.data);
-      } catch (error) {
-        console.error("Error fetching actividades:", error);
-      }
-    };
-
-    fetchActividades();
-  }, []);
-
   return (
-    <div className="p-2 flex justify-center mt-0">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
-        {actividades.map((actividad) => (
-          <Actividad key={actividad.id} actividad={actividad} />
-        ))}
+    <Box
+      component="form"
+      sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
+      noValidate
+      autoComplete="off"
+    >
+      <div>
+        <TextField
+          required
+          id="outlined-required"
+          label="Required"
+          defaultValue="Hello World"
+        />
+        <TextField
+          disabled
+          id="outlined-disabled"
+          label="Disabled"
+          defaultValue="Hello World"
+        />
+        <TextField
+          id="outlined-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+        />
+        <TextField
+          id="outlined-read-only-input"
+          label="Read Only"
+          defaultValue="Hello World"
+          slotProps={{
+            input: {
+              readOnly: true,
+            },
+          }}
+        />
+        <TextField
+          id="outlined-number"
+          label="Number"
+          type="number"
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
+        />
+        <TextField id="outlined-search" label="Search field" type="search" />
+        <TextField
+          id="outlined-helperText"
+          label="Helper text"
+          defaultValue="Default Value"
+          helperText="Some important text"
+        />
       </div>
-    </div>
+    </Box>
   );
 };
 

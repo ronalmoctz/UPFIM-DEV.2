@@ -11,7 +11,20 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.webp';
 import fondoImg from '../../assets/poli.webp';
 import useAuth from '../../Hooks/useAuth';
+import { z } from 'zod';
 import { showAlert } from '../Generales/Alerts/Alerts';
+
+// Scehma for validation
+const loginSchema = z.object({
+  userName: z
+    .string()
+    .min(1, 'El nombre de usuario es requerido')
+    .max(50, 'El nombre de usuario es demasiado largo'),
+  password: z
+    .string()
+    .min(8, 'la contrasena debe ser de almenos 8 caracteres')
+    .max(50, 'la contrasena es demaciado larga'),
+});
 
 const Login = () => {
   const [userName, setUserName] = useState('');
@@ -20,36 +33,39 @@ const Login = () => {
   const { handleLogin } = useAuth();
   const navigate = useNavigate();
 
+  // Mostrar/ocultar contraseña
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  // Manejar envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!userName || !password) {
       showAlert(
         'error',
-        'Campos vacios',
-        'porfavor, ingresa tu usuario y contrasena'
+        'Campos vacíos',
+        'Por favor, ingresa tu usuario y contraseña'
       );
       return;
     }
-    //script para validar que sea un correo (este lo revisa para que se acorde === si es nickname o matricula)
-    // const emialPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // if (!emialPattern.test(userName)) {
-    //   showAlert(
-    //     'error',
-    //     'formato incorrecto',
-    //     ' porfavor, ingresa un correo electronico valido'
-    //   );
-    // }
+
     try {
+      // Validar usando Zod
+      loginSchema.parse({ userName, password });
+
+      // Llamada para iniciar sesión (esto enviará la cookie desde el backend)
       await handleLogin(userName, password);
+
+      // Mensaje de éxito y redirección
       showAlert('success', 'Bienvenido', 'Tus datos son correctos');
+      setUserName('');
+      setPassword('');
       navigate('/dash');
     } catch (error) {
-      console.error('Error to sing in', error);
+      showAlert('error', 'Error', 'Nombre de usuario o contraseña incorrectos');
+      console.error('Error al iniciar sesión', error);
     }
   };
   return (
@@ -120,6 +136,7 @@ const Login = () => {
                   name="password"
                   className=" text-sm sm:text-base placeholder-gray-500 pl-10 pr-10 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-verde"
                   placeholder="Ingrese su contraseña"
+                  autoComplete="off"
                 />
                 <div
                   className="inline-flex items-center justify-center absolute right-0 top-0 h-full w-10 text-gray-400 cursor-pointer"

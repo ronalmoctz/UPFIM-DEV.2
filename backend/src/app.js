@@ -1,19 +1,30 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const { logger } = require('./utils/logger');
 const { requestLogger } = require('./middleware/requestLogger');
 const { errorHandler } = require('./middleware/errorHandler');
-// const { verifyToken, isAdmin } = require('./middleware/authMiddleware');
+// const { checkRole } = require('./middleware/checkRole');
 const { securityHeaders } = require('./config/security');
 const alumnosRoutes = require('./routers/alumnosRoutes');
 const actividadesRoutes = require('./routers/actividadesRoutes');
 const authRoutes = require('./routers/auth');
 const docentesRoutes = require('./routers/docenteRoutes');
 const talleresRoutes = require('./routers/tallerRoutes');
+const cors = require('cors');
 const { sendEmail } = require('./controllers/emailController');
 
 const app = express();
 
-const cors = require('cors');
+app.use(cookieParser());
+
+app.use(
+  cors({
+    origin: 'http://localhost:5173', // URL de tu frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true, // Permitir envío de cookies
+  })
+);
 
 // Parsing JSON
 app.use(express.json());
@@ -22,22 +33,9 @@ app.use(securityHeaders);
 // HTTP logging middleware with Morgan and Winston
 app.use(requestLogger);
 
-app.use(
-  cors({
-    origin: 'http://localhost:5173',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  })
-);
-
 // Manejo de OPTIONS para el correo
 app.options('*', cors());
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
-//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   next();
-// });
+
 app.use('/api', alumnosRoutes);
 app.use('/api', docentesRoutes);
 app.use('/api', actividadesRoutes);
