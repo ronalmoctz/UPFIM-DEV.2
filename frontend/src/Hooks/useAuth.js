@@ -8,9 +8,11 @@ export default function useAuth() {
     try {
       await login(userName, password);
       setAuth(true);
+      return true;
     } catch (error) {
       console.error('Error to sing in', error);
       setAuth(false);
+      return false;
     }
   };
 

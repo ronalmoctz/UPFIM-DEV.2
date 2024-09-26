@@ -55,16 +55,20 @@ const Login = () => {
       // Validar usando Zod
       loginSchema.parse({ userName, password });
 
-      // Llamada para iniciar sesión (esto enviará la cookie desde el backend)
-      await handleLogin(userName, password);
+      const isAuthenticated = await handleLogin(userName, password);
 
-      // Mensaje de éxito y redirección
-      showAlert('success', 'Bienvenido', 'Tus datos son correctos');
-      setUserName('');
-      setPassword('');
-      navigate('/dash');
+      if (isAuthenticated) {
+        // Mensaje de éxito y redirección solo si la autenticación fue exitosa
+        showAlert('success', 'Bienvenido', 'Tus datos son correctos');
+        setUserName('');
+        setPassword('');
+        navigate('/dash');
+      } else {
+        // Show message
+        showAlert('error', 'Error', 'Nombre de usuario o contrasena no valida');
+      }
     } catch (error) {
-      showAlert('error', 'Error', 'Nombre de usuario o contraseña incorrectos');
+      showAlert('error', 'Error', 'Datos invalidos');
       console.error('Error al iniciar sesión', error);
     }
   };
