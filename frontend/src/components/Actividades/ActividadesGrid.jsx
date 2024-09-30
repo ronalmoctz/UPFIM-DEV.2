@@ -2,83 +2,84 @@ import * as React from 'react';
 import Select from './select';
 import Button from './button';
 import Toggle from './toggle';
+import DaySelect from './DaySelect';
+import ImageUpload from './ImageUpload';
+
 const ActividadesGrid = () => {
   return (
-    <div className="max-w-xl justify-center">
-      <form className="grid grid-cols-2  space-x-7 mb-5 ">
+    <div className="flex justify-center items-center h-screen">
+      <form className="grid grid-cols-2 gap-6 w-full max-w-2xl p-8 bg-white rounded-lg shadow-md">
+        {/* Input de Grupo */}
         <input
           type="text"
-          id="email-address-icon"
-          className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          id="grupo"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-3"
           placeholder="Grupo"
-        ></input>
+          required
+        />
+
+        {/* Select de Tipo de Taller */}
         <Select />
-        <div className="mt-8 ">
-          <label className=" text-sm font-medium text-gray-900 dark:text-white">
+
+        {/* Input de Hora de entrada */}
+        <div>
+          <label
+            htmlFor="start-time"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Hora de entrada:
           </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <input
-              type="time"
-              id="start-time"
-              className="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              min="09:00"
-              max="18:00"
-              value="00:00"
-              required
-            />
-          </div>
+          <input
+            type="time"
+            id="start-time"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-3"
+            min="09:00"
+            max="18:00"
+            defaultValue="00:00"
+            required
+          />
         </div>
-        <div className="mt-8">
-          <label className=" text-sm font-medium text-gray-900 dark:text-white">
+
+        {/* Input de Hora de salida */}
+        <div>
+          <label
+            htmlFor="end-time"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Hora de salida:
           </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <input
-              type="time"
-              id="end-time"
-              className="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              min="09:00"
-              max="18:00"
-              value="00:00"
-              required
-            />
-          </div>
+          <input
+            type="time"
+            id="end-time"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-3"
+            min="09:00"
+            max="18:00"
+            defaultValue="00:00"
+            required
+          />
         </div>
-        <div />
+
+        {/* Input para Nombre del Taller */}
+        <input
+          type="text"
+          id="nombre-taller"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-3"
+          placeholder="Nombre del Taller"
+          required
+        />
+
+        {/* Select de Día del Taller */}
+        <DaySelect />
+
+        {/* Toggle para estatus activo/inactivo */}
         <Toggle />
+
+        {/* Componente para subir imagen */}
+        <ImageUpload />
+
+        {/* Botón de Enviar */}
+        <Button />
       </form>
-      <Button />
     </div>
   );
 };
