@@ -13,13 +13,24 @@ const Actividad = ({ actividad }) => {
         <h2 className="text-2xl font-bold mb-2">{actividad.titulo}</h2>
         <p className="text-gray-700 mb-2">{actividad.descripcion}</p>
         <div className="text-gray-500 mb-2">
-          <p><strong>Tipo:</strong> {actividad.tipo}</p>
-          <p><strong>Estado:</strong> {actividad.estado}</p>
+          <p>
+            <strong>Tipo:</strong> {actividad.tipo}
+          </p>
+          <p>
+            <strong>Estado:</strong> {actividad.estado}
+          </p>
         </div>
         <div className="text-gray-600">
-          <p><strong>Ubicación:</strong> {actividad.ubicacion}</p>
-          <p><strong>Fecha:</strong> {new Date(actividad.fecha).toLocaleDateString()}</p>
-          <p><strong>Hora:</strong> {actividad.hora}</p>
+          <p>
+            <strong>Ubicación:</strong> {actividad.ubicacion}
+          </p>
+          <p>
+            <strong>Fecha:</strong>{' '}
+            {new Date(actividad.fecha).toLocaleDateString()}
+          </p>
+          <p>
+            <strong>Hora:</strong> {actividad.hora}
+          </p>
         </div>
       </div>
     </div>

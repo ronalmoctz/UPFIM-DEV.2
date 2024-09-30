@@ -1,7 +1,10 @@
 const express = require('express');
 const { body } = require('express-validator');
 const { validateRequest } = require('../middleware/validatonMiddleware');
-const { loginController } = require('../controllers/authController');
+const { loginController } = require('../controllers/loginController');
+const {
+  refreshTokenController,
+} = require('../controllers/refreshTokenController');
 const { registerUserController } = require('../controllers/adminController');
 const rateLimit = require('express-rate-limit');
 
@@ -28,6 +31,10 @@ router.post(
   loginLimiter, // Apply rate limiter middleware
   loginController
 );
+
+// Ruta para renovar el token usando el refresh token
+router.post('/refresh-token', refreshTokenController);
+
 //Router for register
 router.post(
   '/register',

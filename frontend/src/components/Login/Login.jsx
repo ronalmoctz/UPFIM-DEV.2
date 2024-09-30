@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   TbEye,
   TbEyeClosed,
@@ -6,32 +6,70 @@ import {
   TbHomeMove,
   TbPasswordFingerprint,
   TbUserHexagon,
-} from "react-icons/tb";
-import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.webp";
-import fondoImg from "../../assets/poli.webp";
-import useAuth from "../../Hooks/useAuth";
-import { showAlert } from "../Generales/Alerts/Alerts";
+} from 'react-icons/tb';
+import { Link, useNavigate } from 'react-router-dom';
+import logo from '../../assets/logo.webp';
+import fondoImg from '../../assets/poli.webp';
+import useAuth from '../../Hooks/useAuth';
+import { z } from 'zod';
+import { showAlert } from '../Generales/Alerts/Alerts';
+
+// Scehma for validation
+const loginSchema = z.object({
+  userName: z
+    .string()
+    .min(1, 'El nombre de usuario es requerido')
+    .max(50, 'El nombre de usuario es demasiado largo'),
+  password: z
+    .string()
+    .min(8, 'la contrasena debe ser de almenos 8 caracteres')
+    .max(50, 'la contrasena es demaciado larga'),
+});
 
 const Login = () => {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const { handleLogin } = useAuth();
   const navigate = useNavigate();
 
+  // Mostrar/ocultar contraseña
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  // Manejar envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!userName || !password) {
+      showAlert(
+        'error',
+        'Campos vacíos',
+        'Por favor, ingresa tu usuario y contraseña'
+      );
+      return;
+    }
+
     try {
-      await handleLogin(userName, password);
-      showAlert("success", "Bienvenido", "Tus datos son correctos");
-      navigate("/dash");
+      // Validar usando Zod
+      loginSchema.parse({ userName, password });
+
+      const isAuthenticated = await handleLogin(userName, password);
+
+      if (isAuthenticated) {
+        // Mensaje de éxito y redirección solo si la autenticación fue exitosa
+        showAlert('success', 'Bienvenido', 'Tus datos son correctos');
+        setUserName('');
+        setPassword('');
+        navigate('/dash');
+      } else {
+        // Show message
+        showAlert('error', 'Error', 'Nombre de usuario o contrasena no valida');
+      }
     } catch (error) {
-      console.error("Error to sing in", error);
+      showAlert('error', 'Error', 'Datos invalidos');
+      console.error('Error al iniciar sesión', error);
     }
   };
   return (
@@ -39,8 +77,8 @@ const Login = () => {
       className="min-h-screen flex flex-col items-center justify-center"
       style={{
         backgroundImage: `url(${fondoImg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
       <div className="flex flex-col  bg-opacity-30 backdrop-blur-lg  border-white border-2 shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
@@ -96,12 +134,13 @@ const Login = () => {
                   <TbPasswordFingerprint className="h-6 w-6" />
                 </div>
                 <input
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   name="password"
                   className=" text-sm sm:text-base placeholder-gray-500 pl-10 pr-10 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-verde"
                   placeholder="Ingrese su contraseña"
+                  autoComplete="off"
                 />
                 <div
                   className="inline-flex items-center justify-center absolute right-0 top-0 h-full w-10 text-gray-400 cursor-pointer"
