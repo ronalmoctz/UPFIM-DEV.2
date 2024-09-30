@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Button,
@@ -13,17 +13,17 @@ import {
   Select,
   TextField,
   Typography,
-} from "@mui/material";
-import { showAlert } from "../../../Generales/Alerts/Alerts"; 
+} from '@mui/material';
+import { showAlert } from '../../../Generales/Alerts/Alerts';
 const FormActividad = () => {
   const [formData, setFormData] = useState({
-    titulo: "",
-    descripcion: "",
-    tipo: "deportiva",
-    fecha: "",
-    hora: "",
-    ubicacion: "",
-    estado: "activa",
+    titulo: '',
+    descripcion: '',
+    tipo: 'deportiva',
+    fecha: '',
+    hora: '',
+    ubicacion: '',
+    estado: 'activa',
     imagen: null,
   });
 
@@ -49,32 +49,32 @@ const FormActividad = () => {
     }
 
     try {
-      await axios.post("http://localhost:3000/api/insertActividad", data, {
+      await axios.post('http://localhost:3000/api/insertActividad', data, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
         },
       });
       showAlert('success', 'Éxito', 'Actividad agregada exitosamente');
 
       setFormData({
-        titulo: "",
-        descripcion: "",
-        tipo: "deportiva",
-        fecha: "",
-        hora: "",
-        ubicacion: "",
-        estado: "activa",
+        titulo: '',
+        descripcion: '',
+        tipo: 'deportiva',
+        fecha: '',
+        hora: '',
+        ubicacion: '',
+        estado: 'activa',
         imagen: null,
       });
       setImagenPreview(null);
     } catch (error) {
-      console.error("Error al agregar actividad", error);
-      showAlert('error', 'Error', 'Error al agregar actividad'); 
+      console.error('Error al agregar actividad', error);
+      showAlert('error', 'Error', 'Error al agregar actividad');
     }
   };
 
   const handleCancel = () => {
-    navigate("/");
+    navigate('/');
   };
 
   return (
@@ -83,11 +83,11 @@ const FormActividad = () => {
       onSubmit={handleSubmit}
       sx={{
         maxWidth: 400,
-        width: "100%",
-        mx: "auto",
+        width: '100%',
+        mx: 'auto',
         mt: 4,
         p: 2,
-        backgroundColor: "white",
+        backgroundColor: 'white',
         borderRadius: 2,
         boxShadow: 3,
       }}
@@ -141,7 +141,7 @@ const FormActividad = () => {
         value={formData.fecha}
         onChange={handleChange}
         required
-        InputLabelProps={{ shrink: true }} 
+        InputLabelProps={{ shrink: true }}
         margin="normal"
       />
 
@@ -153,7 +153,7 @@ const FormActividad = () => {
         value={formData.hora}
         onChange={handleChange}
         required
-        InputLabelProps={{ shrink: true }} 
+        InputLabelProps={{ shrink: true }}
         margin="normal"
       />
 
@@ -208,7 +208,7 @@ const FormActividad = () => {
         </Card>
       )}
 
-      <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
         <Button variant="contained" color="primary" type="submit">
           Agregar Actividad
         </Button>
