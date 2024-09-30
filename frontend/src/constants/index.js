@@ -2,8 +2,6 @@ import piano from "../assets/piano.webp";
 import basket from "../assets/basket.webp";
 import yoga from "../assets/yoga.webp";
 
-
-
 import {
   IoIosLogIn,
   IoIosLogOut,

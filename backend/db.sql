@@ -73,6 +73,7 @@ CREATE TABLE taller (
   nombre VARCHAR(45) NOT NULL,
   tipo ENUM('deportiva', 'cultural') NOT NULL,  
   img_url VARCHAR(200) NOT NULL,
+  estatus INT(10) NOT NULL,
   PRIMARY KEY (id_taller)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -260,9 +261,24 @@ BEGIN
             WHEN estatus = 0 THEN 'inactivo'
         END AS estatus
     FROM taller
+    WHERE estatus = 1  
     ORDER BY id_taller;
 END$$
 DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE  upStatusTaller(IN idTaller INT, IN nuevoEstatus VARCHAR(10))
+BEGIN
+    UPDATE taller
+    SET estatus = 
+        CASE 
+            WHEN nuevoEstatus = 'activo' THEN 1
+            WHEN nuevoEstatus = 'inactivo' THEN 0
+        END
+    WHERE id_taller = idTaller;
+END$$
+DELIMITER ;
+
 
 DELIMITER //
 CREATE PROCEDURE getActividades()
@@ -377,6 +393,56 @@ BEGIN
     LEFT JOIN periodo per ON ga.periodo_fk = per.id_periodo
     WHERE a.matricula = matricula_alumno;
     
+END //
+
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE getDocentes() 
+BEGIN
+    SELECT 
+        d.no_empleado,  
+        d.titulo, 
+        d.nombre, 
+        d.aPater, 
+        d.aMater, 
+        d.correo, 
+        d.img_url, 
+        GROUP_CONCAT(t.nombre SEPARATOR ', ') AS talleres_impartidos, 
+        GROUP_CONCAT(t.tipo SEPARATOR ', ') AS tipos_taller 
+    FROM 
+        docente d
+    JOIN 
+        docente_taller dt ON d.no_empleado = dt.docente_fk
+    JOIN 
+        taller t ON dt.taller_fk = t.id_taller
+    WHERE 
+        t.estatus = 1  
+    GROUP BY 
+        d.no_empleado;  
+END //
+DELIMITER ;
+
+
+DELIMITER //
+
+CREATE PROCEDURE getTallerCrud()
+BEGIN
+    SELECT 
+        t.id_taller, 
+        t.nombre AS nombre_taller, 
+        t.tipo, 
+        t.img_url AS imagen_taller, 
+        t.estatus AS estatus_taller,
+        CONCAT(d.titulo, ' ', d.nombre, ' ', d.aPater, ' ', d.aMater) AS nombre_completo_docente
+    FROM 
+        taller t
+    LEFT JOIN 
+        docente_taller dt ON t.id_taller = dt.taller_fk
+    LEFT JOIN 
+        docente d ON dt.docente_fk = d.no_empleado
+    ORDER BY 
+        t.id_taller;
 END //
 
 DELIMITER ;

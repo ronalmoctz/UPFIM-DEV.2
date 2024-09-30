@@ -1,10 +1,11 @@
 import React from "react";
+
 const DocenteCards = ({ docente }) => {
   return (
-    <div className="flex flex-1 flex-col gap-5 rounded-md bg-white p-5 dark:bg-slate-800 dark:text-slae-300">
+    <div className="flex flex-1 flex-col gap-5 rounded-md bg-white p-5 dark:bg-slate-800 dark:text-slate-300">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-5">
-          <img src={docente.img_url} alt={docente.name} className="h-14 w-14 rounded-full" />
+          <img src={docente.img_url} alt={docente.nombre} className="h-14 w-14 rounded-full" />
           <div>
             <h1 className="text-xl font-semibold">{`${docente.titulo} ${docente.nombre} ${docente.aPater} ${docente.aMater}`}</h1>
           </div>
@@ -12,8 +13,24 @@ const DocenteCards = ({ docente }) => {
       </div>
 
       <div className="border-b pb-2">
-        <p className="font-bold">Imparte: <span className="font-normal">{docente.nombre_taller}</span></p>
-        <p className="font-bold">Tipo: <span className="font-normal">{docente.tipo}</span></p>
+        <p className="font-bold">Imparte:</p>
+        <div className="flex flex-wrap gap-2">
+          {docente.talleres_impartidos.split(', ').map((taller, index) => (
+            <span key={index} className="font-normal bg-gray-200 px-2 py-1 rounded hover:bg-verde hover:text-white transition-colors">
+              {taller}
+            </span>
+          ))}
+        </div>
+        
+        <p className="font-bold">Tipo:</p>
+        <div className="flex flex-wrap gap-2">
+          {docente.tipos_taller.split(', ').map((tipo, index) => (
+            <span key={index} className="font-normal bg-gray-200 px-2 py-1 rounded hover:bg-verde hover:text-white  transition-colors">
+              {tipo}
+            </span>
+          ))}
+        </div>
+
         <span className="font-bold flex items-center gap-1">Correo: <span className="font-normal">{docente.correo}</span></span>
       </div>
     </div>

@@ -10,6 +10,20 @@ const getTalleres = async (req, res) => {
   }
 };
 
+const getTallerCrud = async (req, res) => {
+  try {
+    const [results] = await db.query('CALL getTallerCrud()');
+    res.json(results[0]);  
+  } catch (err) {
+    console.error('Error al obtener datos:', err);
+    res.status(500).json({ error: 'Error al obtener datos' });
+  }
+};
+
+
+
+
+
 const insertTaller = (req, res) => {
   const { nombre, tipo, estatus } = req.body;
   const img_url = req.file ? req.file.path : null;
@@ -26,4 +40,4 @@ const insertTaller = (req, res) => {
 };
 
 
-module.exports = { getTalleres , insertTaller};
+module.exports = { getTalleres , insertTaller, getTallerCrud};

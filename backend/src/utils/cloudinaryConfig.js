@@ -1,13 +1,11 @@
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const cloudinary = require("cloudinary").v2;
 require("dotenv").config();
-
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
 const storageTalleres = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
@@ -16,7 +14,6 @@ const storageTalleres = new CloudinaryStorage({
     public_id: (req, file) => Date.now().toString(), 
   },
 });
-
 const storageActividades = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
@@ -25,6 +22,4 @@ const storageActividades = new CloudinaryStorage({
     public_id: (req, file) => Date.now().toString(), 
   },
 });
-
 module.exports = { cloudinary, storageTalleres, storageActividades }
-
