@@ -22,3 +22,10 @@
   @apply bg-slate-700 dark:bg-slate-500;
 
 }
+
+.actividad-descripcion {
+  max-height: 6rem; 
+  overflow-y: auto; 
+  word-break: break-word;
+  padding-right: 0.5rem;
+}

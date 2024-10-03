@@ -1,12 +1,6 @@
 const AppError = require('../errors/AppError');
 const tallerService = require('../service/tallerService');
 
-/**
- * Controlador para manejar la inserción de un nuevo taller.
- * @param {object} req - Request object.
- * @param {object} res - Response object.
- * @param {function} next - Middleware para pasar al siguiente manejador.
- */
 const insertTallerGroup = async (req, res, next) => {
   if (!req.body) {
     return next(new AppError('No se recibieron datos', 400));
@@ -23,7 +17,6 @@ const insertTallerGroup = async (req, res, next) => {
     hrSalida,
     grupo,
   } = req.body;
-
   try {
     // Verificar si existe
     const ifExistTaller = await tallerService.checkDuplicateTaller(
