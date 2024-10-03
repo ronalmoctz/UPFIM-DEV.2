@@ -1,68 +1,20 @@
-import React from "react";
-import {  Route, Routes } from "react-router-dom";
-import NavBar from "./components/Generales/Header/NavBar";
-import Inicio from "./pages/MainHome";
-import CatalogoTalleres from "./pages/MainTaller";
-import ActividadMain from "./pages/MainActividad";
-import Contact from "./pages/MainContacto";
-import Login from "./components/Login/Login";
-import Footer from "./components/Generales/Footer/Footer";
-import Error404 from "./components/Generales/PageError/Error404";
-import Error408 from "./components/Generales/PageError/Error408";
-import useDarkMode from "./Hooks/useDarkMode";
-import Table from "./components/Admin/CrudActividades/Table/Table";
-
-const App = () => {
-  const [darkMode, toggleDarkMode] = useDarkMode();
+import { Route, Routes } from "react-router-dom";
+import Sidebar from "./components/Admin/Common/Sidebar";
+import MainCrudActividades from "./components/Admin/CrudActividades/MainCrudActividades";
+import MainCrudTalleres from "./components/Admin/CrudTalleres/MainCrudTalleres";
+import FormInsert from "./components/Admin/CrudActividades/FormInsert/FormInsert";
+import FormUpdate from "./components/Admin/CrudActividades/FormUpdate/FormUpdate";
+function App() {
   return (
-    <div className={`${darkMode ? "dark" : ""} font-onest`}>
+    <div className="flex h-screen bg-red text-black overflow-hidden">
+      <Sidebar />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <NavBar handleDarkMode={toggleDarkMode} darkMode={darkMode} />
-              <Inicio darkMode={darkMode} />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/talleres"
-          element={
-            <>
-              <NavBar handleDarkMode={toggleDarkMode} darkMode={darkMode} />
-              <CatalogoTalleres />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/actividades"
-          element={
-            <>
-              <NavBar handleDarkMode={toggleDarkMode} darkMode={darkMode} />
-              <ActividadMain />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/contacto"
-          element={
-            <>
-              <NavBar handleDarkMode={toggleDarkMode} darkMode={darkMode} />
-              <Contact />
-              <Footer />
-            </>
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Error404 />} />
-        <Route path="/dash" element={<Table />} />
-        <Route path="/408" element={<Error408 />} />
+        <Route path="/crudActividades" element={<MainCrudActividades />} />
+        <Route path="/form-products" element={<FormInsert />} />
+        <Route path="/edit-products/:id_actividad" element={<FormUpdate />} />
+        <Route path="/crudTalleres" element={<MainCrudTalleres />} />
       </Routes>
     </div>
   );
-};
+}
 export default App;

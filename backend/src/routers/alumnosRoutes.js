@@ -44,12 +44,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({ dest: 'upload/', fileFilter });
 
 // Router for uploading the Excel/CSV file
-router.post(
-  '/alumno/update',
-  upload.single('ExcelFile'),
-  registerStudentsMassive
-);
-
+router.post('/alumno/update', upload.single('File'), registerStudentsMassive);
 
 router.post('/alumno/insert', async (req, res) => {
   const {
