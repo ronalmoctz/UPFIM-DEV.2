@@ -6,13 +6,13 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
-const storageActividades = new CloudinaryStorage({
+const storageTalleres = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "actividades",
+    folder: "talleres",
     allowed_formats: ["jpg", "png", "jpeg"],
     public_id: (req, file) => Date.now().toString(), 
   },
 });
-module.exports = { cloudinary, storageActividades }
+
+module.exports = { cloudinary, storageTalleres }

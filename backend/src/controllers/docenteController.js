@@ -10,4 +10,16 @@ const getDocentes = async (req, res) => {
   }
 };
 
-module.exports = { getDocentes };
+const getDocente = async (req, res) => {
+  try {
+    const [results] = await db.query('CALL getDocente()');
+    res.json(results[0]);  
+  } catch (err) {
+    console.error('Error al obtener datos:', err);
+    res.status(500).json({ error: 'Error al obtener datos' });
+  }
+};
+
+
+
+module.exports = { getDocentes, getDocente };

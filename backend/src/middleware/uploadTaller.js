@@ -1,7 +1,6 @@
 const multer = require("multer");
 const path = require("path");
-const { storageActividades } = require("../utils/cloudinaryConfig");
-
+const { storageTalleres } = require('../utils/CloudTaller')
 const imageFilter = (req, file, cb) => {
   const ext = path.extname(file.originalname).toLowerCase();
   const isImage = file.mimetype.startsWith("image/") && (ext === ".png" || ext === ".jpg" || ext === ".jpeg");
@@ -12,10 +11,9 @@ const imageFilter = (req, file, cb) => {
   cb(null, true);
 };
 
-const uploadActividad = multer({
-  storage: storageActividades,
+const uploadTaller = multer({
+  storage: storageTalleres,
   fileFilter: imageFilter, 
 });
 
-
-module.exports = uploadActividad;
+module.exports =  uploadTaller; 

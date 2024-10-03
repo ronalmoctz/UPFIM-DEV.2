@@ -18,7 +18,6 @@ const insertActividad = async (req, res) => {
   if (!img_url) {
     return res.status(400).json({ error: 'Se requiere una imagen válida' });
   }
-
   const sql = 'CALL insertActividad(?, ?, ?, ?, ?, ?, ?, ?)';
   try {
     const [result] = await db.query(sql, [

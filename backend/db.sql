@@ -140,24 +140,6 @@ CREATE TABLE actividades (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 );
 
-
--- insertar taller
-DELIMITER $$
-CREATE PROCEDURE insertTaller(
-    IN p_nombre VARCHAR(45),
-    IN p_tipo ENUM('deportiva', 'cultural'),
-    IN p_img_url VARCHAR(200),
-    IN p_estatus INT
-)
-BEGIN
-    INSERT INTO taller (nombre, tipo, img_url, estatus)
-    VALUES (p_nombre, p_tipo, p_img_url, p_estatus);
-END$$
-DELIMITER ;
-
---prueba
-CALL insertTaller('Basketball', 'deportiva', 'http://url.de.la.imagen');
-
 --insertar docente completo (darle rol , asignarle su numero de empledo y registrar sus datos personales)
 DELIMITER //
 CREATE PROCEDURE insertDocente (
@@ -191,49 +173,6 @@ BEGIN
 END //
 DELIMITER ;
 
---prueba
-CALL insertar_docente(
-    'jdoe',
-    'securePassword123',
-    'docente',
-    'Juan',
-    'Pérez',
-    'García',
-    'juan.perez@universidad.edu',
-    'Mtro',
-    'https://example.com/foto.jpg',
-    1  
-);
-
--- Este es para enlazar un docente a un taller por medio de su nombre
--- ya que para hacer eso se usan id de ambos cosa que el admin no podra ver 
-DELIMITER //
-CREATE PROCEDURE linkTeacherTaller (
-    IN p_nombre_completo_docente VARCHAR(100),
-    IN p_nombre_taller VARCHAR(45)
-)
-BEGIN
-    DECLARE v_no_empleado INT(11);
-    DECLARE v_id_taller INT(11);
-    -- Obtener el ID del docente basado en el nombre completo
-    SELECT no_empleado
-    INTO v_no_empleado
-    FROM docente
-    WHERE CONCAT(nombre, ' ', aPater, ' ', aMater) = p_nombre_completo_docente;
-    -- Obtener el ID del taller basado en el nombre del taller
-    SELECT id_taller
-    INTO v_id_taller
-    FROM taller
-    WHERE nombre = p_nombre_taller;
-    -- Insertar en la tabla docente_taller
-    INSERT INTO docente_taller (docente_fk, taller_fk)
-    VALUES (v_no_empleado, v_id_taller);
-END //
-DELIMITER ;
-
---prueba
-CALL linkTeacherTaller('Juan Pérez García', 'Piano')
-
 --Proceso para consultar docentes
 DELIMITER //
 CREATE PROCEDURE getDocentes() 
@@ -266,20 +205,6 @@ BEGIN
 END$$
 DELIMITER ;
 
-DELIMITER $$
-CREATE PROCEDURE  upStatusTaller(IN idTaller INT, IN nuevoEstatus VARCHAR(10))
-BEGIN
-    UPDATE taller
-    SET estatus = 
-        CASE 
-            WHEN nuevoEstatus = 'activo' THEN 1
-            WHEN nuevoEstatus = 'inactivo' THEN 0
-        END
-    WHERE id_taller = idTaller;
-END$$
-DELIMITER ;
-
-
 DELIMITER //
 CREATE PROCEDURE getActividades()
 BEGIN
@@ -298,8 +223,6 @@ END //
 
 DELIMITER ;
 
-
-
 DELIMITER //
 CREATE PROCEDURE insertActividad(
     IN p_titulo VARCHAR(255),
@@ -315,12 +238,9 @@ BEGIN
     INSERT INTO actividades (titulo, descripcion, tipo, fecha, hora, ubicacion, img_url, estado)
     VALUES (p_titulo, p_descripcion, p_tipo, p_fecha, p_hora, p_ubicacion, p_img_url, p_estado);
 END //
-
 DELIMITER ;
 
-
 DELIMITER //
-
 CREATE PROCEDURE deleteActividad(
     IN p_titulo VARCHAR(255)
 )
@@ -328,12 +248,10 @@ BEGIN
     DELETE FROM actividades
     WHERE titulo = p_titulo;
 END //
-
 DELIMITER ;
 
 
 DELIMITER //
-
 CREATE PROCEDURE updateActividad(
     IN p_id INT,
     IN p_titulo VARCHAR(255),
@@ -358,12 +276,7 @@ BEGIN
         estado = p_estado
     WHERE id = p_id;
 END //
-
 DELIMITER ;
-
-ALTER TABLE actividades ADD COLUMN titulo VARCHAR(255) NOT NULL;
-ALTER TABLE actividades ADD COLUMN ubicacion VARCHAR(255) NOT NULL;
-
 
 DELIMITER //
 CREATE PROCEDURE getInfoAlumno(IN matricula_alumno INT)
@@ -394,7 +307,6 @@ BEGIN
     WHERE a.matricula = matricula_alumno;
     
 END //
-
 DELIMITER ;
 
 DELIMITER //
@@ -425,7 +337,6 @@ DELIMITER ;
 
 
 DELIMITER //
-
 CREATE PROCEDURE getTallerCrud()
 BEGIN
     SELECT 
@@ -444,5 +355,90 @@ BEGIN
     ORDER BY 
         t.id_taller;
 END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE insertar_taller_con_grupos(
+    IN nombre_taller VARCHAR(45),
+    IN tipo_taller ENUM('deportiva', 'cultural'),
+    IN img_url_taller VARCHAR(200),
+    IN estatus_taller INT,
+    IN nombre_docente_completo VARCHAR(135), 
+    IN grupos_json JSON                     
+)
+BEGIN
+    DECLARE docente_id INT DEFAULT NULL;
+    DECLARE taller_id INT;
+    DECLARE grupo_nombre VARCHAR(45);
+    DECLARE dia_horario VARCHAR(45);
+    DECLARE hrEntrada TIME;
+    DECLARE hrSalida TIME;
+    DECLARE grupos_count INT;
+    DECLARE idx INT DEFAULT 0;
+    DECLARE horario_id INT;
+    SET grupos_count = JSON_LENGTH(grupos_json);
+    IF grupos_count < 1 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Debe haber al menos un grupo.';
+    ELSEIF grupos_count > 3 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No puede haber más de tres grupos.';
+    END IF;
+    SELECT no_empleado INTO docente_id
+    FROM docente
+    WHERE CONCAT(nombre, ' ', aPater, ' ', aMater) = nombre_docente_completo;
+    IF docente_id IS NULL THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Docente no encontrado';
+    END IF;
+    INSERT INTO taller (nombre, tipo, img_url, estatus)
+    VALUES (nombre_taller, tipo_taller, img_url_taller, estatus_taller);
+    SET taller_id = LAST_INSERT_ID();
+    WHILE idx < grupos_count DO
+        SET grupo_nombre = JSON_UNQUOTE(JSON_EXTRACT(grupos_json, CONCAT('$[', idx, '].nombre')));
+        SET dia_horario = JSON_UNQUOTE(JSON_EXTRACT(grupos_json, CONCAT('$[', idx, '].dia')));
+        SET hrEntrada = JSON_UNQUOTE(JSON_EXTRACT(grupos_json, CONCAT('$[', idx, '].entrada')));
+        SET hrSalida = JSON_UNQUOTE(JSON_EXTRACT(grupos_json, CONCAT('$[', idx, '].salida')));
+        INSERT INTO horarios (dia, hrEntrada, hrSalida)
+        VALUES (dia_horario, hrEntrada, hrSalida);
+        SET horario_id = LAST_INSERT_ID();
+        INSERT INTO grupo (grupo, horarios_fk, docente_taller_fk)
+        VALUES (grupo_nombre, horario_id, docente_id);
+        SET idx = idx + 1;
+    END WHILE;
+END //
 
 DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE getTallerQrud()
+BEGIN
+    SELECT 
+        t.id_taller, 
+        t.nombre AS nombre_taller, 
+        t.tipo, 
+        t.img_url AS imagen_taller, 
+        t.estatus AS estatus_taller,
+        CONCAT(d.titulo, ' ', d.nombre, ' ', d.aPater, ' ', d.aMater) AS nombre_completo_docente,
+        GROUP_CONCAT(
+            CONCAT('Grupo: ', g.grupo, 
+                   ', Día: ', h.dia, 
+                   ', Entrada: ', TIME_FORMAT(h.hrEntrada, '%H:%i'), 
+                   ', Salida: ', TIME_FORMAT(h.hrSalida, '%H:%i'))
+            SEPARATOR ' | '
+        ) AS grupos_y_horarios
+    FROM 
+        taller t
+    LEFT JOIN 
+        docente_taller dt ON t.id_taller = dt.taller_fk
+    LEFT JOIN 
+        docente d ON dt.docente_fk = d.no_empleado
+    LEFT JOIN
+        grupo g ON dt.id_docente_taller = g.docente_taller_fk
+    LEFT JOIN
+        horarios h ON g.horarios_fk = h.id_horarios
+    GROUP BY 
+        t.id_taller, d.no_empleado
+    ORDER BY 
+        t.id_taller, d.no_empleado;
+END //
+DELIMITER ;
+

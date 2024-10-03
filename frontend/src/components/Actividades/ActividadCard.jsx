@@ -1,4 +1,5 @@
 import React from 'react';
+
 const Actividad = ({ actividad }) => {
   return (
     <div className="bg-white p-4 shadow-md rounded-lg flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-4 justify-center border border-gray-300">
@@ -11,7 +12,11 @@ const Actividad = ({ actividad }) => {
       </div>
       <div className="flex-1">
         <h2 className="text-2xl font-bold mb-2">{actividad.titulo}</h2>
-        <p className="text-gray-700 mb-2">{actividad.descripcion}</p>
+
+        <p className="text-gray-700 mb-2 actividad-descripcion">
+          {actividad.descripcion}
+        </p>
+
         <div className="text-gray-500 mb-2">
           <p>
             <strong>Tipo:</strong> {actividad.tipo}
@@ -36,4 +41,5 @@ const Actividad = ({ actividad }) => {
     </div>
   );
 };
+
 export default Actividad;
