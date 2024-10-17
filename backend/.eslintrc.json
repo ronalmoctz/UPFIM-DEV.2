@@ -1,15 +1,29 @@
 {
   "env": {
     "node": true,
-    "es2021": true
+    "es2021": true,
+    "commonjs": true
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:security/recommended"
+  ],
   "parserOptions": {
-    "ecmaVersion": 12,
+    "ecmaVersion": 2023,
     "sourceType": "module"
   },
+  "plugins": ["security"],
   "rules": {
     "prettier/prettier": "error",
-    "no-console": "warn"
+    "no-console": "warn",
+    "no-unused-vars": "warn",
+    "no-process-exit": "error",
+    "consistent-return": "warn",
+    "security/detect-object-injection": "off",
+    "security/detect-non-literal-fs-filename": "warn",
+    "no-unexpected-multiline": "error",
+    "prefer-const": "warn",
+    "no-empty": ["error", { "allowEmptyCatch": true }]
   }
 }
