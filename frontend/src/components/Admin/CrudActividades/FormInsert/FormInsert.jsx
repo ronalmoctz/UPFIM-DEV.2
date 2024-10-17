@@ -11,7 +11,6 @@ import SelectInput from "../FormInsert/Components/SelectInput";
 import TextArea from "../FormInsert/Components/TextArea";
 import FileInput from "../FormInsert/Components/FileInput";
 import ImagePreview from "../FormInsert/Components/ImagePreview";
-import { showAlert } from "../../../Generales/Alerts/Alerts";
 
 const FormInsert = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);

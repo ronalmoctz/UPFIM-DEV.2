@@ -1,6 +1,5 @@
 CREATE DATABASE uni CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE uni;
-
 CREATE TABLE usertable (
   id_User INT(11) NOT NULL AUTO_INCREMENT,
   userName VARCHAR(45) NOT NULL,
@@ -8,7 +7,6 @@ CREATE TABLE usertable (
   userRol VARCHAR(45) NOT NULL,
   PRIMARY KEY (id_User)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
 -- Crear tabla programa
 CREATE TABLE programa (
   id_programa INT(11) NOT NULL AUTO_INCREMENT,
@@ -59,7 +57,7 @@ CREATE TABLE docente (
   aPater VARCHAR(45) NOT NULL,
   aMater VARCHAR(45) NOT NULL,
   correo VARCHAR(45) NOT NULL,
-  titulo VARCHAR(45) NOT NULL,
+  titulo VARCHAR(8) NOT NULL,
   img_url VARCHAR(200) NOT NULL,
   estatus INT(11) NOT NULL,
   idUser_fk INT(11) NOT NULL,
@@ -137,226 +135,24 @@ CREATE TABLE actividades (
     img_url VARCHAR(255),                            
     estado ENUM('activa', 'cancelada', 'finalizada') DEFAULT 'activa',  
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
-);
-
---insertar docente completo (darle rol , asignarle su numero de empledo y registrar sus datos personales)
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    titulo VARCHAR(25) NOT NULL,     
+    ubicacion VARCHAR(25) NOT NULL   
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 DELIMITER //
-CREATE PROCEDURE insertDocente (
-    IN p_userName VARCHAR(45),
-    IN p_password VARCHAR(200),
-    IN p_userRol VARCHAR(45),
-    IN p_nombre VARCHAR(45),
-    IN p_aPater VARCHAR(45),
-    IN p_aMater VARCHAR(45),
-    IN p_correo VARCHAR(45),
-    IN p_titulo VARCHAR(45),
-    IN p_img_url VARCHAR(200),
-    IN p_estatus INT(11)
-)
-BEGIN
-    DECLARE v_idUser INT(11);
-    DECLARE v_no_empleado VARCHAR(7);
-    DECLARE v_year_suffix VARCHAR(2);
-    -- Obtener los dos últimos dígitos del año actual
-    SET v_year_suffix = RIGHT(YEAR(CURDATE()), 2);
-    -- Inserción en la tabla usertable
-    INSERT INTO usertable (userName, password, userRol)
-    VALUES (p_userName, p_password, p_userRol);
-    -- Obtener el ID del usuario recién insertado
-    SET v_idUser = LAST_INSERT_ID();
-    -- Generación del número de empleado (dos últimos dígitos del año + 5 dígitos aleatorios)
-    SET v_no_empleado = CONCAT(v_year_suffix, LPAD(FLOOR(RAND() * 100000), 5, '0'));
-    -- Inserción en la tabla docente
-    INSERT INTO docente (no_empleado, nombre, aPater, aMater, correo, titulo, img_url, estatus, idUser_fk)
-    VALUES (v_no_empleado, p_nombre, p_aPater, p_aMater, p_correo, p_titulo, p_img_url, p_estatus, v_idUser);
-END //
-DELIMITER ;
-
---Proceso para consultar docentes
-DELIMITER //
-CREATE PROCEDURE getDocentes() 
-BEGIN
-    SELECT d.titulo, d.nombre, d.aPater, d.aMater, d.correo, d.img_url,t.nombre AS nombre_taller, t.tipo 
-    FROM docente d
-    JOIN docente_taller dt ON d.no_empleado = dt.docente_fk
-    JOIN taller t ON dt.taller_fk = t.id_taller;
-END //
-DELIMITER ;
---prueba
-CALL getDocentes();
-
---proceso para consultar talleres
-DELIMITER $$
-CREATE PROCEDURE getTalleres()
+CREATE PROCEDURE getDocente()
 BEGIN
     SELECT 
-        id_taller, 
-        nombre, 
-        tipo, 
-        img_url, 
-        CASE 
-            WHEN estatus = 1 THEN 'activo'
-            WHEN estatus = 0 THEN 'inactivo'
-        END AS estatus
-    FROM taller
-    WHERE estatus = 1  
-    ORDER BY id_taller;
-END$$
-DELIMITER ;
-
-DELIMITER //
-CREATE PROCEDURE getActividades()
-BEGIN
-    SELECT 
-        id,
-        titulo,
-        descripcion,
-        tipo,
-        fecha,
-        hora,
-        ubicacion,
-        img_url,
-        estado
-    FROM actividades;
-END //
-
-DELIMITER ;
-
-DELIMITER //
-CREATE PROCEDURE insertActividad(
-    IN p_titulo VARCHAR(255),
-    IN p_descripcion TEXT,
-    IN p_tipo ENUM('deportiva', 'cultural'),
-    IN p_fecha DATE,
-    IN p_hora TIME,
-    IN p_ubicacion VARCHAR(255),
-    IN p_img_url VARCHAR(255),
-    IN p_estado ENUM('activa', 'cancelada', 'finalizada')
-)
-BEGIN
-    INSERT INTO actividades (titulo, descripcion, tipo, fecha, hora, ubicacion, img_url, estado)
-    VALUES (p_titulo, p_descripcion, p_tipo, p_fecha, p_hora, p_ubicacion, p_img_url, p_estado);
-END //
-DELIMITER ;
-
-DELIMITER //
-CREATE PROCEDURE deleteActividad(
-    IN p_titulo VARCHAR(255)
-)
-BEGIN
-    DELETE FROM actividades
-    WHERE titulo = p_titulo;
-END //
-DELIMITER ;
-
-
-DELIMITER //
-CREATE PROCEDURE updateActividad(
-    IN p_id INT,
-    IN p_titulo VARCHAR(255),
-    IN p_descripcion TEXT,
-    IN p_tipo ENUM('deportiva', 'cultural'),
-    IN p_fecha DATE,
-    IN p_hora TIME,
-    IN p_ubicacion VARCHAR(255),
-    IN p_img_url VARCHAR(255),
-    IN p_estado ENUM('activa', 'cancelada', 'finalizada')
-)
-BEGIN
-    UPDATE actividades
-    SET 
-        titulo = p_titulo,
-        descripcion = p_descripcion,
-        tipo = p_tipo,
-        fecha = p_fecha,
-        hora = p_hora,
-        ubicacion = p_ubicacion,
-        img_url = p_img_url,
-        estado = p_estado
-    WHERE id = p_id;
-END //
-DELIMITER ;
-
-DELIMITER //
-CREATE PROCEDURE getInfoAlumno(IN matricula_alumno INT)
-BEGIN
-    SELECT 
-        CONCAT(a.nombre, ' ', a.aPater, ' ', a.aMater) AS nombre_completo_alumno,
-        a.correo,
-        p.namePrograma AS programa,
-        c.nameCuatri AS cuatrimestre,
-        per.namePeriodo AS periodo,
-        t.nombre AS nombre_taller,
-        g.grupo AS grupo_taller,
-        h.dia AS dia_taller,
-        h.hrEntrada AS hora_entrada,
-        h.hrSalida AS hora_salida,
-        CONCAT(d.nombre, ' ', d.aPater, ' ', d.aMater) AS nombre_completo_docente,
-        CASE WHEN ga.alumno_fk IS NOT NULL THEN 'Inscrito' ELSE 'No Inscrito' END AS estatus
-    FROM alumnos a
-    LEFT JOIN programa p ON a.programa_fk = p.id_programa
-    LEFT JOIN cuatrimestre c ON a.cuatrimestre_fk = c.id_cuatrimestre
-    LEFT JOIN grupo_alumno ga ON a.matricula = ga.alumno_fk
-    LEFT JOIN grupo g ON ga.grupo_fk = g.id_grupo
-    LEFT JOIN horarios h ON g.horarios_fk = h.id_horarios
-    LEFT JOIN docente_taller dt ON g.docente_taller_fk = dt.id_docente_taller
-    LEFT JOIN docente d ON dt.docente_fk = d.no_empleado
-    LEFT JOIN taller t ON dt.taller_fk = t.id_taller
-    LEFT JOIN periodo per ON ga.periodo_fk = per.id_periodo
-    WHERE a.matricula = matricula_alumno;
-    
-END //
-DELIMITER ;
-
-DELIMITER //
-CREATE PROCEDURE getDocentes() 
-BEGIN
-    SELECT 
-        d.no_empleado,  
+        d.no_empleado, 
         d.titulo, 
         d.nombre, 
         d.aPater, 
-        d.aMater, 
-        d.correo, 
-        d.img_url, 
-        GROUP_CONCAT(t.nombre SEPARATOR ', ') AS talleres_impartidos, 
-        GROUP_CONCAT(t.tipo SEPARATOR ', ') AS tipos_taller 
+        d.aMater
     FROM 
-        docente d
-    JOIN 
-        docente_taller dt ON d.no_empleado = dt.docente_fk
-    JOIN 
-        taller t ON dt.taller_fk = t.id_taller
-    WHERE 
-        t.estatus = 1  
-    GROUP BY 
-        d.no_empleado;  
+        docente d;
 END //
 DELIMITER ;
-
-
-DELIMITER //
-CREATE PROCEDURE getTallerCrud()
-BEGIN
-    SELECT 
-        t.id_taller, 
-        t.nombre AS nombre_taller, 
-        t.tipo, 
-        t.img_url AS imagen_taller, 
-        t.estatus AS estatus_taller,
-        CONCAT(d.titulo, ' ', d.nombre, ' ', d.aPater, ' ', d.aMater) AS nombre_completo_docente
-    FROM 
-        taller t
-    LEFT JOIN 
-        docente_taller dt ON t.id_taller = dt.taller_fk
-    LEFT JOIN 
-        docente d ON dt.docente_fk = d.no_empleado
-    ORDER BY 
-        t.id_taller;
-END //
-DELIMITER ;
-
+ ---------------------------------------------------------------------------------------
 DELIMITER //
 CREATE PROCEDURE insertar_taller_con_grupos(
     IN nombre_taller VARCHAR(45),
@@ -404,11 +200,9 @@ BEGIN
         SET idx = idx + 1;
     END WHILE;
 END //
-
 DELIMITER ;
-
+----------------------------------------------------------------------------------------------------
 DELIMITER //
-
 CREATE PROCEDURE getTallerQrud()
 BEGIN
     SELECT 
@@ -441,4 +235,236 @@ BEGIN
         t.id_taller, d.no_empleado;
 END //
 DELIMITER ;
+--------------------------------------------------------------------------------------------
+DELIMITER //
 
+CREATE PROCEDURE getTalleres()
+BEGIN
+    SELECT 
+        id_taller, 
+        nombre, 
+        tipo, 
+        img_url, 
+        CASE 
+            WHEN estatus = 1 THEN 'activo'
+            WHEN estatus = 0 THEN 'inactivo'
+        END AS estatus
+    FROM 
+        taller
+    WHERE 
+        estatus = 1  
+    ORDER BY 
+        id_taller;
+END //
+DELIMITER ;
+--------------------------------------------------------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE getDocentes()
+BEGIN
+    SELECT 
+        d.no_empleado, 
+        d.titulo, 
+        d.nombre, 
+        d.aPater, 
+        d.aMater, 
+        d.correo, 
+        d.img_url, 
+        GROUP_CONCAT(t.nombre SEPARATOR ', ') AS talleres_impartidos, 
+        GROUP_CONCAT(t.tipo SEPARATOR ', ') AS tipos_taller 
+    FROM 
+        docente d
+    JOIN 
+        docente_taller dt ON d.no_empleado = dt.docente_fk
+    JOIN 
+        taller t ON dt.taller_fk = t.id_taller
+    WHERE 
+        t.estatus = 1  
+    GROUP BY 
+        d.no_empleado;  
+END //
+DELIMITER ;
+------------------------------------------------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE getActividades()
+BEGIN
+    SELECT 
+        id,
+        titulo,
+        descripcion,
+        tipo,
+        fecha,
+        hora,
+        ubicacion,
+        img_url,
+        estado
+    FROM 
+        actividades;
+END //
+
+DELIMITER ;
+-----------------------------------------------------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE insertActividad(
+    IN p_titulo VARCHAR(255),
+    IN p_descripcion TEXT,
+    IN p_tipo ENUM('deportiva', 'cultural'),
+    IN p_fecha DATE,
+    IN p_hora TIME,
+    IN p_ubicacion VARCHAR(255),
+    IN p_img_url VARCHAR(255),
+    IN p_estado ENUM('activa', 'cancelada', 'finalizada')
+)
+BEGIN
+    INSERT INTO actividades (titulo, descripcion, tipo, fecha, hora, ubicacion, img_url, estado)
+    VALUES (p_titulo, p_descripcion, p_tipo, p_fecha, p_hora, p_ubicacion, p_img_url, p_estado);
+END //
+DELIMITER ;
+------------------------------------------------------------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE getActividadById(
+    IN p_id INT
+)
+BEGIN
+    SELECT 
+        id,
+        titulo,
+        descripcion,
+        tipo,
+        fecha,
+        hora,
+        ubicacion,
+        img_url,
+        estado
+    FROM 
+        actividades
+    WHERE 
+        id = p_id;
+END //
+DELIMITER ;
+---------------------------------------------------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE deleteActividad(
+    IN p_id INT
+)
+BEGIN
+    DELETE FROM actividades 
+    WHERE id = p_id;
+END //
+DELIMITER ;
+------------------------------------------------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE updateActividad(
+    IN p_id INT,
+    IN p_titulo VARCHAR(255),
+    IN p_descripcion TEXT,
+    IN p_tipo ENUM('deportiva', 'cultural'),
+    IN p_fecha DATE,
+    IN p_hora TIME,
+    IN p_ubicacion VARCHAR(255),
+    IN p_img_url VARCHAR(255),
+    IN p_estado ENUM('activa', 'cancelada', 'finalizada')
+)
+BEGIN
+    UPDATE actividades
+    SET 
+        titulo = p_titulo,
+        descripcion = p_descripcion,
+        tipo = p_tipo,
+        fecha = p_fecha,
+        hora = p_hora,
+        ubicacion = p_ubicacion,
+        img_url = p_img_url,
+        estado = p_estado
+    WHERE 
+        id = p_id;
+END //
+DELIMITER ;
+-------------------------------------------------------------
+DELIMITER //
+
+CREATE PROCEDURE admin_studentinsert(
+    IN idUser INT, 
+    IN userName VARCHAR(45), 
+    IN pass VARCHAR(200), 
+    IN studentName VARCHAR(45), 
+    IN surnameP VARCHAR(45), 
+    IN surnameM VARCHAR(45), 
+    IN studentGroup VARCHAR(45), 
+    IN email VARCHAR(45), 
+    IN sexo VARCHAR(45), 
+    IN lengua VARCHAR(1000), 
+    IN programa VARCHAR(45), 
+    IN cuatrimestre VARCHAR(45)
+)
+BEGIN
+    DECLARE idProgram INT;
+    DECLARE idCuatri INT;
+    DECLARE lastInsertUserId INT;
+    DECLARE rol VARCHAR(45) DEFAULT 'alumno';
+    DECLARE estatus INT DEFAULT 1;
+
+    -- Obtener id_programa
+    SELECT id_programa INTO idProgram 
+    FROM programa 
+    WHERE namePrograma = programa;
+    
+    -- Obtener id_cuatrimestre
+    SELECT id_cuatrimestre INTO idCuatri 
+    FROM cuatrimestre 
+    WHERE nameCuatri = cuatrimestre;
+    
+    -- Verificar que idProgram y idCuatri no sean NULL
+    IF idProgram IS NOT NULL AND idCuatri IS NOT NULL THEN
+        -- Insertar en usertable
+        INSERT INTO usertable (userName, password, userRol) 
+        VALUES (userName, pass, rol);
+        
+        -- Obtener el último ID insertado
+        SET lastInsertUserId = LAST_INSERT_ID();
+        
+        -- Insertar en alumnos
+        INSERT INTO alumnos (matricula, nombre, aPater, aMater, grupo, correo, sexo, lengua, estatus, programa_fk, cuatrimestre_fk, idUser_fk)
+        VALUES (idUser, studentName, surnameP, surnameM, studentGroup, email, sexo, lengua, estatus, idProgram, idCuatri, lastInsertUserId);
+        -- Mensaje de éxito
+        SELECT TRUE AS message;
+    ELSE
+        -- Mensaje de error
+        SELECT FALSE AS message;
+    
+    END IF;
+END //
+
+DELIMITER ;
+-----------------------------------------------------------------------------------------------
+DELIMITER //
+
+CREATE PROCEDURE getInfoAlumno(IN matricula_alumno INT)
+BEGIN
+    SELECT 
+        CONCAT(a.nombre, ' ', a.aPater, ' ', a.aMater) AS nombre_completo_alumno,
+        a.correo,
+        p.namePrograma AS programa,
+        c.nameCuatri AS cuatrimestre,
+        per.namePeriodo AS periodo,
+        t.nombre AS nombre_taller,
+        g.grupo AS grupo_taller,
+        h.dia AS dia_taller,
+        h.hrEntrada AS hora_entrada,
+        h.hrSalida AS hora_salida,
+        CONCAT(d.nombre, ' ', d.aPater, ' ', d.aMater) AS nombre_completo_docente,
+        CASE WHEN ga.alumno_fk IS NOT NULL THEN 'Inscrito' ELSE 'No Inscrito' END AS estatus
+    FROM alumnos a
+    LEFT JOIN programa p ON a.programa_fk = p.id_programa
+    LEFT JOIN cuatrimestre c ON a.cuatrimestre_fk = c.id_cuatrimestre
+    LEFT JOIN grupo_alumno ga ON a.matricula = ga.alumno_fk
+    LEFT JOIN grupo g ON ga.grupo_fk = g.id_grupo
+    LEFT JOIN horarios h ON g.horarios_fk = h.id_horarios
+    LEFT JOIN docente_taller dt ON g.docente_taller_fk = dt.id_docente_taller
+    LEFT JOIN docente d ON dt.docente_fk = d.no_empleado
+    LEFT JOIN taller t ON dt.taller_fk = t.id_taller
+    LEFT JOIN periodo per ON ga.periodo_fk = per.id_periodo
+    WHERE a.matricula = matricula_alumno;
+END //
+
+DELIMITER ;
+--------------------------------------------------------------------------------------------

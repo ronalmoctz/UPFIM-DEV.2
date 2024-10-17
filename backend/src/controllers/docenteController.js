@@ -23,3 +23,4 @@ const getDocente = async (req, res) => {
 
 
 module.exports = { getDocentes, getDocente };
+

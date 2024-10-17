@@ -45,7 +45,6 @@ const deleteActividad = async (req, res) => {
   const getSql = 'CALL getActividadById(?)';
   try {
     const [results] = await db.query(getSql, [id_actividad]);
-
     if (results[0].length === 0) {
       return res.status(404).json({ message: 'Actividad no encontrada' });
     }
@@ -131,11 +130,9 @@ const updateActividad = async (req, res) => {
       img_url,
       estado,
     ]);
-
     if (updateResult.affectedRows === 0) {
       return res.status(404).json({ message: 'Actividad no encontrada' });
     }
-
     return res
       .status(200)
       .json({ message: 'Actividad actualizada exitosamente' });

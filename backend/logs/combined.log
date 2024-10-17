@@ -1,1 +1,44 @@
 {"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-03T21:56:18.446Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-03T23:14:10.809Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-04T00:33:24.939Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-04T01:53:35.114Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-04T16:04:03.354Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-04T16:51:42.494Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-04T18:06:32.487Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-04T18:08:37.805Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-04T18:09:48.576Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-04T19:13:01.342Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-04T19:34:07.920Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-04T19:48:38.432Z"}
+{"ip":"::1","level":"error","message":"File size too large. Got 10841724. Maximum is 10485760. Upgrade your plan to enjoy higher limits https://www.cloudinary.com/pricing/upgrades/file-limit","method":"POST","requestUrl":"/api/insertarTaller","timestamp":"2024-10-04T22:44:14.987Z"}
+{"ip":"::1","level":"error","message":"File size too large. Got 10841724. Maximum is 10485760. Upgrade your plan to enjoy higher limits https://www.cloudinary.com/pricing/upgrades/file-limit","method":"POST","requestUrl":"/api/insertarTaller","timestamp":"2024-10-04T22:44:46.561Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-05T15:03:48.259Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-05T18:04:15.906Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-05T18:36:50.053Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-05T20:03:00.091Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-06T01:21:09.846Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-06T04:17:02.314Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-07T15:15:38.638Z"}
+{"ip":"::1","level":"error","message":"Solo se permiten imágenes en formato PNG o JPG","method":"POST","requestUrl":"/api/insertarTaller","stack":"Error: Solo se permiten imágenes en formato PNG o JPG\n    at imageFilter (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\src\\middleware\\uploadTaller.js:9:15)\n    at wrappedFileFilter (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\multer\\index.js:44:7)\n    at Multipart.<anonymous> (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\multer\\lib\\make-middleware.js:107:7)\n    at Multipart.emit (node:events:519:28)\n    at HeaderParser.cb (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:358:14)\n    at HeaderParser.push (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:162:20)\n    at SBMH.ssCb [as _cb] (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:394:37)\n    at feed (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\streamsearch\\lib\\sbmh.js:248:10)\n    at SBMH.push (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\streamsearch\\lib\\sbmh.js:104:16)\n    at Multipart._write (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:567:19)","timestamp":"2024-10-07T16:06:32.253Z"}
+{"ip":"::1","level":"error","message":"Solo se permiten imágenes en formato PNG o JPG","method":"POST","requestUrl":"/api/insertarTaller","stack":"Error: Solo se permiten imágenes en formato PNG o JPG\n    at imageFilter (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\src\\middleware\\uploadTaller.js:9:15)\n    at wrappedFileFilter (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\multer\\index.js:44:7)\n    at Multipart.<anonymous> (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\multer\\lib\\make-middleware.js:107:7)\n    at Multipart.emit (node:events:519:28)\n    at HeaderParser.cb (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:358:14)\n    at HeaderParser.push (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:162:20)\n    at SBMH.ssCb [as _cb] (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:394:37)\n    at feed (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\streamsearch\\lib\\sbmh.js:248:10)\n    at SBMH.push (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\streamsearch\\lib\\sbmh.js:104:16)\n    at Multipart._write (C:\\Users\\Beto\\programacion\\UPFIM-DEV.2\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:567:19)","timestamp":"2024-10-07T16:18:11.130Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-07T16:52:43.680Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-07T18:13:22.134Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-07T19:54:21.839Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-08T05:25:57.727Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-08T15:40:23.016Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-09T01:39:56.546Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-13T20:34:27.125Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-14T00:14:29.518Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-14T00:14:50.486Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-14T03:48:30.955Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-14T04:09:41.247Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-15T20:33:56.903Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-15T21:55:13.408Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-15T21:56:25.587Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-15T21:58:43.097Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-16T03:24:28.809Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-16T03:29:49.426Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-16T03:41:40.944Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-16T04:20:00.581Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-17T02:23:54.529Z"}
+{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-17T03:01:35.781Z"}
