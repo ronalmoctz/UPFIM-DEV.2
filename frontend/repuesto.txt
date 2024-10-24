@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense } from "react";
+import React, { useState, lazy,  } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import NavBar from "./components/Generales/Header/NavBar";
@@ -22,7 +22,6 @@ const App = () => {
       {loading && <Preloader setLoading={setLoading} />}
       <AnimatePresence mode="wait">
         {!loading && (
-          <Suspense fallback={<div>Cargando...</div>}>
             <Routes location={location} key={location.pathname}>
               <Route
                 path="/"
@@ -69,7 +68,6 @@ const App = () => {
               <Route path="/dash" element={<Table />} />
               <Route path="/408" element={<Error408 />} />
             </Routes>
-          </Suspense>
         )}
       </AnimatePresence>
     </div>

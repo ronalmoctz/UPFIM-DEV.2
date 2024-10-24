@@ -1,6 +1,6 @@
 import React, { useState, lazy, Suspense } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import NavBar from "./components/Generales/Header/NavBar";
 import Footer from "./components/Generales/Footer/Footer";
 import useDarkMode from "./Hooks/useDarkMode";
@@ -13,16 +13,46 @@ const Login = lazy(() => import("./components/Login/Login"));
 const Error404 = lazy(() => import("./components/Generales/PageError/Error404"));
 const Error408 = lazy(() => import("./components/Generales/PageError/Error408"));
 const Table = lazy(() => import("./components/Admin/CrudActividades/Table/Table"));
+
+const pageVariants = {
+  initial: {
+    opacity: 0,
+    y: 50,
+  },
+  in: {
+    opacity: 1,
+    y: 0,
+  },
+  out: {
+    opacity: 0,
+    y: -50,
+  },
+};
+
+const pageTransition = {
+  type: "tween",
+  ease: "anticipate",
+  duration: 0.2,
+};
+
 const App = () => {
   const [darkMode, toggleDarkMode] = useDarkMode();
   const [loading, setLoading] = useState(true);
   const location = useLocation();
+
   return (
     <div className={`${darkMode ? "dark" : ""} font-onest`}>
       {loading && <Preloader setLoading={setLoading} />}
       <AnimatePresence mode="wait">
         {!loading && (
-          <Suspense fallback={<div>Cargando...</div>}>
+          <motion.div
+            key={location.pathname}
+            initial="initial"
+            animate="in"
+            exit="out"
+            variants={pageVariants}
+            transition={pageTransition}
+          >
             <Routes location={location} key={location.pathname}>
               <Route
                 path="/"
@@ -69,7 +99,7 @@ const App = () => {
               <Route path="/dash" element={<Table />} />
               <Route path="/408" element={<Error408 />} />
             </Routes>
-          </Suspense>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
