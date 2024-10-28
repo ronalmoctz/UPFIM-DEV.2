@@ -140,6 +140,8 @@ CREATE TABLE actividades (
     ubicacion VARCHAR(25) NOT NULL   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 DELIMITER //
+
+
 CREATE PROCEDURE getDocente()
 BEGIN
     SELECT 
@@ -468,3 +470,56 @@ END //
 
 DELIMITER ;
 --------------------------------------------------------------------------------------------
+DELIMITER //
+
+CREATE PROCEDURE deletedTaller(IN p_id_taller INT)
+BEGIN
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE v_id_docente_taller INT;
+    DECLARE v_id_horario INT;
+
+    -- Cursor para obtener los registros de docente_taller asociados con el taller
+    DECLARE cur_docente_taller CURSOR FOR 
+        SELECT id_docente_taller 
+        FROM docente_taller 
+        WHERE taller_fk = p_id_taller;
+
+    -- Handler para controlar el fin del cursor
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    OPEN cur_docente_taller;
+
+    read_loop: LOOP
+        FETCH cur_docente_taller INTO v_id_docente_taller;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
+
+        -- Obtener el horario asociado al grupo relacionado con este docente_taller
+        SELECT horarios_fk INTO v_id_horario 
+        FROM grupo 
+        WHERE docente_taller_fk = v_id_docente_taller;
+
+        -- Eliminar el grupo relacionado con el docente_taller
+        DELETE FROM grupo 
+        WHERE docente_taller_fk = v_id_docente_taller;
+
+        -- Eliminar el horario si existe (y solo si ya no está asociado a ningún otro grupo)
+        DELETE FROM horarios 
+        WHERE id_horarios = v_id_horario AND NOT EXISTS (
+            SELECT 1 FROM grupo WHERE horarios_fk = v_id_horario
+        );
+
+        -- Eliminar el registro en docente_taller
+        DELETE FROM docente_taller 
+        WHERE id_docente_taller = v_id_docente_taller;
+    END LOOP read_loop;
+
+    CLOSE cur_docente_taller;
+
+    -- Finalmente, eliminar el taller
+    DELETE FROM taller WHERE id_taller = p_id_taller;
+
+END //
+
+DELIMITER ;

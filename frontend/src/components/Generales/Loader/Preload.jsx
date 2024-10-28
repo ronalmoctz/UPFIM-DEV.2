@@ -5,18 +5,18 @@ import logo from "../../../../public/svg/logo.svg";
 const Preloader = ({ setLoading }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setLoading(false); // Usamos el setLoading que viene de props
+      setLoading(false);
     }, 2900);
 
     return () => clearTimeout(timeout);
-  }, [setLoading]); // Añadimos setLoading en las dependencias del useEffect
+  }, [setLoading]);
 
   return (
     <AnimatePresence>
       <motion.div
         className="fixed inset-0 flex flex-col items-center justify-center z-50 bg-green-200"
         initial={{ opacity: 1 }}
-        exit={{ opacity: 0, transition: { duration: 0.8 } }} // Animación de salida suave
+        exit={{ opacity: 0, transition: { duration: 0.8 } }}
       >
         <div className="w-48 h-48 flex items-center justify-center bg-white bg-opacity-20 rounded-3xl shadow-lg">
           <motion.img

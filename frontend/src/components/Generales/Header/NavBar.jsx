@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";  // Importar Link de react-router-dom
+import { Link } from "react-router-dom";  
 import logo from "../../../assets/logo-borde.webp";
 import { TbMoonStars,TbSunHigh,TbMenu2 } from "react-icons/tb";
 
