@@ -471,7 +471,6 @@ END //
 DELIMITER ;
 --------------------------------------------------------------------------------------------
 DELIMITER //
-
 CREATE PROCEDURE deletedTaller(IN p_id_taller INT)
 BEGIN
     DECLARE done INT DEFAULT FALSE;
@@ -523,3 +522,16 @@ BEGIN
 END //
 
 DELIMITER ;
+
+-------------------------------------------------------------------------------------------------------------------------------------
+DELIMITER //
+
+CREATE PROCEDURE getTallerById(IN p_id_taller INT)
+BEGIN
+    SELECT * 
+    FROM taller 
+    WHERE id_taller = p_id_taller;
+END //
+
+DELIMITER ;
+--------------------------------------------------------------------------------------------------------------------------

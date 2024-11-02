@@ -19,14 +19,15 @@ const App = () => {
   const location = useLocation();
 
   useEffect(() => {
+    // Show preloader only for the home page
     if (location.pathname === '/') {
       const timeout = setTimeout(() => {
         setLoading(false);
-      }, 2900); 
+      }, 2900); // Adjust the timeout duration as needed
 
       return () => clearTimeout(timeout);
     } else {
-      setLoading(false); 
+      setLoading(false); // If not on home, set loading to false immediately
     }
   }, [location.pathname]);
 
