@@ -1,4 +1,5 @@
 const db = require('../database/db');
+const cloudinary = require('cloudinary').v2;
 
 const getTalleres = async (req, res) => {
   try {
