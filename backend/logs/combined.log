@@ -1,4 +1,680 @@
-{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-17T15:42:06.957Z"}
-{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-17T15:54:47.892Z"}
-{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-17T15:57:17.112Z"}
-{"level":"info","message":"Server is running on http://localhost:3000","timestamp":"2024-10-17T17:07:37.422Z"}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T14:49:31.275Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T14:49:31.319Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T14:50:11.227Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T14:50:11.266Z'
+}
+{
+  userName: '2117031348',
+  userRol: 'alumno',
+  level: 'info',
+  message: 'Usuario creado exitosamente',
+  timestamp: '2024-10-30T14:51:00.530Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T14:51:34.530Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T14:51:34.568Z'
+}
+{
+  message: 'Token generado para usuario: 2117031348',
+  level: 'info',
+  timestamp: '2024-10-30T14:51:45.874Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T15:06:46.377Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T15:06:46.417Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T15:07:03.843Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T15:07:03.882Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T15:09:12.925Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T15:09:12.973Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T15:24:35.843Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T15:24:35.891Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T15:31:30.474Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T15:31:30.514Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T15:49:04.498Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T15:49:04.543Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T16:59:55.083Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T16:59:55.130Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T17:42:39.401Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T17:42:39.452Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T17:48:03.784Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T17:48:03.830Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T17:50:43.997Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T17:50:44.037Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T17:52:19.899Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T17:52:19.938Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T23:42:04.271Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T23:42:04.320Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T23:43:19.840Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T23:43:19.878Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T23:53:04.559Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T23:53:04.603Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T23:57:18.274Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T23:57:18.314Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-30T23:57:53.146Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-30T23:57:53.198Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T00:07:15.189Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T00:07:15.223Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T00:08:02.515Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T00:08:02.556Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T00:09:34.557Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T00:09:34.599Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T00:10:27.370Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T00:10:27.387Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T00:11:10.381Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T00:11:10.417Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T00:11:17.368Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T00:11:17.412Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T00:11:27.628Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T00:11:27.667Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T00:20:50.948Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T00:20:50.972Z'
+}
+{
+  message: 'Transaccion in insertAdmin: pass is not defined',
+  level: 'error',
+  timestamp: '2024-10-31T00:22:01.884Z'
+}
+{
+  message: 'Error al registrar administrador: Database Error',
+  level: 'error',
+  timestamp: '2024-10-31T00:22:01.885Z'
+}
+{
+  message: 'Database Error',
+  statusCode: 400,
+  requestUrl: '/api/admin/register',
+  method: 'POST',
+  ip: '::ffff:127.0.0.1',
+  level: 'warn',
+  timestamp: '2024-10-31T00:22:01.894Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T14:01:17.932Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T14:01:17.978Z'
+}
+{
+  message: 'Transaccion in insertAdmin: pass is not defined',
+  level: 'error',
+  timestamp: '2024-10-31T14:06:32.013Z'
+}
+{
+  message: 'Error al registrar administrador: Database Error',
+  level: 'error',
+  timestamp: '2024-10-31T14:06:32.014Z'
+}
+{
+  message: 'Database Error',
+  statusCode: 400,
+  requestUrl: '/api/admin/register',
+  method: 'POST',
+  ip: '::ffff:127.0.0.1',
+  level: 'warn',
+  timestamp: '2024-10-31T14:06:32.022Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T14:26:10.693Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T14:26:10.739Z'
+}
+{
+  message: 'Administrador pascualMar registrado exitosamente',
+  level: 'info',
+  timestamp: '2024-10-31T14:26:11.953Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T19:39:44.718Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T19:39:44.832Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T19:53:45.621Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T19:53:45.660Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T20:40:48.251Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T20:40:48.307Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T22:19:11.644Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T22:19:11.720Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T22:19:26.237Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T22:19:26.345Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T22:36:01.377Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T22:36:01.421Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T22:38:43.529Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T22:38:43.565Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-10-31T22:38:53.591Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-10-31T22:38:53.627Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-01T16:25:12.620Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-01T16:25:12.681Z'
+}
+{
+  message: 'Token generado para usuario: 2117031348',
+  level: 'info',
+  timestamp: '2024-11-01T16:25:47.564Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-01T18:48:46.974Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-01T18:48:47.156Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-01T18:50:19.406Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-01T18:50:19.466Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-01T18:50:26.984Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-01T18:50:27.038Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-01T18:50:35.484Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-01T18:50:35.533Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-01T19:02:15.085Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-01T19:02:15.120Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-01T19:02:29.865Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-01T19:02:29.927Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-01T19:02:57.095Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-01T19:02:57.120Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T13:58:47.848Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T13:58:47.868Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T14:03:07.519Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T14:03:07.538Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T14:57:38.913Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T14:57:38.964Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T15:01:28.010Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T15:01:28.054Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T15:02:35.324Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T15:02:35.367Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T15:07:51.310Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T15:07:51.348Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T15:08:15.021Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T15:08:15.062Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T15:26:17.958Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T15:26:17.998Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T15:26:39.067Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T15:26:39.113Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T15:34:02.978Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T15:34:03.017Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T15:40:00.819Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T15:40:00.857Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T15:40:10.338Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T15:40:10.376Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T15:40:12.892Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T15:40:12.930Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T16:00:29.855Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T16:00:29.912Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T16:00:43.748Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T16:00:43.793Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T16:01:25.074Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T16:01:25.111Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-02T16:01:33.190Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-02T16:01:33.235Z'
+}

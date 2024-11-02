@@ -1,54 +1,65 @@
 const db = require('../database/db');
 const docenteService = require('../service/docentesService');
 const AppError = require('../errors/AppError');
+const { logger } = require('../utils/logger');
+
+// Function to validate data for "docentes"
+const validateDocenteData = (docente) => {
+  const requiredFields = [
+    'idUser',
+    'userName',
+    'pass',
+    'teacherName',
+    'surnameP',
+    'surnameM',
+    'email',
+    'profile_img',
+    'grado',
+  ];
+
+  for (const field of requiredFields) {
+    if (!docente[field]) {
+      throw new AppError(`Falta el campo ${field} en datos de docente`, 400);
+    }
+  }
+};
 
 const insertDocente = async (req, res, next) => {
   try {
     const { docentes } = req.body;
-    console.log(docentes);
 
     if (!docentes || !Array.isArray(docentes) || docentes.length === 0) {
-      return next(new AppError('Incorrect data for docentes', 400));
+      logger.warn('Datos de docentes incorrectos o vacíos');
+      return next(new AppError('Datos incorrectos para docentes', 400));
     }
 
     for (const docente of docentes) {
-      if (
-        !docente.idUser ||
-        !docente.userName ||
-        !docente.pass ||
-        !docente.teacherName ||
-        !docente.surnameP ||
-        !docente.surnameM ||
-        !docente.email ||
-        !docente.profile_img ||
-        !docente.grado
-      ) {
-        return next(
-          new AppError('Datos faltantes o incorrectos para docente', 400)
-        );
-      }
+      validateDocenteData(docente);
     }
 
     const result = await docenteService.insertDocente(docentes);
-    console.log(docentes);
+    logger.info(
+      `Docentes insertados exitosamente: ${docentes.length} registros`,
+    );
 
     res.status(201).json({
       status: 'success',
-      message: 'Docente insertados correctamente',
+      message: 'Docentes insertados correctamente',
       data: result,
     });
   } catch (error) {
-    next(error);
+    logger.error(`Error en insertDocente: ${error.message}`);
+    return next(error);
   }
 };
 
-const getDocentes = async (req, res) => {
+const getDocentes = async (req, res, next) => {
   try {
     const [results] = await db.query('CALL getDocentes()');
     res.json(results[0]);
   } catch (err) {
-    console.error('Error al obtener datos:', err);
-    res.status(500).json({ error: 'Error al obtener datos' });
+    logger.error(`Error al obtener datos de docentes: ${err.message}`);
+    return next(new AppError('Error al obtener datos', 500));
   }
 };
 

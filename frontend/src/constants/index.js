@@ -1,93 +1,84 @@
-import piano from "../assets/piano.webp";
-import basket from "../assets/basket.webp";
-import yoga from "../assets/yoga.webp";
+import piano from '../assets/piano.webp';
+import basket from '../assets/basket.webp';
+import yoga from '../assets/yoga.webp';
 
-import {
-  IoIosLogIn,
-  IoIosLogOut,
-} from "react-icons/io";
+import { IoIosLogIn, IoIosLogOut } from 'react-icons/io';
 import {
   FaChartBar,
   FaCalendarAlt,
   FaFacebookMessenger,
   FaUsersCog,
   FaListAlt,
-} from "react-icons/fa";
-
+} from 'react-icons/fa';
 
 export const links = [
   {
-    href: "#",
+    href: '#',
     icon: FaChartBar,
-    text: "Dashboard",
+    text: 'Dashboard',
   },
   {
-    href: "#",
+    href: '#',
     icon: FaCalendarAlt,
-    text: "Kanban",
+    text: 'Kanban',
     badge: {
-      text: "Pro",
-      color: "bg-gray-100 text-gray-800",
-      darkColor: "dark:bg-gray-700 dark:text-gray-300",
+      text: 'Pro',
+      color: 'bg-gray-100 text-gray-800',
+      darkColor: 'dark:bg-gray-700 dark:text-gray-300',
     },
   },
   {
-    href: "#",
+    href: '#',
     icon: FaFacebookMessenger,
-    text: "Inbox",
+    text: 'Inbox',
     badge: {
-      text: "4",
-      color: "bg-blue-100 text-blue-800",
-      darkColor: "dark:bg-blue-900 dark:text-blue-300",
+      text: '4',
+      color: 'bg-blue-100 text-blue-800',
+      darkColor: 'dark:bg-blue-900 dark:text-blue-300',
     },
   },
   {
-    href: "#",
+    href: '#',
     icon: FaUsersCog,
-    text: "Users",
+    text: 'Users',
   },
   {
-    href: "#",
+    href: '#',
     icon: FaListAlt,
-    text: "Products",
+    text: 'Products',
   },
   {
-    href: "#",
+    href: '#',
     icon: IoIosLogIn,
-    text: "Sign In",
+    text: 'Sign In',
   },
   {
-    href: "#",
+    href: '#',
     icon: IoIosLogOut,
-    text: "Sign Up",
+    text: 'Sign Up',
   },
 ];
 
 export const intro = {
-  title: "Descubre Cultura & Deportes",
+  title: 'Descubre Cultura & Deportes',
   description:
-    "La cultura abarca conocimientos, creencias y expresiones que definen a una sociedad, mientras que el deporte es actividad física recreativa o competitiva. Incluyen arte, música, literatura, religión y deportes como atletismo y fútbol.",
+    'La cultura abarca conocimientos, creencias y expresiones que definen a una sociedad, mientras que el deporte es actividad física recreativa o competitiva. Incluyen arte, música, literatura, religión y deportes como atletismo y fútbol.',
 };
 
 export const tallerInfo = [
   {
-    name: "Piano",
-    frase: "Aprende a tocar piano",
+    name: 'Piano',
+    frase: 'Aprende a tocar piano',
     image: piano,
   },
   {
-    name: "Basketball",
-    frase: "Disfruta de jagar basketball ",
+    name: 'Basketball',
+    frase: 'Disfruta de jagar basketball ',
     image: basket,
   },
   {
-    name: "Yoga",
-    frase: "Disfruta de relajarte haciendo yoga",
+    name: 'Yoga',
+    frase: 'Disfruta de relajarte haciendo yoga',
     image: yoga,
   },
 ];
-
-
-
-
-

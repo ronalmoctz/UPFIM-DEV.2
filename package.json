@@ -12,5 +12,8 @@
   "description": "",
   "devDependencies": {
     "concurrently": "^9.0.0"
+  },
+  "dependencies": {
+    "swiper": "^11.1.14"
   }
 }

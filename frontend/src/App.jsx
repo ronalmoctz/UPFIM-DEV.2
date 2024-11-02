@@ -1,68 +1,29 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import NavBar from './components/Generales/Header/NavBar';
-import Inicio from './pages/MainHome';
-import CatalogoTalleres from './pages/MainTaller';
-import ActividadMain from './pages/MainActividad';
-import Contact from './pages/MainContacto';
-import Login from './components/Login/Login';
-import Footer from './components/Generales/Footer/Footer';
-import Error404 from './components/Generales/PageError/Error404';
-import Error408 from './components/Generales/PageError/Error408';
-import useDarkMode from './Hooks/useDarkMode';
-import Table from './components/Admin/CrudActividades/Table/Table';
-
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import useDarkMode from "./Hooks/useDarkMode";
+import MainRoutes from "./routes/MainRoutes.jsx";
 const App = () => {
   const [darkMode, toggleDarkMode] = useDarkMode();
+  // const { role, isAuthenticated } = useAuth();
+
   return (
-    <div className={`${darkMode ? 'dark' : ''} font-onest`}>
+    <div className={`${darkMode ? "dark" : ""} font-onest`}>
       <Routes>
+        {/* Rutas generales */}
         <Route
-          path="/"
+          path="/*"
           element={
-            <>
-              <NavBar handleDarkMode={toggleDarkMode} darkMode={darkMode} />
-              <Inicio darkMode={darkMode} />
-              <Footer />
-            </>
+            <MainRoutes darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           }
         />
-        <Route
-          path="/talleres"
-          element={
-            <>
-              <NavBar handleDarkMode={toggleDarkMode} darkMode={darkMode} />
-              <CatalogoTalleres />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/actividades"
-          element={
-            <>
-              <NavBar handleDarkMode={toggleDarkMode} darkMode={darkMode} />
-              <ActividadMain />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/contacto"
-          element={
-            <>
-              <NavBar handleDarkMode={toggleDarkMode} darkMode={darkMode} />
-              <Contact />
-              <Footer />
-            </>
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Error404 />} />
-        <Route path="/dash" element={<Table />} />
-        <Route path="/408" element={<Error408 />} />
+
+        {/* Rutas protegidas por rol */}
+        {/* <Route path="/dash/*" element={isAuthenticated && role === 'admin' ? <AdminRoutes role={role} /> : <Navigate to="/login" replace />} />
+              <Route path="/dash/*" element={isAuthenticated && role === 'alumno' ? <AlumnoRoutes role={role} /> : <Navigate to="/login" replace />} />
+              <Route path="/dash/*" element={isAuthenticated && role === 'docente' ? <DocenteRoutes role={role} /> : <Navigate to="/login" replace />} /> */}
       </Routes>
     </div>
   );
 };
+
 export default App;

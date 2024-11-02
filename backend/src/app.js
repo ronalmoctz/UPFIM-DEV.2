@@ -5,6 +5,7 @@ const { requestLogger } = require('./middleware/requestLogger');
 const { errorHandler } = require('./middleware/errorHandler');
 // const { checkRole } = require('./middleware/checkRole');
 const { securityHeaders } = require('./config/security');
+const adminRoutes = require('./routers/adminRoutes');
 const alumnosRoutes = require('./routers/alumnosRoutes');
 const actividadesRoutes = require('./routers/actividadesRoutes');
 const authRoutes = require('./routers/auth');
@@ -19,11 +20,11 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: 'http://localhost:5173', 
+    origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true, 
-  })
+    credentials: true,
+  }),
 );
 
 // Parsing JSON
@@ -36,6 +37,7 @@ app.use(requestLogger);
 // Manejo de OPTIONS para el correo
 app.options('*', cors());
 
+app.use('/api', adminRoutes);
 app.use('/api', alumnosRoutes);
 app.use('/api', docentesRoutes);
 app.use('/api', actividadesRoutes);

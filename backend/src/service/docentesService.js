@@ -1,6 +1,7 @@
 const pool = require('../database/db');
 const bcrypt = require('bcrypt');
 const AppError = require('../errors/AppError');
+const { logger } = require('../utils/logger');
 
 const insertDocente = async (docentes) => {
   const connection = await pool.getConnection();
@@ -10,7 +11,12 @@ const insertDocente = async (docentes) => {
     const result = [];
 
     for (const docente of docentes) {
-      // Encriptar la contraseña dentro del bucle para cada docente
+      if (!docente.pass) {
+        throw new AppError(
+          `Contraseña faltante para el docente: ${docente.userName}`,
+          400,
+        );
+      }
       const hashedPassword = await bcrypt.hash(docente.pass, 10);
 
       const [queryResult] = await connection.query(
@@ -25,9 +31,10 @@ const insertDocente = async (docentes) => {
           docente.email,
           docente.profile_img,
           docente.grado,
-        ]
+        ],
       );
       result.push(queryResult);
+      logger.info(`Docente ${docente.userName} insertado correctamente`);
     }
 
     await connection.commit(); // Confirm transaction

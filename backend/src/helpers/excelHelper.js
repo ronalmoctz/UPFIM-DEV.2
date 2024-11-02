@@ -2,6 +2,11 @@ const xlsx = require('xlsx');
 const fs = require('fs').promises;
 const bcrypt = require('bcrypt');
 
+//Configuration
+const DEFAULT_DOMAIN = '@upfim.edu.mx';
+const DEFAULT_PASSWRD = 'default_password';
+
+//Normalize headers for the files
 const normalizeHeaders = (alumno) => {
   return {
     matricula:
@@ -14,7 +19,7 @@ const normalizeHeaders = (alumno) => {
       alumno['Nombre'] ??
       alumno['Full Name'] ??
       'Nombre Desconocido',
-    pass: alumno['Contraseña'] ?? alumno['Password'] ?? 'default_password',
+    pass: alumno['Contraseña'] ?? alumno['Password'] ?? DEFAULT_PASSWRD,
     studentGroup: alumno['Grupo'] ?? alumno['Group'] ?? 'Grupo Default',
     sexo: alumno['Sexo'] ?? alumno['Gender'] ?? 'Desconocido',
     lengua: alumno['Lengua'] ?? alumno['Language'] ?? 'N/A',
@@ -38,10 +43,31 @@ const normalizeHeaders = (alumno) => {
  * `nombre`, `apellidoPaterno`, and `apellidoMaterno`.
  */
 const separarNombreCompleto = (nombreCompleto) => {
-  const partes = nombreCompleto.trim().split(' ');
-  const apellidoMaterno = partes.pop();
-  const apellidoPaterno = partes.pop();
-  const nombre = partes.join(' ');
+  const parts = fullName.trim().split(' ');
+
+  let nombre = parts[0];
+  let apellidoPaterno = '';
+  let apellidoMaterno = '';
+
+  //Case when have more to three parts
+  if (parts.length >= 3) {
+    if (['de', 'del', 'la'].includes(parts[1].toLowerCase())) {
+      apellidoPaterno = `${parts[1]} ${parts[2]}`;
+      apellidoMaterno = parts.length > 3 ? parts[3] : '';
+    } else if (parts.length === 4) {
+      // Normal structure
+      nombre = `${parts[0]} ${parts[1]}`;
+      apellidoPaterno = parts[1];
+      apellidoMaterno = parts[2];
+    } else {
+      nombre = parts[0];
+      apellidoPaterno = parts[1];
+      apellidoMaterno = parts[2];
+    }
+  } else {
+    apellidoPaterno = parts[1] || '';
+  }
+
   return { nombre, apellidoPaterno, apellidoMaterno };
 };
 
@@ -72,7 +98,7 @@ const parseExcel = async (filePath) => {
       const hashedPassword = await bcrypt.hash(normalizedAlumno.pass, 10);
 
       // Generamos el correo con la matrícula
-      const correo = `${normalizedAlumno.matricula}@upfim.edu.mx`;
+      const correo = `${normalizedAlumno.matricula}${DEFAULT_DOMAIN}`;
 
       return {
         idUser: normalizedAlumno.matricula,
@@ -88,7 +114,7 @@ const parseExcel = async (filePath) => {
         programa: normalizedAlumno.programa,
         cuatrimestre: normalizedAlumno.cuatrimestre,
       };
-    })
+    }),
   );
 };
 

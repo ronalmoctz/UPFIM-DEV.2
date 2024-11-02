@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";  // Importar Link de react-router-dom
+import { Link } from "react-router-dom"; // Importar Link de react-router-dom
 import logo from "../../../assets/logo-borde.webp";
-import { TbMoonStars,TbSunHigh,TbMenu2 } from "react-icons/tb";
+import { TbMoonStars, TbSunHigh, TbMenu2 } from "react-icons/tb";
 
 const NavBar = ({ handleDarkMode, darkMode }) => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -11,9 +11,9 @@ const NavBar = ({ handleDarkMode, darkMode }) => {
 
   return (
     <header className="fixed left-0 right-0 top-3 z-50 px-5 md:px-16">
-      <nav className="mx-auto flex max-w-6xl flex-col items-center justify-between rounded-lg border-2 bg-slate-50 border-slate-400 bg-opacity-10 backdrop-blur-lg px-3 py-3 dark:bg-slate-800 dark:text-slate-300 dark:border-verde md:flex-row">
+      <nav className="mx-auto flex max-w-6xl flex-col items-center justify-between rounded-3xl border-2 bg-slate-50 border-slate-400 bg-opacity-10 backdrop-blur-lg px-2 py-2 dark:bg-slate-800 dark:text-slate-300 dark:border-verde md:flex-row">
         <div className="flex w-full items-center justify-between md:flex-row">
-          <Link to="/" className="flex items-center"> 
+          <Link to="/" className="flex items-center">
             <img src={logo} alt="UPFIM Logo" className="h-10 w-auto md:h-12" />
           </Link>
           <button
@@ -32,7 +32,7 @@ const NavBar = ({ handleDarkMode, darkMode }) => {
             <li className="w-full md:w-auto">
               <Link
                 to="/"
-                className="text-slate-950  font-bold block rounded-lg p-2 px-4 hover:bg-verde hover:text-white dark:hover:bg-slate-700 dark:text-verde"
+                className="text-slate-950  font-bold block rounded-3xl p-2 px-4 hover:bg-verde hover:text-white dark:hover:bg-slate-700 dark:text-verde"
               >
                 Inicio
               </Link>
@@ -41,7 +41,7 @@ const NavBar = ({ handleDarkMode, darkMode }) => {
             <li className="w-full md:w-auto">
               <Link
                 to="/talleres"
-                className="text-slate-950 font-bold block rounded-lg p-2 px-4 hover:bg-verde hover:text-white dark:hover:bg-slate-700 dark:text-verde"
+                className="text-slate-950 font-bold block rounded-3xl p-2 px-4 hover:bg-verde hover:text-white dark:hover:bg-slate-700 dark:text-verde"
               >
                 Talleres
               </Link>
@@ -50,7 +50,7 @@ const NavBar = ({ handleDarkMode, darkMode }) => {
             <li className="w-full md:w-auto">
               <Link
                 to="/actividades"
-                className="text-slate-950 font-bold block rounded-lg p-2 px-4 hover:bg-verde hover:text-white dark:hover:bg-slate-700 dark:text-verde"
+                className="text-slate-950 font-bold block rounded-3xl p-2 px-4 hover:bg-verde hover:text-white dark:hover:bg-slate-700 dark:text-verde"
               >
                 Actividades
               </Link>
@@ -59,7 +59,7 @@ const NavBar = ({ handleDarkMode, darkMode }) => {
             <li className="w-full md:w-auto">
               <Link
                 to="/contacto"
-                className="text-slate-950 font-bold block rounded-lg p-2 px-4 hover:bg-verde hover:text-white dark:hover:bg-slate-700 dark:text-verde"
+                className="text-slate-950 font-bold block rounded-3xl p-2 px-4 hover:bg-verde hover:text-white dark:hover:bg-slate-700 dark:text-verde"
               >
                 Contacto
               </Link>
@@ -68,14 +68,14 @@ const NavBar = ({ handleDarkMode, darkMode }) => {
             <li className="w-full md:w-auto ">
               <Link
                 to="/login"
-                className="text-slate-950 font-bold block rounded-lg p-2 px-4 hover:bg-verde hover:text-white dark:hover:bg-slate-700 dark:text-verde"
+                className="text-slate-950 font-bold block rounded-3xl p-2 px-4 hover:bg-verde hover:text-white dark:hover:bg-slate-700 dark:text-verde"
               >
                 Login
               </Link>
             </li>
           </ul>
           <button
-            className="bg-verde mt-5 text-white rounded-lg p-2 dark:bg-slate-50 dark:text-verde md:ml-5 md:mt-0"
+            className="bg-verde mt-5 text-white rounded-full p-2 dark:bg-slate-50 dark:text-verde md:ml-5 md:mt-0"
             onClick={handleDarkMode}
           >
             {darkMode ? <TbSunHigh /> : <TbMoonStars />}

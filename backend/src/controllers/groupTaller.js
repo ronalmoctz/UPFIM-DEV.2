@@ -1,11 +1,8 @@
 const AppError = require('../errors/AppError');
 const tallerService = require('../service/tallerService');
+const { logger } = require('../utils/logger');
 
 const insertTallerGroup = async (req, res, next) => {
-  if (!req.body) {
-    return next(new AppError('No se recibieron datos', 400));
-  }
-
   const {
     nombre,
     tipo,
@@ -17,22 +14,49 @@ const insertTallerGroup = async (req, res, next) => {
     hrSalida,
     grupo,
   } = req.body;
+
+  // Validación de datos de entrada
+  if (
+    !nombre ||
+    !tipo ||
+    !img_url ||
+    !estatus ||
+    !docente_fk ||
+    !dia ||
+    !hrEntrada ||
+    !hrSalida ||
+    !grupo
+  ) {
+    logger.warn('Datos incompletos en la solicitud de inserción de taller');
+    return next(
+      new AppError('Todos los campos del taller son obligatorios', 400),
+    );
+  }
+
   try {
-    // Verificar si existe
+    // Verificación de duplicados
     const ifExistTaller = await tallerService.checkDuplicateTaller(
       nombre,
       grupo,
       dia,
       hrEntrada,
-      hrSalida
+      hrSalida,
     );
 
     if (ifExistTaller) {
+      logger.warn('Intento de inserción de taller duplicado', {
+        nombre,
+        grupo,
+        dia,
+        hrEntrada,
+        hrSalida,
+      });
       return next(
-        new AppError('Ya existe este taller con los mismo valores', 400)
+        new AppError('Ya existe un taller con los mismos valores', 400),
       );
     }
 
+    // Inserción en la base de datos
     const result = await tallerService.insertTallerGroupDocente(
       nombre,
       tipo,
@@ -42,16 +66,17 @@ const insertTallerGroup = async (req, res, next) => {
       dia,
       hrEntrada,
       hrSalida,
-      grupo
+      grupo,
     );
 
+    logger.info('Taller insertado exitosamente', { nombre, grupo, dia });
     res.status(201).json({
       message: 'Transacción completada con éxito',
       result,
     });
   } catch (error) {
-    console.error('Error en la inserción:', error);
-    next(new AppError(error.message || 'Error inesperado', 500));
+    logger.error('Error en la inserción de taller', { error: error.message });
+    next(new AppError('Error en la inserción de taller', 500));
   }
 };
 
