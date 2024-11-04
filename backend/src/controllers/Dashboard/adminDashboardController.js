@@ -17,4 +17,8 @@ const addFeaturedImage = async (req, res, next) => {
   }
 };
 
+
+
+
+
 module.exports = { addFeaturedImage };

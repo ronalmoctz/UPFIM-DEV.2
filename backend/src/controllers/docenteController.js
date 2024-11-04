@@ -27,21 +27,17 @@ const validateDocenteData = (docente) => {
 const insertDocente = async (req, res, next) => {
   try {
     const { docentes } = req.body;
-
     if (!docentes || !Array.isArray(docentes) || docentes.length === 0) {
       logger.warn('Datos de docentes incorrectos o vacíos');
       return next(new AppError('Datos incorrectos para docentes', 400));
     }
-
     for (const docente of docentes) {
       validateDocenteData(docente);
     }
-
     const result = await docenteService.insertDocente(docentes);
     logger.info(
       `Docentes insertados exitosamente: ${docentes.length} registros`,
     );
-
     res.status(201).json({
       status: 'success',
       message: 'Docentes insertados correctamente',
@@ -53,14 +49,24 @@ const insertDocente = async (req, res, next) => {
   }
 };
 
-const getDocentes = async (req, res, next) => {
+const getDocentes = async (req, res) => {
   try {
     const [results] = await db.query('CALL getDocentes()');
-    res.json(results[0]);
+    res.json(results[0]);  
   } catch (err) {
-    logger.error(`Error al obtener datos de docentes: ${err.message}`);
-    return next(new AppError('Error al obtener datos', 500));
+    console.error('Error al obtener datos:', err);
+    res.status(500).json({ error: 'Error al obtener datos' });
   }
 };
 
-module.exports = { getDocentes, insertDocente };
+const getDocente = async (req, res) => {
+  try {
+    const [results] = await db.query('CALL getDocente()');
+    res.json(results[0]);  
+  } catch (err) {
+    console.error('Error al obtener datos:', err);
+    res.status(500).json({ error: 'Error al obtener datos' });
+  }
+};
+
+module.exports = { getDocentes, insertDocente, getDocente };

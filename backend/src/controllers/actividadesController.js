@@ -131,11 +131,9 @@ const updateActividad = async (req, res) => {
       img_url,
       estado,
     ]);
-
     if (updateResult.affectedRows === 0) {
       return res.status(404).json({ message: 'Actividad no encontrada' });
     }
-
     return res
       .status(200)
       .json({ message: 'Actividad actualizada exitosamente' });
