@@ -1,15 +1,14 @@
-const expressWinston = require('express-winston');
-const winston = require('winston');
+const pinoHttp = require('pino-http');
+const { logger } = require('../utils/logger');
 
-const requestLogger = expressWinston.logger({
-  transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: 'logs/request.log' }),
-  ],
-  format: winston.format.combine(
-    winston.format.colorize(),
-    winston.format.json()
-  ),
+const requestLogger = pinoHttp({
+  logger,
+  customLogLevel: (res, err) => {
+    if (res.statusCode >= 500 || err) return 'error';
+    if (res.statusCode >= 400) return 'warn';
+    if (res.statusCode >= 100) return 'http';
+    return 'debug';
+  },
 });
 
 module.exports = { requestLogger };
