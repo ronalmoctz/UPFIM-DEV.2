@@ -535,7 +535,89 @@ END //
 
 DELIMITER ;
 --------------------------------------------------------------------------------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE actualizar_taller_con_grupos(
+    IN p_taller_id INT,
+    IN p_nombre_taller VARCHAR(45),
+    IN p_tipo_taller ENUM('deportiva', 'cultural'),
+    IN p_img_url_taller VARCHAR(200),
+    IN p_estatus_taller INT,
+    IN p_nombre_docente_completo VARCHAR(135),
+    IN p_grupos_json JSON
+)
+BEGIN
+    DECLARE docente_id INT DEFAULT NULL;
+    DECLARE docente_taller_id INT DEFAULT NULL;
+    DECLARE grupos_count INT;
+    DECLARE idx INT DEFAULT 0;
+    DECLARE grupo_nombre VARCHAR(45);
+    DECLARE dia_horario VARCHAR(45);
+    DECLARE hrEntrada TIME;
+    DECLARE hrSalida TIME;
+    DECLARE horario_id INT;
 
+    -- Contar la cantidad de grupos en el JSON
+    SET grupos_count = JSON_LENGTH(p_grupos_json);
 
+    -- Validaciones de la cantidad de grupos
+    IF grupos_count < 1 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Debe haber al menos un grupo.';
+    ELSEIF grupos_count > 3 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No puede haber más de tres grupos.';
+    END IF;
+
+    -- Obtener el ID del docente
+    SELECT no_empleado INTO docente_id
+    FROM docente
+    WHERE CONCAT(nombre, ' ', aPater, ' ', aMater) = p_nombre_docente_completo;
+    
+    IF docente_id IS NULL THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Docente no encontrado';
+    END IF;
+
+    -- Actualizar el taller
+    UPDATE taller
+    SET nombre = p_nombre_taller,
+        tipo = p_tipo_taller,
+        img_url = p_img_url_taller,
+        estatus = p_estatus_taller
+    WHERE id_taller = p_taller_id;
+
+    -- Obtener el ID de la relación docente_taller
+    SELECT id_docente_taller INTO docente_taller_id
+    FROM docente_taller
+    WHERE docente_fk = docente_id AND taller_fk = p_taller_id;
+
+    IF docente_taller_id IS NULL THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Relación docente_taller no encontrada';
+    END IF;
+
+    -- Eliminar grupos y horarios relacionados con el docente y el taller actual
+    DELETE g, h
+    FROM grupo g
+    JOIN horarios h ON g.horarios_fk = h.id_horarios
+    WHERE g.docente_taller_fk = docente_taller_id;
+
+    -- Insertar los nuevos grupos y horarios
+    WHILE idx < grupos_count DO
+        SET grupo_nombre = JSON_UNQUOTE(JSON_EXTRACT(p_grupos_json, CONCAT('$[', idx, '].nombre')));
+        SET dia_horario = JSON_UNQUOTE(JSON_EXTRACT(p_grupos_json, CONCAT('$[', idx, '].dia')));
+        SET hrEntrada = JSON_UNQUOTE(JSON_EXTRACT(p_grupos_json, CONCAT('$[', idx, '].entrada')));
+        SET hrSalida = JSON_UNQUOTE(JSON_EXTRACT(p_grupos_json, CONCAT('$[', idx, '].salida')));
+
+        -- Insertar en la tabla horarios
+        INSERT INTO horarios (dia, hrEntrada, hrSalida)
+        VALUES (dia_horario, hrEntrada, hrSalida);
+        
+        SET horario_id = LAST_INSERT_ID();
+
+        -- Insertar en la tabla grupo
+        INSERT INTO grupo (grupo, horarios_fk, docente_taller_fk)
+        VALUES (grupo_nombre, horario_id, docente_taller_id);
+
+        SET idx = idx + 1;
+    END WHILE;
+END //
+DELIMITER ;
 
 

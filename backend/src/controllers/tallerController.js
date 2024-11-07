@@ -106,10 +106,7 @@ const deleteTaller = async (req, res) => {
       }
     }
     const deleteSql = 'CALL deletedTaller(?)';
-    const [deleteResult] = await db.query(deleteSql, [id_taller]);
-    if (deleteResult.affectedRows === 0) {
-      return res.status(404).json({ message: 'Taller no encontrado' });
-    }
+    await db.query(deleteSql, [id_taller]);
     return res.status(200).json({
       message: img_url
         ? 'Taller y su imagen eliminados exitosamente'

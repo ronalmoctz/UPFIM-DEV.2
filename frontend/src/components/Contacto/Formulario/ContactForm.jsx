@@ -108,7 +108,7 @@ const ContactForm = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`mt-4 px-6 py-2 flex items-center justify-center text-white rounded-lg border-green-600 bg-green-600 hover:bg-green-700 transition-colors duration-300 hover:scale-105 w-full md:w-auto ${
+          className={`mt-4 px-6 py-2 flex items-center justify-center text-white rounded-lg border-verde bg-verde hover:bg-verdeHover transition-colors duration-300 hover:scale-105 w-full md:w-auto ${
             isSubmitting ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >

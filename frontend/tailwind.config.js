@@ -7,7 +7,7 @@ export default {
         onest: ['"Onest"', 'sans-serif'],
       },
       colors: {
-        verde: '#6ab356',
+        verde: '#60a611',
         verdeHover: '#5aa047',
       },
       boxShadow: {
