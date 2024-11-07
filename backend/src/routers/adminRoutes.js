@@ -3,18 +3,18 @@ const { registerAdminController } = require('../controllers/adminController');
 const {
   addFeaturedImage,
 } = require('../controllers/Dashboard/adminDashboardController');
-const { verifyToken, checkRole } = require('../middleware/checkRole');
+const verifyToken = require('../middleware/verifyToken');
+const checkRole = require('../middleware/checkRole');
 const router = express.Router();
 
 router.post(
-  '/admin/register',
+  '/register',
   verifyToken,
   checkRole(['admin']),
   registerAdminController,
 );
-
 router.post(
-  '/admin/featured-gallery',
+  '/featured-gallery',
   verifyToken,
   checkRole(['admin']),
   addFeaturedImage,

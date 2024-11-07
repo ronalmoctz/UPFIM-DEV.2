@@ -1,36 +1,44 @@
-const pino = require('pino');
+const winston = require('winston');
 
-const levels = {
-  error: 50,
-  warn: 40,
-  info: 30,
-  http: 20,
-  debug: 10,
+const customLevels = {
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    debug: 4,
+  },
+  colors: {
+    error: 'red',
+    warn: 'yellow',
+    info: 'green',
+    http: 'magenta',
+    debug: 'blue',
+  },
 };
 
-const isProduction = process.env.NODE_ENV === 'production';
-
-const logger = pino({
-  level: isProduction ? 'warn' : 'debug',
-  customLevels: levels,
-  useOnlyCustomLevels: true,
-  timestamp: pino.stdTimeFunctions.isoTime,
-  formatters: {
-    level(label) {
-      return { level: label };
-    },
-  },
-
-  transport: !isProduction
-    ? {
-        target: 'pino-pretty',
-        options: {
-          colorize: true,
-          translateTime: 'SYS:standard',
-          ignore: 'pid,hostname',
-        },
-      }
-    : undefined,
+// Create logger instance
+const logger = winston.createLogger({
+  level: process.env.NODE_ENV === 'production' ? 'warn' : 'debug',
+  levels: customLevels.levels,
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    process.env.NODE_ENV === 'production'
+      ? winston.format.json()
+      : winston.format.prettyPrint(),
+  ),
+  transports: [
+    new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'logs/combined.log' }),
+    new winston.transports.Console({
+      format: winston.format.combine(
+        winston.format.colorize(),
+        winston.format.simple(),
+      ),
+    }),
+  ],
 });
+
+winston.addColors(customLevels.colors);
 
 module.exports = { logger };

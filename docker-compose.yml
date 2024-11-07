@@ -1,11 +1,11 @@
 version: '3.8'
 services:
   mysql:
-    image: mysql:8.0  # Cambia a la versión que estés usando
+    image: mysql:8.0  
     container_name: mysql_container
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}  # Desde tu archivo .env
-      MYSQL_DATABASE: ${DATABASE_NAME}     # Desde tu archivo .env
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}  
+      MYSQL_DATABASE: ${DATABASE_NAME}     
     ports:
       - "3306:3306"
     volumes:
