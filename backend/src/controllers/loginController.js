@@ -71,8 +71,14 @@ const loginController = async (req, res, next) => {
     });
 
     // Devolver el token al cliente
-    logger.info(`Token generado para usuario: ${userName}`);
-    res.json({ accesToken, message: 'Inicio de sesion exitoso' });
+    logger.info(
+      `Enviando datos al cliente: rol: ${user.userRol}, token: ${accesToken}`,
+    );
+    res.json({
+      accesToken,
+      userRol: user.userRol,
+      message: 'Inicio de sesion exitoso',
+    });
   } catch (error) {
     logger.error(`Error en loginController: ${error.nessage}`);
     return next(new AppError('Error en el inicio de sesion', 500));

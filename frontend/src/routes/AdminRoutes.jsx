@@ -5,12 +5,13 @@ import ProtectedRoute from "./ProtecedRoute";
 
 // Ejemplo de como son la rutas protedigas ya asignadas por rol
 const AdminRoutes = ({ role }) => {
-  <ProtectedRoute role={role} requiredRole="admin" element={<Table />}>
-    <Routes>
-      <Route path="/dash/admin" />
-      <Route />
-    </Routes>
-  </ProtectedRoute>;
+  return (
+    <ProtectedRoute role={role} requiredRole="admin">
+      <Routes>
+        <Route path="/dash/admin" element={<Table />} />
+      </Routes>
+    </ProtectedRoute>
+  );
 };
 
 export default AdminRoutes;

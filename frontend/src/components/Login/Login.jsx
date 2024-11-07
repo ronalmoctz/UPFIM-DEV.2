@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   TbEye,
   TbEyeClosed,
@@ -6,29 +6,29 @@ import {
   TbHomeMove,
   TbPasswordFingerprint,
   TbUserHexagon,
-} from 'react-icons/tb';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../assets/logo.webp';
-import fondoImg from '../../assets/poli.webp';
-import useAuth from '../../Hooks/useAuth';
-import { z } from 'zod';
-import { showAlert } from '../Generales/Alerts/Alerts';
+} from "react-icons/tb";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.webp";
+import fondoImg from "../../assets/poli.webp";
+import useAuth from "../../Hooks/useAuth";
+import { z } from "zod";
+import { showAlert } from "../Generales/Alerts/Alerts";
 
 // Scehma for validation
 const loginSchema = z.object({
   userName: z
     .string()
-    .min(1, 'El nombre de usuario es requerido')
-    .max(50, 'El nombre de usuario es demasiado largo'),
+    .min(1, "El nombre de usuario es requerido")
+    .max(50, "El nombre de usuario es demasiado largo"),
   password: z
     .string()
-    .min(8, 'la contrasena debe ser de almenos 8 caracteres')
-    .max(50, 'la contrasena es demaciado larga'),
+    .min(8, "la contrasena debe ser de almenos 8 caracteres")
+    .max(50, "la contrasena es demaciado larga"),
 });
 
 const Login = () => {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { handleLogin } = useAuth();
   const navigate = useNavigate();
@@ -44,9 +44,9 @@ const Login = () => {
 
     if (!userName || !password) {
       showAlert(
-        'error',
-        'Campos vacíos',
-        'Por favor, ingresa tu usuario y contraseña'
+        "error",
+        "Campos vacíos",
+        "Por favor, ingresa tu usuario y contraseña"
       );
       return;
     }
@@ -55,21 +55,27 @@ const Login = () => {
       // Validar usando Zod
       loginSchema.parse({ userName, password });
 
-      const isAuthenticated = await handleLogin(userName, password);
+      // Realiza el login y extrae el rol y estado de autenticación
+      const { isAuthenticated, role } = await handleLogin(userName, password);
 
       if (isAuthenticated) {
-        // Mensaje de éxito y redirección solo si la autenticación fue exitosa
-        showAlert('success', 'Bienvenido', 'Tus datos son correctos');
-        setUserName('');
-        setPassword('');
-        navigate('/dash');
+        console.log(
+          `Inicio de sesión exitoso. Usuario: ${userName}, Rol: ${role}`
+        );
+        showAlert("success", "Bienvenido", "Tus datos son correctos");
+        setUserName("");
+        setPassword("");
+
+        // Redirección basada en el rol
+        if (role === "admin") navigate("/dash/admin");
+        else if (role === "alumno") navigate("/dash/alumno");
+        else if (role === "docente") navigate("/dash/docente");
       } else {
-        // Show message
-        showAlert('error', 'Error', 'Nombre de usuario o contrasena no valida');
+        showAlert("error", "Error", "Nombre de usuario o contraseña no válida");
       }
     } catch (error) {
-      showAlert('error', 'Error', 'Datos invalidos');
-      console.error('Error al iniciar sesión', error);
+      showAlert("error", "Error", "Datos inválidos");
+      console.error("Error al iniciar sesión", error);
     }
   };
   return (
@@ -77,8 +83,8 @@ const Login = () => {
       className="min-h-screen flex flex-col items-center justify-center"
       style={{
         backgroundImage: `url(${fondoImg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <div className="flex flex-col  bg-opacity-30 backdrop-blur-lg  border-white border-2 shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
@@ -134,7 +140,7 @@ const Login = () => {
                   <TbPasswordFingerprint className="h-6 w-6" />
                 </div>
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   name="password"
