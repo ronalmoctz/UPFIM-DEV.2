@@ -18,3 +18,1042 @@
   level: 'info',
   timestamp: '2024-11-07T16:09:31.580Z'
 }
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T16:18:33.667Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T16:18:33.709Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T18:33:29.703Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T18:33:29.865Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJOYW1lIjoicGFzY3VhbE1hciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAwNjMyOX0.JReJJZAXXKo45Jxtl8bLUMtyZrr97tFPVgjkVgF-RxE',
+  level: 'info',
+  timestamp: '2024-11-07T19:05:29.288Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJOYW1lIjoicGFzY3VhbE1hciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAwODI2MX0.Tg1YNQdQSOJzJiO0gVID9QlPVP8YA52xVzT7czQfU94',
+  level: 'info',
+  timestamp: '2024-11-07T19:37:41.158Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T19:40:18.393Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T19:40:18.447Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJOYW1lIjoicGFzY3VhbE1hciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAwODUwN30.KXD4TbJE86gKMmpFYxXRRj-6mZgpiT39_diXRBy1oqs',
+  level: 'info',
+  timestamp: '2024-11-07T19:41:47.084Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T20:13:55.041Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T20:13:55.089Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T20:14:15.944Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T20:14:15.978Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T20:14:24.018Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T20:14:24.054Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T20:32:15.362Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T20:32:15.381Z'
+}
+{
+  message: 'Error en loginController: "expiresIn" should be a number of seconds or string representing a timespan',
+  level: 'error',
+  timestamp: '2024-11-07T21:33:35.929Z'
+}
+{
+  message: 'Error en el inicio de sesion',
+  stack: 'Error: Error en el inicio de sesion\n' +
+    '    at call (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:83:17)\n' +
+    '    at tryCatch (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator._invoke (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator.next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at asyncGeneratorStep (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at _next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)',
+  statusCode: 500,
+  requestUrl: '/api/auth/login',
+  method: 'POST',
+  ip: '::1',
+  level: 'error',
+  timestamp: '2024-11-07T21:33:35.943Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T21:35:45.278Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T21:35:45.321Z'
+}
+{
+  message: 'Error en loginController: "expiresIn" should be a number of seconds or string representing a timespan',
+  level: 'error',
+  timestamp: '2024-11-07T21:35:57.089Z'
+}
+{
+  message: 'Error en el inicio de sesion',
+  stack: 'Error: Error en el inicio de sesion\n' +
+    '    at call (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:83:17)\n' +
+    '    at tryCatch (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator._invoke (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator.next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at asyncGeneratorStep (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at _next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)',
+  statusCode: 500,
+  requestUrl: '/api/auth/login',
+  method: 'POST',
+  ip: '::1',
+  level: 'error',
+  timestamp: '2024-11-07T21:35:57.097Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T22:26:33.925Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T22:26:33.979Z'
+}
+{
+  message: 'Error en loginController: "expiresIn" should be a number of seconds or string representing a timespan',
+  level: 'error',
+  timestamp: '2024-11-07T22:26:51.726Z'
+}
+{
+  message: 'Error en el inicio de sesion',
+  stack: 'Error: Error en el inicio de sesion\n' +
+    '    at call (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:83:17)\n' +
+    '    at tryCatch (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator._invoke (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator.next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at asyncGeneratorStep (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at _next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)',
+  statusCode: 500,
+  requestUrl: '/api/auth/login',
+  method: 'POST',
+  ip: '::1',
+  level: 'error',
+  timestamp: '2024-11-07T22:26:51.734Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T22:27:50.833Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T22:27:50.868Z'
+}
+{
+  message: 'Error en loginController: "expiresIn" should be a number of seconds or string representing a timespan',
+  level: 'error',
+  timestamp: '2024-11-07T22:27:51.954Z'
+}
+{
+  message: 'Error en el inicio de sesion',
+  stack: 'Error: Error en el inicio de sesion\n' +
+    '    at call (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:83:17)\n' +
+    '    at tryCatch (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator._invoke (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator.next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at asyncGeneratorStep (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at _next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)',
+  statusCode: 500,
+  requestUrl: '/api/auth/login',
+  method: 'POST',
+  ip: '::1',
+  level: 'error',
+  timestamp: '2024-11-07T22:27:51.958Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T22:28:02.903Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T22:28:02.938Z'
+}
+{
+  message: 'Error en loginController: "expiresIn" should be a number of seconds or string representing a timespan',
+  level: 'error',
+  timestamp: '2024-11-07T22:30:22.743Z'
+}
+{
+  message: 'Error en el inicio de sesion',
+  stack: 'Error: Error en el inicio de sesion\n' +
+    '    at call (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:83:17)\n' +
+    '    at tryCatch (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator._invoke (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator.next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at asyncGeneratorStep (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at _next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)',
+  statusCode: 500,
+  requestUrl: '/api/auth/login',
+  method: 'POST',
+  ip: '::1',
+  level: 'error',
+  timestamp: '2024-11-07T22:30:22.750Z'
+}
+{
+  message: 'Error en loginController: "expiresIn" should be a number of seconds or string representing a timespan',
+  level: 'error',
+  timestamp: '2024-11-07T22:31:42.034Z'
+}
+{
+  message: 'Error en el inicio de sesion',
+  stack: 'Error: Error en el inicio de sesion\n' +
+    '    at call (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:83:17)\n' +
+    '    at tryCatch (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator._invoke (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator.next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at asyncGeneratorStep (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at _next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)',
+  statusCode: 500,
+  requestUrl: '/api/auth/login',
+  method: 'POST',
+  ip: '::1',
+  level: 'error',
+  timestamp: '2024-11-07T22:31:42.035Z'
+}
+{
+  message: 'Error en loginController: "expiresIn" should be a number of seconds or string representing a timespan',
+  level: 'error',
+  timestamp: '2024-11-07T22:33:22.654Z'
+}
+{
+  message: 'Error en el inicio de sesion',
+  stack: 'Error: Error en el inicio de sesion\n' +
+    '    at call (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:83:17)\n' +
+    '    at tryCatch (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator._invoke (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator.next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at asyncGeneratorStep (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at _next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)',
+  statusCode: 500,
+  requestUrl: '/api/auth/login',
+  method: 'POST',
+  ip: '::1',
+  level: 'error',
+  timestamp: '2024-11-07T22:33:22.655Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T22:33:33.708Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T22:33:33.743Z'
+}
+{
+  message: 'Error en loginController: "expiresIn" should be a number of seconds or string representing a timespan',
+  level: 'error',
+  timestamp: '2024-11-07T22:33:46.455Z'
+}
+{
+  message: 'Error en el inicio de sesion',
+  stack: 'Error: Error en el inicio de sesion\n' +
+    '    at call (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:83:17)\n' +
+    '    at tryCatch (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator._invoke (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator.next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at asyncGeneratorStep (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at _next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)',
+  statusCode: 500,
+  requestUrl: '/api/auth/login',
+  method: 'POST',
+  ip: '::1',
+  level: 'error',
+  timestamp: '2024-11-07T22:33:46.463Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T22:34:36.654Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T22:34:36.715Z'
+}
+{
+  message: 'Error en loginController: "expiresIn" should be a number of seconds or string representing a timespan',
+  level: 'error',
+  timestamp: '2024-11-07T22:35:07.066Z'
+}
+{
+  message: 'Error en el inicio de sesion',
+  stack: 'Error: Error en el inicio de sesion\n' +
+    '    at call (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:83:17)\n' +
+    '    at tryCatch (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator._invoke (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator.next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at asyncGeneratorStep (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at _next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)',
+  statusCode: 500,
+  requestUrl: '/api/auth/login',
+  method: 'POST',
+  ip: '::1',
+  level: 'error',
+  timestamp: '2024-11-07T22:35:07.073Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T22:36:59.710Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T22:36:59.748Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T22:38:35.402Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T22:38:35.462Z'
+}
+{
+  message: 'Error en loginController: "expiresIn" should be a number of seconds or string representing a timespan',
+  level: 'error',
+  timestamp: '2024-11-07T22:40:05.429Z'
+}
+{
+  message: 'Error en el inicio de sesion',
+  stack: 'Error: Error en el inicio de sesion\n' +
+    '    at call (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:85:17)\n' +
+    '    at tryCatch (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator._invoke (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator.next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at asyncGeneratorStep (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at _next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)',
+  statusCode: 500,
+  requestUrl: '/api/auth/login',
+  method: 'POST',
+  ip: '::1',
+  level: 'error',
+  timestamp: '2024-11-07T22:40:05.437Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-07T22:42:47.791Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-07T22:42:47.829Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJOYW1lIjoicGFzY3VhbE1hciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAxOTM3MSwiZXhwIjoxNzMxMDE5MzcyfQ.4FQB0sha-KWdNqZMXzTzK7NV0nOPLbdcvlxh7UYjOwc',
+  level: 'info',
+  timestamp: '2024-11-07T22:42:51.347Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJOYW1lIjoicGFzY3VhbE1hciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAyMzM5MSwiZXhwIjoxNzMxMDIzMzkyfQ.W8qNirqrnsyB1ShuxO0H67pwiOE-KN4Osnof5wk_a4s',
+  level: 'info',
+  timestamp: '2024-11-07T23:49:51.949Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T00:02:01.937Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T00:02:01.961Z'
+}
+{
+  message: 'Error en loginController: "expiresIn" should be a number of seconds or string representing a timespan eg: "1d", "20h", 60',
+  level: 'error',
+  timestamp: '2024-11-08T00:04:20.670Z'
+}
+{
+  message: 'Error en el inicio de sesion',
+  stack: 'Error: Error en el inicio de sesion\n' +
+    '    at call (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:85:17)\n' +
+    '    at tryCatch (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator._invoke (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator.next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at asyncGeneratorStep (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at _next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)',
+  statusCode: 500,
+  requestUrl: '/api/auth/login',
+  method: 'POST',
+  ip: '::1',
+  level: 'error',
+  timestamp: '2024-11-08T00:04:20.682Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T14:25:21.469Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T14:25:21.511Z'
+}
+{
+  message: 'Error en loginController: "expiresIn" should be a number of seconds or string representing a timespan eg: "1d", "20h", 60',
+  level: 'error',
+  timestamp: '2024-11-08T14:52:58.952Z'
+}
+{
+  message: 'Error en el inicio de sesion',
+  stack: 'Error: Error en el inicio de sesion\n' +
+    '    at call (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:85:17)\n' +
+    '    at tryCatch (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator._invoke (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator.next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at asyncGeneratorStep (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at _next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)',
+  statusCode: 500,
+  requestUrl: '/api/auth/login',
+  method: 'POST',
+  ip: '::1',
+  level: 'error',
+  timestamp: '2024-11-08T14:52:58.960Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T15:09:31.031Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T15:09:31.072Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T15:09:46.152Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T15:09:46.189Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T15:34:51.316Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T15:34:51.336Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T15:34:54.730Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T15:34:54.769Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T15:39:14.112Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T15:39:14.158Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T15:39:36.917Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T15:39:36.955Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:07:27.442Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:07:27.505Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:08:13.540Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:08:13.581Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:11:17.728Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:11:17.774Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:18:26.507Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:18:26.545Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:21:35.280Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:21:35.337Z'
+}
+{
+  message: 'Error en loginController: "expiresIn" should be a number of seconds or string representing a timespan eg: "1d", "20h", 60',
+  level: 'error',
+  timestamp: '2024-11-08T16:22:18.840Z'
+}
+{
+  message: 'Error en el inicio de sesion',
+  stack: 'Error: Error en el inicio de sesion\n' +
+    '    at call (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:85:17)\n' +
+    '    at tryCatch (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator._invoke (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator.next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at asyncGeneratorStep (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at _next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)',
+  statusCode: 500,
+  requestUrl: '/api/login',
+  method: 'POST',
+  ip: '::1',
+  level: 'error',
+  timestamp: '2024-11-08T16:22:18.850Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:23:01.477Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:23:01.518Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T16:23:06.070Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T16:23:06.085Z'
+}
+{
+  message: 'Error en loginController: "expiresIn" should be a number of seconds or string representing a timespan eg: "1d", "20h", 60',
+  level: 'error',
+  timestamp: '2024-11-08T16:23:52.297Z'
+}
+{
+  message: 'Error en el inicio de sesion',
+  stack: 'Error: Error en el inicio de sesion\n' +
+    '    at call (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:85:17)\n' +
+    '    at tryCatch (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator._invoke (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at Generator.next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at asyncGeneratorStep (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)\n' +
+    '    at _next (/home/ronal/dev/UPFIM-DEV.2/backend/src/controllers/loginController.js:2:1)',
+  statusCode: 500,
+  requestUrl: '/api/login',
+  method: 'POST',
+  ip: '::1',
+  level: 'error',
+  timestamp: '2024-11-08T16:23:52.308Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:24:22.253Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:24:22.294Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T16:24:27.192Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T16:24:27.203Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:25:25.295Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:25:25.334Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T16:25:27.430Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T16:25:27.439Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T16:26:30.636Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:34:58.104Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:34:58.156Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T16:35:02.937Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T16:35:02.947Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:35:12.775Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:35:12.811Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:36:03.789Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:36:03.825Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:36:10.941Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:36:10.983Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:39:59.233Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:39:59.281Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:40:20.788Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:40:20.830Z'
+}
+{
+  message: 'Acceso sin token',
+  level: 'warn',
+  timestamp: '2024-11-08T16:40:24.262Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T16:40:24.272Z'
+}
+{
+  message: 'Acceso sin token',
+  level: 'warn',
+  timestamp: '2024-11-08T16:40:24.280Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T16:40:24.283Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:47:25.308Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:47:25.350Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T16:47:58.022Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T16:47:58.055Z'
+}
+{
+  message: 'Acceso sin token',
+  level: 'warn',
+  timestamp: '2024-11-08T16:48:00.324Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T16:48:00.329Z'
+}
+{
+  message: 'Acceso sin token',
+  level: 'warn',
+  timestamp: '2024-11-08T16:48:00.341Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T16:48:00.343Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJOYW1lIjoicGFzY3VhbE1hciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTA4NDQ5OCwiZXhwIjoxNzMxMDg2Mjk4fQ.j5Bsh1VTaAzW9l1asNUFMScTAaLT0oRyItC_OHxaivA',
+  level: 'info',
+  timestamp: '2024-11-08T16:48:18.334Z'
+}
+{
+  message: 'Acceso sin token',
+  level: 'warn',
+  timestamp: '2024-11-08T17:32:39.090Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T17:32:39.101Z'
+}
+{
+  message: 'Acceso sin token',
+  level: 'warn',
+  timestamp: '2024-11-08T17:33:32.348Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T17:33:32.359Z'
+}
+{
+  message: 'Acceso sin token',
+  level: 'warn',
+  timestamp: '2024-11-08T17:33:32.363Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T17:33:32.370Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJOYW1lIjoicGFzY3VhbE1hciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTA4NzIyNCwiZXhwIjoxNzMxMDg5MDI0fQ.ZxIvB-vzuJOpUqIP2U-vtYOHkTeg7Sr3ZtflpblWyEM',
+  level: 'info',
+  timestamp: '2024-11-08T17:33:44.954Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T17:55:30.600Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T17:55:30.644Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJOYW1lIjoicGFzY3VhbE1hciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTA4ODU1MCwiZXhwIjoxNzMxMDkwMzUwfQ.neAjEv_FsPB0hrdpEd9sKeVMkpxje7c8IXayKA5BRE8',
+  level: 'info',
+  timestamp: '2024-11-08T17:55:50.818Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJOYW1lIjoicGFzY3VhbE1hciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTA5MDAyMCwiZXhwIjoxNzMxMDkxODIwfQ.Z6lr3n2llgyrRvqyM35sZMbRHDuNjRp0CuyUJy_M-qA',
+  level: 'info',
+  timestamp: '2024-11-08T18:20:20.076Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T21:02:26.431Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T21:02:26.545Z'
+}
+{
+  message: 'Acceso sin token',
+  level: 'warn',
+  timestamp: '2024-11-08T21:02:27.763Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T21:02:27.770Z'
+}
+{
+  message: 'Acceso sin token',
+  level: 'warn',
+  timestamp: '2024-11-08T21:02:27.789Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T21:02:27.791Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJOYW1lIjoicGFzY3VhbE1hciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTA5OTc2MCwiZXhwIjoxNzMxMTAxNTYwfQ.c_M1-h8RvyiEDgtBjrYBCPKCvaDyBTToGqr-bpe0wIc',
+  level: 'info',
+  timestamp: '2024-11-08T21:02:40.049Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJOYW1lIjoicGFzY3VhbE1hciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTEwMDIwMywiZXhwIjoxNzMxMTAyMDAzfQ.5pVSJEh5oyplkte0WHYxKh3kqyqEBZ4rqKQisgkMpvY',
+  level: 'info',
+  timestamp: '2024-11-08T21:10:03.246Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T22:16:56.649Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T22:16:56.701Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T22:23:24.341Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T22:23:24.402Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-08T23:23:42.833Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-08T23:23:42.951Z'
+}
+{
+  message: 'Acceso sin token',
+  level: 'warn',
+  timestamp: '2024-11-08T23:30:21.886Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T23:30:21.890Z'
+}
+{
+  message: 'Acceso sin token',
+  level: 'warn',
+  timestamp: '2024-11-08T23:30:21.896Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-08T23:30:21.899Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJOYW1lIjoicGFzY3VhbE1hciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTEwODc0NCwiZXhwIjoxNzMxMTEwNTQ0fQ.C0-ao-0X7SXU86qmKJZCf2qwUKtQfv76qF-85kUgyd0',
+  level: 'info',
+  timestamp: '2024-11-08T23:32:24.317Z'
+}

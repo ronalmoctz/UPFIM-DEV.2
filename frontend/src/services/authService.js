@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const LOGIN_URL = 'http://localhost:3000/api/auth/login';
+const LOGIN_URL = 'http://localhost:3000/api/login';
 
 export const login = async (userName, password) => {
   // Aviability send cookies
@@ -25,9 +25,16 @@ export const isAuthenticated = async () => {
     const response = await axios.get('http://localhost:3000/api/auth/status', {
       withCredentials: true,
     });
-    return response.data.isAuthenticated;
+    console.log(response);
+    return {
+      isAuthenticated: response.data.isAuthenticated,
+      userRol: response.data.userRol,
+    };
   } catch (error) {
-    console.error(error);
-    return false;
+    console.error('Error al verificar autenticación:', error);
+    return {
+      isAuthenticated: false,
+      userRol: null,
+    };
   }
 };

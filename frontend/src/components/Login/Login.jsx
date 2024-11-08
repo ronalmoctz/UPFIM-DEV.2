@@ -1,16 +1,8 @@
 import React, { useState } from "react";
-import {
-  TbEye,
-  TbEyeClosed,
-  TbArrowBigRightLineFilled,
-  TbHomeMove,
-  TbPasswordFingerprint,
-  TbUserHexagon,
-} from "react-icons/tb";
+import { TbEye, TbEyeOff, TbArrowBackUp } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.webp";
-import fondoImg from "../../assets/poli.webp";
-import useAuth from "../../Hooks/useAuth";
+import Coyi from "../../assets/coyin-upfim.webp";
+import { useAuth } from "../../Hooks/AuthContext";
 import { z } from "zod";
 import { showAlert } from "../Generales/Alerts/Alerts";
 
@@ -57,6 +49,7 @@ const Login = () => {
 
       // Realiza el login y extrae el rol y estado de autenticación
       const { isAuthenticated, role } = await handleLogin(userName, password);
+      console.log("Resultado del login:", { isAuthenticated, role });
 
       if (isAuthenticated) {
         console.log(
@@ -79,27 +72,20 @@ const Login = () => {
     }
   };
   return (
-    <div
-      className="min-h-screen flex flex-col items-center justify-center"
-      style={{
-        backgroundImage: `url(${fondoImg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="flex flex-col  bg-opacity-30 backdrop-blur-lg  border-white border-2 shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
+    <div className="min-h-screen bg-[#f1f5f9] flex flex-col items-center justify-center">
+      <div className="flex flex-col  bg-opacity-30  backdrop-blur-lg px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
         <div className="font-bold self-center text-xl sm:text-2xl uppercase text-black">
-          Bienvenido
+          Bienvenido Coyote
         </div>
 
         <div className="flex justify-center mt-6">
-          <img src={logo} alt="Logo" className="w-1/2 h-auto" />
+          <img src={Coyi} alt="Logo" className="w-2/3 h-auto" />
         </div>
 
         <div className="relative mt-10 h-px">
           <div className="absolute left-0 top-0 flex justify-center w-full -mt-2">
             <span className="text-black font-bold  bg-opacity-20 backdrop-blur-lg px-4 text-xs  uppercase">
-              Ingresa tus datos para entrar
+              Sistema Integral de Cultura y Deporte
             </span>
           </div>
         </div>
@@ -111,19 +97,17 @@ const Login = () => {
                 htmlFor="email"
                 className="font-semibold mb-1 text-xs sm:text-sm tracking-wide text-gray-900"
               >
-                Usuario:
+                Matrícula
               </label>
               <div className="relative">
-                <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-                  <TbUserHexagon className="h-6 w-6" />
-                </div>
+                <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400"></div>
                 <input
                   type="text"
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
                   name="email"
-                  className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-verde"
-                  placeholder="Ingrese su usuario:"
+                  className="text-sm sm:text-base placeholder-gray-500 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-verde"
+                  placeholder="Ingresa tu matrícula"
                 />
               </div>
             </div>
@@ -133,18 +117,16 @@ const Login = () => {
                 htmlFor="password"
                 className="font-semibold mb-1 text-xs sm:text-sm tracking-wide text-gray-900"
               >
-                Contraseña:
+                Contraseña
               </label>
               <div className="relative">
-                <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-                  <TbPasswordFingerprint className="h-6 w-6" />
-                </div>
+                <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400"></div>
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   name="password"
-                  className=" text-sm sm:text-base placeholder-gray-500 pl-10 pr-10 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-verde"
+                  className=" text-sm sm:text-base placeholder-gray-500 pl-3 pr-10 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-verde"
                   placeholder="Ingrese su contraseña"
                   autoComplete="off"
                 />
@@ -155,7 +137,7 @@ const Login = () => {
                   {showPassword ? (
                     <TbEye className="h-6 w-6" />
                   ) : (
-                    <TbEyeClosed className="h-6 w-6" />
+                    <TbEyeOff className="h-6 w-6" />
                   )}
                 </div>
               </div>
@@ -164,10 +146,9 @@ const Login = () => {
             <div className="flex w-full">
               <button
                 type="submit"
-                className="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-verde hover:bg-verdeHover rounded py-2 w-full transition duration-150 ease-in"
+                className="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-verde hover:bg-verdeHover rounded-lg py-2 w-full transition duration-150 ease-in"
               >
-                <span className="mr-2 uppercase">Entrar</span>
-                <TbArrowBigRightLineFilled className="h-6 w-6" />
+                <span className="mr-2 uppercase">Inicia sesión</span>
               </button>
             </div>
           </form>
@@ -176,10 +157,10 @@ const Login = () => {
         <div className="flex justify-center items-center mt-6">
           <Link
             to="/"
-            className="inline-flex items-center font-bold text-white hover:text-gray-800 text-xs text-center"
+            className="inline-flex items-center font-bold text-black hover:text-green-700 text-xs text-center"
           >
-            <TbHomeMove className="h-6 w-6" />
-            <span className="ml-2">¿Quieres regresar al inicio?</span>
+            <TbArrowBackUp className="h-6 w-6" />
+            <span className="ml-2">Volver al incio</span>
           </Link>
         </div>
       </div>

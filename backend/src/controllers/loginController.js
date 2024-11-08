@@ -32,6 +32,8 @@ const loginController = async (req, res, next) => {
       return next(new AppError('Error en configuración del servidor', 500));
     }
 
+    console.log('JWT_REFRESH_TOKEN:', process.env.JWT_REFRESH_TOKEN);
+
     // Generar el token JWT
     const accesToken = jwt.sign(
       {
@@ -40,8 +42,7 @@ const loginController = async (req, res, next) => {
         role: user.userRol,
       },
       process.env.JWT_TOKEN,
-      console.log('JWT_TOKEN', process.env.JWT_TOKEN),
-      { expiresIn: process.env.JWT_REFRESH_IN, algorithm: 'HS256' },
+      { expiresIn: process.env.JWT_EXPIRES_IN, algorithm: 'HS256' },
     );
 
     // Generate refeshToken (duracion de 30 dias)
@@ -64,7 +65,7 @@ const loginController = async (req, res, next) => {
 
     // Send the refreshToken in other cookie HHTP-only
     res.cookie('refreshToken', refreshToken, {
-      hhtpOnly: true,
+      httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'Strict',
       maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -80,7 +81,7 @@ const loginController = async (req, res, next) => {
       message: 'Inicio de sesion exitoso',
     });
   } catch (error) {
-    logger.error(`Error en loginController: ${error.nessage}`);
+    logger.error(`Error en loginController: ${error.message}`);
     return next(new AppError('Error en el inicio de sesion', 500));
   }
 };
