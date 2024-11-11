@@ -11,6 +11,7 @@ const actividadesRoutes = require('./routers/actividadesRoutes');
 const authRoutes = require('./routers/auth');
 const docentesRoutes = require('./routers/docenteRoutes');
 const talleresRoutes = require('./routers/tallerRoutes');
+const photosIconicRoutes = require('./routers/featuredPhotosRoutes');
 const cors = require('cors');
 const { sendEmail } = require('./controllers/emailController');
 
@@ -43,6 +44,7 @@ app.use('/api', docentesRoutes);
 app.use('/api', actividadesRoutes);
 app.use('/api', talleresRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api', photosIconicRoutes);
 app.post('/api/sendEmail', sendEmail);
 
 // Middleware for handling errors
