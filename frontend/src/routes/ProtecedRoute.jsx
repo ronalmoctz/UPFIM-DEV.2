@@ -17,7 +17,7 @@ const ProtectedRoute = ({ children, requiredRole }) => {
     return <Navigate to="/login" replace />;
   }
 
-  if (role !== requiredRole) {
+  if (requiredRole && role !== requiredRole) {
     console.log(
       `Acceso denegado. Rol requerido: ${requiredRole}, rol actual: ${role}`
     );

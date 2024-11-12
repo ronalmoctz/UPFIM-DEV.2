@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
         setRole(userRol);
       } catch (error) {
         setIsAuthenticated(false);
+        console.error(error);
         setRole(null);
       }
     };
@@ -35,6 +36,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       setIsAuthenticated(false);
       setRole(null);
+      console.error(error);
       return { isAuthenticated: false, role: null };
     }
   };

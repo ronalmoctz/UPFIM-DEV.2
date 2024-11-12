@@ -3,7 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import useDarkMode from "./Hooks/useDarkMode";
 import MainRoutes from "./routes/MainRoutes.jsx";
 import AdminRoutes from "./routes/AdminRoutes.jsx";
-import { AuthProvider } from "./Hooks/AuthContext"; // Importa el contexto
+import { AuthProvider } from "./Hooks/AuthContext";
+import ProtectedRoute from "./routes/ProtecedRoute.jsx";
 
 const App = () => {
   const [darkMode, toggleDarkMode] = useDarkMode();
@@ -19,7 +20,14 @@ const App = () => {
               <MainRoutes darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
             }
           />
-          <Route path="/dash/admin/*" element={<AdminRoutes />} />
+          <Route
+            path="/dash/admin/*"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminRoutes />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </div>
     </AuthProvider>
