@@ -3,12 +3,12 @@ const cookieParser = require('cookie-parser');
 const { logger } = require('./utils/logger');
 const { requestLogger } = require('./middleware/requestLogger');
 const { errorHandler } = require('./middleware/errorHandler');
-// const { checkRole } = require('./middleware/checkRole');
 const { securityHeaders } = require('./config/security');
+const authRoutes = require('./routers/authRoutes');
 const adminRoutes = require('./routers/adminRoutes');
 const alumnosRoutes = require('./routers/alumnosRoutes');
 const actividadesRoutes = require('./routers/actividadesRoutes');
-const authRoutes = require('./routers/auth');
+const loginRoute = require('./routers/loginRoute');
 const docentesRoutes = require('./routers/docenteRoutes');
 const talleresRoutes = require('./routers/tallerRoutes');
 const photosIconicRoutes = require('./routers/featuredPhotosRoutes');
@@ -45,6 +45,7 @@ app.use('/api', actividadesRoutes);
 app.use('/api', talleresRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api', photosIconicRoutes);
+app.use('/api', loginRoute);
 app.post('/api/sendEmail', sendEmail);
 
 // Middleware for handling errors

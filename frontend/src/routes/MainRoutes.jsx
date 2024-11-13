@@ -37,6 +37,8 @@ const MainRoutes = ({ darkMode, toggleDarkMode }) => {
             <Route path="/contacto" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<Error404 />} />
+
+
           </Routes>
           {!isLoginPage && <Footer />}
         </>
