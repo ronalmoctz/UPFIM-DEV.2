@@ -1,12 +1,12 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 
-import Card from './CardGallery';
+import Card from "./CardGallery";
 
 const Gallery = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -14,7 +14,7 @@ const Gallery = () => {
   const getPokemons = async () => {
     try {
       const { data } = await axios.get(
-        'https://pokeapi.co/api/v2/pokemon?limit=10&offset=64'
+        "https://pokeapi.co/api/v2/pokemon?limit=10&offset=64"
       );
       setPokemons(data.results);
     } catch (error) {

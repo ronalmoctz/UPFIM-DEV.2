@@ -10,7 +10,7 @@ const Taller = () => {
       <Container>
         <Title
           title="Nuestros talleres"
-          subtitle="Te ofrecemos los sifuientes talleres"
+          subtitle="Te ofrecemos los siguientes talleres"
         />
         <div className="flex flex-col md:flex-row gap-5">
           {tallerInfo.map((data, index) => (

@@ -1,0 +1,15 @@
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-13T15:42:41.129Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-13T15:42:41.370Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInVzZXJOYW1lIjoiTWFyTWFyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMxNTEyNTc0LCJleHAiOjE3MzE1MTQzNzR9.C27aKjldC0xCfSeVDU4HAwT0e12Coky6Q3JckYhoMNg',
+  level: 'info',
+  timestamp: '2024-11-13T15:42:54.745Z'
+}

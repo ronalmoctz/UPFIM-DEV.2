@@ -1,5 +1,7 @@
 import React from "react";
-import metaimg from "../../../assets/metas.png";
+import metaMedall from "../../../assets/medall.svg";
+import metaTropy from "../../../assets/tropy.svg";
+import metaGoal from "../../../assets/goals.svg";
 
 const Metas = () => {
   return (
@@ -17,29 +19,29 @@ const Metas = () => {
           </p>
         </div>
         <div className="w-full lg:w-3/4">
-          <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 items-start md:gap-12 gap-8">
-            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-96 shadow-3xl p-8 items-center flex justify-center cursor-pointer">
+          <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 items-start md:gap-12 gap-8 ">
+            <div className="file-card h-96 p-8 items-center flex justify-center gradient-card-one">
               <div>
-                <img src={metaimg} alt="img" />
-                <h5 className="text-2xl font-semibold text-slate-900 px-5 text-center mt-5 ">
+                <img src={metaMedall} alt="img" className="p-4 mt-3" />
+                <h5 className="text-2xl font-semibold text-slate-900 px-5 text-center">
                   Transporte encapsulado
                 </h5>
               </div>
             </div>
 
-            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-96 shadow-3xl p-8 items-center flex justify-center  cursor-pointer md:mt-16">
+            <div className="file-card h-96 p-8 items-center flex justify-center md:mt-16 gradient-card-two">
               <div>
-                <img src={metaimg} alt="img" />
-                <h5 className="text-2xl font-semibold text-slate-900 px-5 text-center mt-5 ">
+                <img src={metaTropy} alt="img" className="p-4 mt-3" />
+                <h5 className="text-2xl font-semibold text-slate-300 px-5 text-center">
                   Transporte encapsulado
                 </h5>
               </div>
             </div>
 
-            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-96 shadow-3xl p-8 items-center flex justify-center  cursor-pointer  ">
+            <div className="file-card h-96  p-8 items-center flex justify-center gradient-card-three ">
               <div>
-                <img src={metaimg} alt="img" />
-                <h5 className="text-2xl font-semibold text-slate-900 px-5 text-center mt-5 ">
+                <img src={metaGoal} alt="img" className="p-4 mt-3" />
+                <h5 className="text-2xl font-semibold text-slate-900 px-5 text-center">
                   Transporte encapsulado
                 </h5>
               </div>

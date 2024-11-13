@@ -1,6 +1,6 @@
-import piano from '../assets/piano.webp';
-import basket from '../assets/basket.webp';
-import yoga from '../assets/yoga.webp';
+import piano from '../assets/soccerImg.svg';
+import basket from '../assets/basquetImg.svg';
+import yoga from '../assets/raquetaImg.svg';
 
 import { IoIosLogIn, IoIosLogOut } from 'react-icons/io';
 import {
