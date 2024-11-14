@@ -20,10 +20,7 @@ const CardGrid = () => {
   }, []);
 
   return (
-    <div
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-10 rounded-lg 
-                     border border-verde shadow-lg dark:bg-slate-700"
-    >
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-auto-fit gap-8 p-10 shadow-lg dark:bg-slate-700">
       {talleres.map((taller) => (
         <Card key={taller.id_taller} taller={taller} />
       ))}
