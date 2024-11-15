@@ -34,7 +34,7 @@ const ActividadEdit = () => {
     try {
       await updateActividad(id_actividad, data);
       alert("Éxito: Actividad actualizada exitosamente");
-      navigate("/");
+      navigate("/actividades");
     } catch (error) {
       alert("Error al actualizar la actividad");
     }
@@ -136,7 +136,7 @@ const ActividadEdit = () => {
       </button>
 
       <div className="text-center mt-4">
-        <Link to="/crudActividades" className="text-green-700 hover:underline">
+        <Link to="/actividades" className="text-green-700 hover:underline">
           Regresar
         </Link>
       </div>

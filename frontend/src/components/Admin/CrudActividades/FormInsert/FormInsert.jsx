@@ -151,7 +151,7 @@ const FormInsert = () => {
       >
         {isSubmitting ? "Subiendo..." : "Agregar Actividad"}
       </button>
-      <Link to="/crudActividades" className="block text-center mt-4 text-green-700 hover:underline">
+      <Link to="/actividades" className="block text-center mt-4 text-green-700 hover:underline">
         Regresar
       </Link>
     </motion.form>

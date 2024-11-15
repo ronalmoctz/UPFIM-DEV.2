@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { TbEdit, TbTrash, TbPlus, TbSearch } from "react-icons/tb";
 import React, { useState } from "react";
-import img from "../../../../assets/nodata.png";
+import img from "../../../../assets/nodata.webp";
 import { Link, useNavigate } from "react-router-dom";
 import useActividades from "./Hooks/useActividades";
 import { formatDate, formatTime } from "./Utils/utils";
@@ -39,7 +39,7 @@ const Table = () => {
 
   return (
     <motion.div
-      className="bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700 mb-8"
+      className="bg-white shadow-lg p-6 border rounded-md"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
@@ -49,7 +49,7 @@ const Table = () => {
           Lista de Actividades
         </h2>
         <Link
-          to={"/form-products"}
+          to={"/insertActividades"}
           className="text-bold flex items-center text-gray-950 hover:text-gray-400 mb-4 sm:mb-0"
         >
           <TbPlus size={30} className="mr-2" />
