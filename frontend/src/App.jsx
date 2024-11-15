@@ -4,7 +4,7 @@ import useDarkMode from "./Hooks/useDarkMode";
 import MainRoutes from "./routes/MainRoutes.jsx";
 // import AdminRoutes from "./routes/AdminRoutes.jsx";
 import { AuthProvider } from "./Hooks/AuthContext"; // Importa el contexto
-import Dash from "./components/Admin/CrudActividades/MainCrudActividades";
+import Dash from "./components/Admin/pages/Perfil.jsx";
 const App = () => {
   const [darkMode, toggleDarkMode] = useDarkMode();
 
