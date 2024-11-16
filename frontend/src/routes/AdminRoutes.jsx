@@ -1,13 +1,24 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Table from "../components/Admin/CrudActividades/Table/Table";
+import { Routes, Route } from "react-router-dom";
+import Sidebar from "../components/Admin/components/Sidebar";
+import routes from "../constants/routesConfig";
 
 const AdminRoutes = () => {
   return (
-    <Routes>
-      <Route path="/dash/admin" element={<Table />} />
-      {/* Puedes agregar más rutas de administrador aquí */}
-    </Routes>
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-grow p-4">
+        <Routes>
+          {routes.admin.map(({ path, component }, index) => (
+            <Route
+              key={index}
+              path={path}
+              element={React.createElement(component)}
+            />
+          ))}
+        </Routes>
+      </div>
+    </div>
   );
 };
 
