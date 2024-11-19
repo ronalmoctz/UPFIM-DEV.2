@@ -60,7 +60,7 @@ const Login = () => {
         setPassword("");
 
         // Redirección basada en el rol
-        if (role === "admin") navigate("/dash");
+        if (role === "admin") navigate("/dash/admin");
         else if (role === "alumno") navigate("/dash/alumno");
         else if (role === "docente") navigate("/dash/docente");
       } else {
