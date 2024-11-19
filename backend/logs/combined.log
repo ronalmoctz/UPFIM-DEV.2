@@ -184,36 +184,59 @@
   level: 'info',
   timestamp: '2024-11-16T14:57:49.603Z'
 }
+<<<<<<< HEAD
 >>>>>>> f589039d02121298ddd7781eba0b4a102781c93e
 {
   message: 'Server is running on http://localhost:3000',
   level: 'info',
   timestamp: '2024-11-19T15:35:44.886Z'
+=======
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-16T15:01:23.296Z'
+>>>>>>> 14f440e26be802c5301e0078e1b89d89d752d433
 }
 {
   message: 'Conection to the database success',
   level: 'info',
+<<<<<<< HEAD
   timestamp: '2024-11-19T15:35:44.954Z'
 }
 {
   message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInVzZXJOYW1lIjoiTWFyTWFyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyMDMwNTYzLCJleHAiOjE3MzIwMzIzNjN9.STexzgkZ6obKtk0VkLJXT_xe6KTRGbPhlRjd7CKrFto',
   level: 'info',
   timestamp: '2024-11-19T15:36:03.813Z'
+=======
+  timestamp: '2024-11-16T15:01:23.338Z'
+>>>>>>> 14f440e26be802c5301e0078e1b89d89d752d433
 }
 {
   message: 'Server is running on http://localhost:3000',
   level: 'info',
+<<<<<<< HEAD
   timestamp: '2024-11-19T16:06:35.257Z'
+=======
+  timestamp: '2024-11-19T16:01:08.174Z'
+>>>>>>> 14f440e26be802c5301e0078e1b89d89d752d433
 }
 {
   message: 'Conection to the database success',
   level: 'info',
+<<<<<<< HEAD
   timestamp: '2024-11-19T16:06:35.326Z'
+=======
+  timestamp: '2024-11-19T16:01:08.234Z'
+>>>>>>> 14f440e26be802c5301e0078e1b89d89d752d433
 }
 {
   message: 'Acceso sin token',
   level: 'warn',
+<<<<<<< HEAD
   timestamp: '2024-11-19T16:06:39.630Z'
+=======
+  timestamp: '2024-11-19T16:01:10.408Z'
+>>>>>>> 14f440e26be802c5301e0078e1b89d89d752d433
 }
 {
   message: 'No autenticado',
@@ -222,12 +245,20 @@
   method: 'GET',
   ip: '::1',
   level: 'warn',
+<<<<<<< HEAD
   timestamp: '2024-11-19T16:06:39.634Z'
+=======
+  timestamp: '2024-11-19T16:01:10.411Z'
+>>>>>>> 14f440e26be802c5301e0078e1b89d89d752d433
 }
 {
   message: 'Acceso sin token',
   level: 'warn',
+<<<<<<< HEAD
   timestamp: '2024-11-19T16:06:39.644Z'
+=======
+  timestamp: '2024-11-19T16:01:10.422Z'
+>>>>>>> 14f440e26be802c5301e0078e1b89d89d752d433
 }
 {
   message: 'No autenticado',
@@ -236,6 +267,7 @@
   method: 'GET',
   ip: '::1',
   level: 'warn',
+<<<<<<< HEAD
   timestamp: '2024-11-19T16:06:39.646Z'
 }
 {
@@ -389,4 +421,125 @@
   message: 'Conection to the database success',
   level: 'info',
   timestamp: '2024-11-19T17:38:35.943Z'
+=======
+  timestamp: '2024-11-19T16:01:10.425Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInVzZXJOYW1lIjoiTWFyTWFyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyMDMyMTIxLCJleHAiOjE3MzIwMzM5MjF9.1rwJSGtoKvcASOZvVNjF4Wr_eqANLukJ7RePkAtOuT0',
+  level: 'info',
+  timestamp: '2024-11-19T16:02:01.684Z'
+>>>>>>> 14f440e26be802c5301e0078e1b89d89d752d433
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-19T17:41:41.009Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-19T17:41:41.067Z'
+}
+{
+  message: 'Acceso sin token',
+  level: 'warn',
+  timestamp: '2024-11-19T17:41:46.020Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-19T17:41:46.024Z'
+}
+{
+  message: 'Acceso sin token',
+  level: 'warn',
+  timestamp: '2024-11-19T17:41:46.037Z'
+}
+{
+  message: 'No autenticado',
+  statusCode: 401,
+  requestUrl: '/api/auth/status',
+  method: 'GET',
+  ip: '::1',
+  level: 'warn',
+  timestamp: '2024-11-19T17:41:46.040Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInVzZXJOYW1lIjoiTWFyTWFyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyMDM4MTk1LCJleHAiOjE3MzIwMzk5OTV9.gNTpwJ2MnvEmqgTyaHsOM0qqq9g_LGzmnMSW4Ea26hs',
+  level: 'info',
+  timestamp: '2024-11-19T17:43:15.174Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInVzZXJOYW1lIjoiTWFyTWFyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyMDM4MzI5LCJleHAiOjE3MzIwNDAxMjl9.M0QPuLXrw-fhI8OuH2A1bMGnrUt-93cCR9Jqy15l57I',
+  level: 'info',
+  timestamp: '2024-11-19T17:45:29.814Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-19T17:46:07.176Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-19T17:46:07.239Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInVzZXJOYW1lIjoiTWFyTWFyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyMDM4Mzg3LCJleHAiOjE3MzIwNDAxODd9.Hcz9MmWxfwMdiG0hJnCK_55PJly2esr5sPO3BVVSi-A',
+  level: 'info',
+  timestamp: '2024-11-19T17:46:27.605Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInVzZXJOYW1lIjoiTWFyTWFyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyMDM4NDY4LCJleHAiOjE3MzIwNDAyNjh9.mo2k9kXF-Fbzih-3RDP1Up5uxleOcaulGeiFzRI0E4U',
+  level: 'info',
+  timestamp: '2024-11-19T17:47:48.380Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInVzZXJOYW1lIjoiTWFyTWFyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyMDM4NDk5LCJleHAiOjE3MzIwNDAyOTl9.2UwkNpCstBvU4rszJ0QJEvOrKJnHZo4PMzqdWUpQdgo',
+  level: 'info',
+  timestamp: '2024-11-19T17:48:19.224Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInVzZXJOYW1lIjoiTWFyTWFyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyMDM4NjcwLCJleHAiOjE3MzIwNDA0NzB9.-Oc4rb30p_g4gssruhH8-d1lQDh1sEt0WgFYrOcgWJ8',
+  level: 'info',
+  timestamp: '2024-11-19T17:51:10.098Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-19T17:54:00.292Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-19T17:54:00.350Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInVzZXJOYW1lIjoiTWFyTWFyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyMDM4ODYxLCJleHAiOjE3MzIwNDA2NjF9.FKqvvt1YFH2ZX-B2RGvQTuEAHyptmMtgPYG3kkj0HKs',
+  level: 'info',
+  timestamp: '2024-11-19T17:54:21.594Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInVzZXJOYW1lIjoiTWFyTWFyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyMDM4OTIyLCJleHAiOjE3MzIwNDA3MjJ9.1uw4Ol6Zt9thCox_Q4AUjoHPN_0ejNDCoZb4JpvsJAU',
+  level: 'info',
+  timestamp: '2024-11-19T17:55:22.203Z'
+}
+{
+  message: 'Enviando datos al cliente: rol: admin, token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInVzZXJOYW1lIjoiTWFyTWFyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyMDM4OTU5LCJleHAiOjE3MzIwNDA3NTl9.RLBqlz5I61HoCaZCKWZ31d8qVNf_MlZOEnzwru0SAqM',
+  level: 'info',
+  timestamp: '2024-11-19T17:55:59.122Z'
+}
+{
+  message: 'Server is running on http://localhost:3000',
+  level: 'info',
+  timestamp: '2024-11-19T18:08:05.712Z'
+}
+{
+  message: 'Conection to the database success',
+  level: 'info',
+  timestamp: '2024-11-19T18:08:05.784Z'
 }
