@@ -7,10 +7,11 @@ import {
   TbPhoneCall,
   TbMapPin,
   TbPhoneIncoming,
+  TbBrandFacebook,
+  TbBrandYoutube,
+  TbBrandInstagram,
 } from "react-icons/tb";
-import { FaYoutube } from "react-icons/fa";
-import { AiFillInstagram } from "react-icons/ai";
-import { BsFacebook } from "react-icons/bs";
+
 const Footer = () => {
   return (
     <footer className="bg-verde p-5 dark:bg-slate-800 md:p-16  ">
@@ -60,9 +61,9 @@ const Footer = () => {
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-300"
+                  className="flex items-center justify-center w-10 h-10   hover:text-sky-700 text-white transition-colors duration-300"
                 >
-                  <BsFacebook size={24} />
+                  <TbBrandFacebook size={28} />
                 </a>
               </li>
               <li>
@@ -70,9 +71,9 @@ const Footer = () => {
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-pink-500 hover:bg-pink-600 text-white transition-colors duration-300"
+                  className="flex items-center justify-center w-10 h-10   hover:text-red-700 text-white transition-colors duration-300"
                 >
-                  <AiFillInstagram size={24} />
+                  <TbBrandYoutube size={28} />
                 </a>
               </li>
               <li>
@@ -80,9 +81,9 @@ const Footer = () => {
                   href="https://www.youtube.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-red-600 hover:bg-red-700 text-white transition-colors duration-300"
+                  className="flex items-center justify-center w-10 h-10   hover:text-pink-400 text-white transition-colors duration-300"
                 >
-                  <FaYoutube size={24} />
+                  <TbBrandInstagram size={28} />
                 </a>
               </li>
             </ul>
