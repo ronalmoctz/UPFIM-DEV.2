@@ -8,7 +8,7 @@ export default {
       },
       colors: {
         verde: '#60a611',
-        verdeHover: '#5aa047',
+        verdeHover: '#417834',
       },
       boxShadow: {
         '3xl': '0px 10px 50px 0px rgba(0, 0, 0, 0.15)',

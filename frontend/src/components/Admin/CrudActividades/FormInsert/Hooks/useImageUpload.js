@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { showAlert } from "../../../../Generales/Alerts/Alerts";
 
 const validTypes = ["image/jpeg", "image/png"];
 const maxSizeInMB = 5;
@@ -13,13 +14,13 @@ export const useImageUpload = (setValue) => {
     if (files) {
       const file = files[0];
       if (!validTypes.includes(file.type)) {
-        alert("Error: Solo se permiten imágenes en formato JPG o PNG.");
+        showAlert("error", "Formato inválido", "Solo se permiten imágenes en formato JPG o PNG.");
         setValue("imagen", null);
         setImagenPreview(null);
         return;
       }
       if (file.size > maxSizeInBytes) {
-        alert("Error: El tamaño de la imagen no puede ser mayor a 5 MB.");
+        showAlert("error", "Tamaño excedido", "El tamaño de la imagen no puede ser mayor a 5 MB.");
         setValue("imagen", null);
         setImagenPreview(null);
         return;

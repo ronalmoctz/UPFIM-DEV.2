@@ -73,12 +73,12 @@ export const tallerInfo = [
   },
   {
     name: 'Basketball',
-    frase: 'Disfruta de jagar basketball ',
+    frase: 'Disfruta de jugar basketball ',
     image: basket,
   },
   {
     name: 'Yoga',
-    frase: 'Disfruta de relajarte haciendo yoga',
+    frase: 'Relajarte haciendo yoga',
     image: yoga,
   },
 ];

@@ -5,7 +5,7 @@ import Intro from "./Intro";
 
 const Hero = ({ darkMode }) => {
   return (
-    <div className="relative h-[800px] overflow-hidden bg-slate-900 dark:bg-slate-500 dark:text-slate-400 md:p-16 p-5">
+    <div className="relative h-[800px] overflow-hidden bg-slate-950 md:p-16 p-5">
       <div className="absolute inset-0">
         <img
           src={bg}

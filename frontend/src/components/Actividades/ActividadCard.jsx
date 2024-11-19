@@ -2,7 +2,7 @@ import React from 'react';
 
 const Actividad = ({ actividad }) => {
   return (
-    <div className="bg-white p-4 shadow-md rounded-lg flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-4 justify-center border border-gray-300">
+    <div className="bg-white p-4 shadow-md rounded-lg flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-4 justify-center dark:bg-slate-800">
       <div className="flex-shrink-0 w-full md:w-1/2">
         <img
           src={actividad.img_url}
@@ -11,13 +11,13 @@ const Actividad = ({ actividad }) => {
         />
       </div>
       <div className="flex-1">
-        <h2 className="text-2xl font-bold mb-2">{actividad.titulo}</h2>
+        <h2 className="text-2xl font-bold mb-2 dark:text-verde">{actividad.titulo}</h2>
 
-        <p className="text-gray-700 mb-2 actividad-descripcion">
+        <p className="text-gray-700 mb-2 actividad-descripcion dark:text-white">
           {actividad.descripcion}
         </p>
 
-        <div className="text-gray-500 mb-2">
+        <div className="text-gray-500 mb-2 dark:text-white">
           <p>
             <strong>Tipo:</strong> {actividad.tipo}
           </p>
@@ -25,7 +25,7 @@ const Actividad = ({ actividad }) => {
             <strong>Estado:</strong> {actividad.estado}
           </p>
         </div>
-        <div className="text-gray-600">
+        <div className="text-gray-600 dark:text-white">
           <p>
             <strong>Ubicación:</strong> {actividad.ubicacion}
           </p>

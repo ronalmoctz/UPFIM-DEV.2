@@ -10,7 +10,8 @@ import SelectField from "./Components/SelectField";
 import TextareaField from "./Components/TextareaField";
 import ImageUploader from "./Components/ImageUploader";
 import { updateActividad } from "../Utils/Api";
-
+import Header from "../../components/Header";
+import { showAlert } from "../../../Generales/Alerts/Alerts";
 const ActividadEdit = () => {
   const { id_actividad } = useParams();
   const navigate = useNavigate();
@@ -23,124 +24,117 @@ const ActividadEdit = () => {
     resolver: zodResolver(actividadSchema),
   });
 
-  const {
-    imagenPreview,
-    imagenSize,
-    handleImageChange,
-    handleRemoveImage,
-  } = useActividad(id_actividad, setValue);
+  const { imagenPreview, imagenSize, handleImageChange, handleRemoveImage } =
+    useActividad(id_actividad, setValue);
 
   const onSubmit = async (data) => {
     try {
       await updateActividad(id_actividad, data);
-      alert("Éxito: Actividad actualizada exitosamente");
+      showAlert("success", "Éxito", " Actividad actualizada exitosamente");
       navigate("/actividades");
     } catch (error) {
-      alert("Error al actualizar la actividad");
+      showAlert("error", "Error", "No se pudo actualizar la actividad.");
     }
   };
 
   return (
-    <motion.form
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2 }}
-      onSubmit={handleSubmit(onSubmit)}
-      className="max-w-md mx-auto mt-4 p-4 max-h-max bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl border border-gray-700"
-    >
-      <h2 className="text-xl text-center font-semibold text-green-700 mb-5 sm:mb-5">
-        Editar Actividad
-      </h2>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <InputField
-          label="Título"
-          id="titulo"
-          register={register}
-          error={errors.titulo}
-        />
-        <SelectField
-          label="Tipo"
-          id="tipo"
-          register={register}
-          error={errors.tipo}
-          options={[
-            { value: "deportiva", label: "Deportiva" },
-            { value: "cultural", label: "Cultural" },
-          ]}
-        />
-      </div>
-
-      <TextareaField
-        label="Descripción"
-        id="descripcion"
-        register={register}
-        error={errors.descripcion}
+    <div className="flex-1 p-3 bg-white">
+      <Header
+        title="Actulizar Actividad"
+        subtitle="Mediante este formulario puedes actualizar el evento"
       />
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <InputField
-          label="Fecha"
-          id="fecha"
-          type="date"
-          register={register}
-          error={errors.fecha}
-        />
-        <InputField
-          label="Hora"
-          id="hora"
-          type="time"
-          register={register}
-          error={errors.hora}
-        />
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 mb-5">
-        <InputField
-          label="Ubicación"
-          id="ubicacion"
-          register={register}
-          error={errors.ubicacion}
-        />
-        <SelectField
-          label="Estado"
-          id="estado"
-          register={register}
-          error={errors.estado}
-          options={[
-            { value: "activa", label: "Activa" },
-            { value: "cancelada", label: "Cancelada" },
-            { value: "finalizada", label: "Finalizada" },
-          ]}
-        />
-      </div>
-
-      <ImageUploader
-        label="Subir Imagen"
-        id="imagen"
-        onChange={(e) => handleImageChange(e, setValue)}
-        preview={imagenPreview}
-        onRemove={() => handleRemoveImage(setValue)}
-        size={imagenSize}
-        error={errors.imagen}
-      />
-
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className={`w-full p-2 rounded ${
-          isSubmitting ? "bg-gray-400" : "bg-green-700"
-        } text-white hover:${isSubmitting ? "bg-gray-400" : "bg-green-600"}`}
+      <motion.form
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        onSubmit={handleSubmit(onSubmit)}
+        className="max-w-5xl mx-auto mt-4 p-6 shadow-lg rounded-xl border bg-white"
       >
-        {isSubmitting ? "Actualizando..." : "Actualizar actividad"}
-      </button>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <InputField
+            label="Título"
+            id="titulo"
+            register={register}
+            error={errors.titulo}
+          />
+          <SelectField
+            label="Tipo"
+            id="tipo"
+            register={register}
+            error={errors.tipo}
+            options={[
+              { value: "deportiva", label: "Deportiva" },
+              { value: "cultural", label: "Cultural" },
+            ]}
+          />
+          <InputField
+            label="Fecha"
+            id="fecha"
+            type="date"
+            register={register}
+            error={errors.fecha}
+          />
+          <InputField
+            label="Hora"
+            id="hora"
+            type="time"
+            register={register}
+            error={errors.hora}
+          />
+          <InputField
+            label="Ubicación"
+            id="ubicacion"
+            register={register}
+            error={errors.ubicacion}
+          />
+          <SelectField
+            label="Estado"
+            id="estado"
+            register={register}
+            error={errors.estado}
+            options={[
+              { value: "activa", label: "Activa" },
+              { value: "cancelada", label: "Cancelada" },
+              { value: "finalizada", label: "Finalizada" },
+            ]}
+          />
+        </div>
+        <div className="col-span-1 md:col-span-4">
+          <TextareaField
+            label="Descripción"
+            id="descripcion"
+            register={register}
+            error={errors.descripcion}
+          />
+        </div>
 
-      <div className="text-center mt-4">
-        <Link to="/actividades" className="text-green-700 hover:underline">
-          Regresar
-        </Link>
-      </div>
-    </motion.form>
+        <div className="col-span-1 md:col-span-4">
+          <ImageUploader
+            label="Subir Imagen"
+            id="imagen"
+            onChange={(e) => handleImageChange(e, setValue)}
+            preview={imagenPreview}
+            onRemove={() => handleRemoveImage(setValue)}
+            size={imagenSize}
+            error={errors.imagen}
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className={`w-full p-2 rounded ${
+            isSubmitting ? "bg-gray-400" : "bg-verde"
+          } text-white hover:${isSubmitting ? "bg-gray-400" : "bg-verde hover:bg-verdeHover"}`}
+        >
+          {isSubmitting ? "Actualizando..." : "Actualizar actividad"}
+        </button>
+        <div className="text-center mt-4">
+          <Link to="/actividades" className="text-verde hover:underline">
+            Regresar
+          </Link>
+        </div>
+      </motion.form>
+    </div>
   );
 };
 
