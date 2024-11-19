@@ -1,6 +1,6 @@
 const multer = require("multer");
+const { storageFeaturedImages } = require("../utils/cloudinaryFeaturedImages");
 const path = require("path");
-const { storagePhotosIconic } = require('../utils/CloudinaryPhotos')
 const imageFilter = (req, file, cb) => {
   const ext = path.extname(file.originalname).toLowerCase();
   const isImage = file.mimetype.startsWith("image/") && (ext === ".png" || ext === ".jpg" || ext === ".jpeg");
@@ -11,9 +11,9 @@ const imageFilter = (req, file, cb) => {
   cb(null, true);
 };
 
-const uploadPhotosIconic = multer({
-  storage: storagePhotosIconic ,
-  fileFilter: imageFilter, 
+const uploadFeaturedImage = multer({
+  storage: storageFeaturedImages, // Usamos el almacenamiento con el nuevo folder
+  fileFilter: imageFilter,
 });
 
-module.exports =  uploadPhotosIconic; 
+module.exports = uploadFeaturedImage;

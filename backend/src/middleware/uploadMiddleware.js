@@ -17,5 +17,4 @@ const uploadActividad = multer({
   fileFilter: imageFilter, 
 });
 
-
 module.exports = uploadActividad;

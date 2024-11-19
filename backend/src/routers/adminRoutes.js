@@ -1,7 +1,7 @@
 const express = require('express');
 const { registerAdminController } = require('../controllers/adminController');
 const {
-  addFeaturedImage,
+
   getTalleres,
   getTallerCrud,
   insertarTaller,
@@ -26,12 +26,12 @@ router.post(
   // checkRole(['admin']),
   registerAdminController,
 );
-router.post(
-  '/featured-gallery',
-  // verifyToken,
-  // checkRole(['admin']),
-  addFeaturedImage,
-);
+// router.post(
+//   '/featured-gallery',
+//   // verifyToken,
+//   // checkRole(['admin']),
+//   addFeaturedImage,
+// );
 
 router.get('/getTallerCrud', getTallerCrud);
 router.get('/getTalleres', getTalleres);
