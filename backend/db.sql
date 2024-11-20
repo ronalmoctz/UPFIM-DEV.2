@@ -621,30 +621,32 @@ END //
 DELIMITER ;
 
 ---------------------------------------------------------------------------------------------------------
-DELIMITER $$
-CREATE PROCEDURE insertImage(
-    IN p_url_img VARCHAR(255),
-    IN p_descripcion TEXT,
-    IN p_nombre_completo VARCHAR(135)
+DELIMITER //
+CREATE PROCEDURE getByIdfeaturedImages (IN p_id INT)
+BEGIN
+    SELECT * 
+    FROM featured_images 
+    WHERE id = p_id;
+END //
+DELIMITER ;
+---------------------------------------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE getAllFeaturedImages ()
+BEGIN
+    SELECT * 
+    FROM featured_images 
+    ORDER BY created_at DESC;
+END //
+DELIMITER ;
+-------------------------------------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE insertFeaturedImages (
+    IN p_url_img VARCHAR(255), 
+    IN p_description VARCHAR(255)
 )
 BEGIN
-    DECLARE admin_id INT;
-
-    -- Intentar obtener el id_admin del administrador por su nombre completo
-    SELECT id_admin INTO admin_id
-    FROM admin
-    WHERE CONCAT(nombre, ' ', apellidoPaterno, ' ', apellidoMaterno) = p_nombre_completo
-    LIMIT 1;
-
-    -- Verificar si el administrador existe
-    IF admin_id IS NULL THEN
-        SIGNAL SQLSTATE '45000' 
-        SET MESSAGE_TEXT = 'El administrador especificado no existe';
-    ELSE
-        -- Insertar la imagen en la galería
-        INSERT INTO galeria_imagenes (url_img, descripcion, id_admin_fk)
-        VALUES (p_url_img, p_descripcion, admin_id);
-    END IF;
-END$$
-
+    INSERT INTO featured_images (url_img, description)
+    VALUES (p_url_img, p_description);
+END //
 DELIMITER ;
+------------------------------------------------------------------------------------------------

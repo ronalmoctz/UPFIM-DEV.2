@@ -11,13 +11,13 @@ const ContactForm = () => {
         <div className="w-full md:w-1/2">
           <label
             htmlFor="firstName"
-            className="block my-2 text-left text-sm font-medium text-gray-900"
+            className="block my-2 text-left text-sm font-medium text-gray-900 dark:text-gray-300"
           >
             Nombre:
           </label>
           <input
             type="text"
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+            className="shadow-sm bg-gray-50 dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 text-gray-900 dark:placeholder-gray-400 text-sm rounded-lg block w-full p-2.5"
             placeholder="Ingrese su nombre"
             required
             name="firstName"
@@ -28,14 +28,14 @@ const ContactForm = () => {
         <div className="w-full md:w-1/2">
           <label
             htmlFor="lastName"
-            className="block my-2 text-left text-sm font-medium text-gray-900"
+            className="block my-2 text-left text-sm font-medium text-gray-900 dark:text-gray-300"
           >
             Apellidos:
           </label>
           <input
             type="text"
             name="lastName"
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+            className="shadow-sm bg-gray-50 dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 text-gray-900 dark:placeholder-gray-400 text-sm rounded-lg block w-full p-2.5"
             placeholder="Ingrese sus apellidos"
             required
             value={formData.lastName}
@@ -46,14 +46,14 @@ const ContactForm = () => {
       <div>
         <label
           htmlFor="email"
-          className="block my-2 text-left text-sm font-medium text-gray-900"
+          className="block my-2 text-left text-sm font-medium text-gray-900 dark:text-gray-300"
         >
           Correo:
         </label>
         <input
           type="email"
           name="email"
-          className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          className="shadow-sm bg-gray-50 dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 text-gray-900 dark:placeholder-gray-400 text-sm rounded-lg block w-full p-2.5"
           placeholder="abcde12345@gmail.com"
           required
           value={formData.email}
@@ -63,14 +63,14 @@ const ContactForm = () => {
       <div>
         <label
           htmlFor="subject"
-          className="block my-2 text-left text-sm font-medium text-gray-900"
+          className="block my-2 text-left text-sm font-medium text-gray-900 dark:text-gray-300"
         >
           Asunto:
         </label>
         <input
           type="text"
           name="subject"
-          className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm"
+          className="block p-3 w-full text-sm text-gray-900 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400 bg-gray-50 rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm"
           placeholder="¿Cuál es tu duda/problema? (máximo 20 palabras)"
           required
           value={formData.subject}
@@ -85,14 +85,14 @@ const ContactForm = () => {
       <div>
         <label
           htmlFor="message"
-          className="block my-2 text-left text-sm font-medium text-gray-900"
+          className="block my-2 text-left text-sm font-medium text-gray-900 dark:text-gray-300"
         >
           Su mensaje:
         </label>
         <textarea
           rows="6"
           name="message"
-          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300"
+          className="block p-2.5 w-full text-sm text-gray-900 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400 bg-gray-50 rounded-lg shadow-sm border border-gray-300 dark:border-gray-600"
           placeholder="Redacta tu duda/problema... (máximo 100 palabras)"
           required
           value={formData.message}

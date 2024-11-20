@@ -1,14 +1,11 @@
-import React from "react";
-import Header from "../components/Header";
+import React from 'react'
+
 const Alumnos = () => {
   return (
-    <div className="flex-1 p-3 bg-white">
-      <Header
-        title="Bienvenido a alumnos"
-        subtitle="Aquí puedes gestionar a los alumnos"
-      />
+    <div>
+      <h1>Desarrolla aqui</h1>
     </div>
-  );
-};
+  )
+}
 
-export default Alumnos;
+export default Alumnos

@@ -5,7 +5,7 @@ import DocenteList from "./DocenteList";
 
 const Docentes = () => {
   return (
-    <section className="bg-slate-300 p-5 dark:bg-slate-700 md:p-16">
+    <section className="bg-white p-5 dark:bg-slate-700 md:p-16">
       <Container>
         <Title
           title="Docentes"

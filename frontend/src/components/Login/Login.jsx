@@ -72,9 +72,9 @@ const Login = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-[#f1f5f9] flex flex-col items-center justify-center">
+    <div className="min-h-screen  flex flex-col items-center justify-center  top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
       <div className="flex flex-col  bg-opacity-30  backdrop-blur-lg px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
-        <div className="font-bold self-center text-xl sm:text-2xl uppercase text-black">
+        <div className="font-bold self-center text-xl sm:text-2xl uppercase text-white">
           Bienvenido Coyote
         </div>
 
@@ -84,7 +84,7 @@ const Login = () => {
 
         <div className="relative mt-10 h-px">
           <div className="absolute left-0 top-0 flex justify-center w-full -mt-2">
-            <span className="text-black font-bold  bg-opacity-20 backdrop-blur-lg px-4 text-xs  uppercase">
+            <span className="text-white font-bold  bg-opacity-20 backdrop-blur-lg px-4 text-xs  uppercase">
               Sistema Integral de Cultura y Deporte
             </span>
           </div>
@@ -95,7 +95,7 @@ const Login = () => {
             <div className="flex flex-col mb-6">
               <label
                 htmlFor="email"
-                className="font-semibold mb-1 text-xs sm:text-sm tracking-wide text-gray-900"
+                className="font-semibold mb-1 text-xs sm:text-sm tracking-wide text-white"
               >
                 Matrícula
               </label>
@@ -115,7 +115,7 @@ const Login = () => {
             <div className="flex flex-col mb-6">
               <label
                 htmlFor="password"
-                className="font-semibold mb-1 text-xs sm:text-sm tracking-wide text-gray-900"
+                className="font-semibold mb-1 text-xs sm:text-sm tracking-wide text-white"
               >
                 Contraseña
               </label>
@@ -157,7 +157,7 @@ const Login = () => {
         <div className="flex justify-center items-center mt-6">
           <Link
             to="/"
-            className="inline-flex items-center font-bold text-black hover:text-green-700 text-xs text-center"
+            className="inline-flex items-center font-bold text-white hover:text-green-700 text-xs text-center"
           >
             <TbArrowBackUp className="h-6 w-6" />
             <span className="ml-2">Volver al incio</span>
@@ -169,3 +169,4 @@ const Login = () => {
 };
 
 export default Login;
+
