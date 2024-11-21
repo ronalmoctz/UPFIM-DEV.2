@@ -1,11 +1,16 @@
 import React from "react";
-import { Navigate, Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route, useLocation } from "react-router-dom";
 import AdminRoutes from "./AdminRoutes";
 import ProtectedRoute from "./ProtecedRoute";
 import { useAuth } from "../Hooks/AuthContext";
 
 const RoleBasedRoutes = () => {
+  const location = useLocation();
   const { role } = useAuth();
+
+  // Log para verificar la ruta actual y el rol
+  console.log("Ruta actual:", location.pathname);
+  console.log("Rol actual del usuario:", role);
 
   if (!role) {
     return <Navigate to="/login" replace />;

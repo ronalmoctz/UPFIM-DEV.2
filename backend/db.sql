@@ -650,3 +650,76 @@ BEGIN
 END //
 DELIMITER ;
 ------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_taller_con_grupos`(
+    IN nombre_taller VARCHAR(45),
+    IN tipo_taller ENUM('deportiva', 'cultural'),
+    IN img_url_taller VARCHAR(200),
+    IN estatus_taller INT,
+    IN nombre_docente_completo VARCHAR(135), -- Nombre completo del docente
+    IN grupos_json JSON                     -- Grupos en formato JSON
+)
+BEGIN
+    DECLARE docente_id INT DEFAULT NULL;
+    DECLARE taller_id INT;
+    DECLARE grupo_nombre VARCHAR(45);
+    DECLARE dia_horario VARCHAR(45);
+    DECLARE hrEntrada TIME;
+    DECLARE hrSalida TIME;
+    DECLARE grupos_count INT;
+    DECLARE idx INT DEFAULT 0;
+    DECLARE horario_id INT;
+    DECLARE docente_taller_id INT;
+
+    -- Validar la cantidad de grupos
+    SET grupos_count = JSON_LENGTH(grupos_json);
+    IF grupos_count < 1 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Debe haber al menos un grupo.';
+    ELSEIF grupos_count > 3 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No puede haber más de tres grupos.';
+    END IF;
+
+    -- Buscar al docente por el nombre completo
+    SELECT no_empleado INTO docente_id
+    FROM docente
+    WHERE CONCAT(nombre, ' ', aPater, ' ', aMater) = nombre_docente_completo;
+
+    -- Si el docente no existe, mostrar un error
+    IF docente_id IS NULL THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Docente no encontrado';
+    END IF;
+
+    -- Insertar el nuevo taller
+    INSERT INTO taller (nombre, tipo, img_url, estatus)
+    VALUES (nombre_taller, tipo_taller, img_url_taller, estatus_taller);
+
+    -- Obtener el id del taller recién insertado
+    SET taller_id = LAST_INSERT_ID();
+
+    -- Insertar la relación en la tabla docente_taller
+    INSERT INTO docente_taller (docente_fk, taller_fk)
+    VALUES (docente_id, taller_id);
+
+    -- Obtener el id de la relación recién insertada
+    SET docente_taller_id = LAST_INSERT_ID();
+
+    -- Iterar sobre los grupos en el JSON
+    WHILE idx < grupos_count DO
+        SET grupo_nombre = JSON_UNQUOTE(JSON_EXTRACT(grupos_json, CONCAT('$[', idx, '].nombre')));
+        SET dia_horario = JSON_UNQUOTE(JSON_EXTRACT(grupos_json, CONCAT('$[', idx, '].dia')));
+        SET hrEntrada = JSON_UNQUOTE(JSON_EXTRACT(grupos_json, CONCAT('$[', idx, '].entrada')));
+        SET hrSalida = JSON_UNQUOTE(JSON_EXTRACT(grupos_json, CONCAT('$[', idx, '].salida')));
+
+        -- Insertar un nuevo horario
+        INSERT INTO horarios (dia, hrEntrada, hrSalida)
+        VALUES (dia_horario, hrEntrada, hrSalida);
+
+        -- Obtener el id del horario recién insertado
+        SET horario_id = LAST_INSERT_ID();
+
+        -- Insertar el grupo y enlazarlo con el docente_taller y el horario
+        INSERT INTO grupo (grupo, horarios_fk, docente_taller_fk)
+        VALUES (grupo_nombre, horario_id, docente_taller_id);
+
+        SET idx = idx + 1;
+    END WHILE;
+END
