@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
@@ -14,7 +15,6 @@ import { GrGallery } from "react-icons/gr";
 import { MdAdminPanelSettings, MdOutlinePassword } from "react-icons/md";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 const Sidebar = () => {
-  
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -47,7 +47,7 @@ const Sidebar = () => {
 
         <nav className="mt-4">
           <NavLink
-            to="/perfil"
+            to="perfil"
             className={({ isActive }) =>
               `flex items-center px-4 py-2 transition-colors duration-200 mb-4 ${
                 isActive
@@ -61,7 +61,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/calificaciones"
+            to="calificaciones"
             className={({ isActive }) =>
               `flex items-center px-4 py-2 transition-colors duration-200 mb-4 ${
                 isActive
@@ -75,7 +75,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/actividades"
+            to="actividades"
             className={({ isActive }) =>
               `flex items-center px-4 py-2 transition-colors duration-200 mb-4 ${
                 isActive
@@ -89,7 +89,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/talleres"
+            to="talleres"
             className={({ isActive }) =>
               `flex items-center px-4 py-2 transition-colors duration-200 mb-4 ${
                 isActive
@@ -103,7 +103,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/galeria"
+            to="galleria"
             className={({ isActive }) =>
               `flex items-center px-4 py-2 transition-colors duration-200 mb-4 ${
                 isActive
@@ -117,7 +117,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/admins"
+            to="admins"
             className={({ isActive }) =>
               `flex items-center px-4 py-2 transition-colors duration-200 mb-4 ${
                 isActive
@@ -131,7 +131,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/alumnos"
+            to="alumnado"
             className={({ isActive }) =>
               `flex items-center px-4 py-2 transition-colors duration-200 mb-4 ${
                 isActive
@@ -145,7 +145,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/docentes"
+            to="docentes"
             className={({ isActive }) =>
               `flex items-center px-4 py-2 transition-colors duration-200 mb-4 ${
                 isActive
@@ -159,7 +159,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/changePassword"
+            to="changePassword"
             className={({ isActive }) =>
               `flex items-center px-4 py-2 transition-colors duration-200 mb-4 ${
                 isActive
