@@ -14,7 +14,7 @@ const Preloader = ({ setLoading }) => {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 flex flex-col items-center justify-center z-50 bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+        className="fixed inset-0 flex flex-col items-center justify-center z-50bg-green-200 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(144,238,144,0.3),rgba(255,255,255,0))]"
         initial={{ opacity: 1 }}
         exit={{ opacity: 0, transition: { duration: 0.8 } }}
       >

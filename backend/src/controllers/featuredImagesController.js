@@ -33,10 +33,14 @@ const insertFeaturedImages = async (req, res) => {
     return res.status(400).json({ error: 'Se requiere una imagen válida' });
   }
   try {
-    const [countResult] = await db.query('SELECT COUNT(*) AS count FROM featured_images');
+    const [countResult] = await db.query(
+      'SELECT COUNT(*) AS count FROM featured_images',
+    );
     const currentCount = countResult[0].count;
     if (currentCount >= 10) {
-      return res.status(400).json({ error: 'Se ha alcanzado el número máximo de 10 registros permitidos' });
+      return res.status(400).json({
+        error: 'Se ha alcanzado el número máximo de 10 registros permitidos',
+      });
     }
     const sql = 'CALL insertFeaturedImages(?, ?)';
     const [result] = await db.query(sql, [img_url, description]);
@@ -51,9 +55,8 @@ const insertFeaturedImages = async (req, res) => {
 };
 
 
-
 module.exports = {
   getAllFeaturedImages,
   getByIdfeaturedImages,
-  insertFeaturedImages
+  insertFeaturedImages,
 };

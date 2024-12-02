@@ -14,7 +14,7 @@ const adminRoutes = {
     { path: 'calificaciones', component: Calificaciones },
     { path: 'actividades', component: Actividades },
     { path: 'talleres', component: Talleres },
-    { path: 'galleria', component: Galleria },
+    { path: 'galeria', component: Galleria },
     { path: 'admins', component: Administradores },
     { path: 'alumnado', component: Alumnado},
     { path: 'docentes', component: Docentes },

@@ -1,35 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { z } from "zod";
+import { showAlert } from "../../../Generales/Alerts/Alerts";
+import { TbTrashX } from "react-icons/tb"; 
+
+const uploadSchema = z.object({
+  imagen: z
+    .instanceof(File)
+    .refine(
+      (file) => file.type === "image/jpeg" || file.type === "image/png",
+      "El archivo debe ser de tipo JPG o PNG."
+    )
+    .refine(
+      (file) => file.size <= 5 * 1024 * 1024, 
+      "El archivo no debe ser mayor a 5 MB."
+    ),
+  description: z.string().min(1, "La descripción es obligatoria."),
+});
+
+const ImagePreview = ({ src, size, onReset }) => (
+  <div className="mt-4 border border-gray-300 rounded">
+    <img
+      src={src}
+      alt="Vista previa de la imagen"
+      className="h-48 w-full object-cover rounded-t"
+    />
+    <div className="p-2 flex justify-between items-center">
+      <span>{`Tamaño: ${size} KB`}</span>
+      <button
+        type="button"
+        onClick={onReset}
+        className="text-red-600 hover:text-red-800"
+      >
+        <TbTrashX size={25} />
+      </button>
+    </div>
+  </div>
+);
 
 const UploadFeaturedImage = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [description, setDescription] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
+    const file = e.target.files[0];
+    setSelectedFile(file);
+  };
+
+  const handleResetFile = () => {
+    setSelectedFile(null);
+    fileInputRef.current.value = null;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    setSuccess("");
-    setIsUploading(true); // Deshabilitar botón mientras se sube
-
-    if (!selectedFile) {
-      setError("Por favor, selecciona una imagen.");
-      setIsUploading(false);
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("imagen", selectedFile); // Campo de imagen
-    formData.append("description", description);
+    setIsUploading(true);
 
     try {
+      uploadSchema.parse({
+        imagen: selectedFile,
+        description,
+      });
+      const formData = new FormData();
+      formData.append("imagen", selectedFile);
+      formData.append("description", description);
       const response = await axios.post(
         "http://localhost:3000/api/insertFeaturedImages",
         formData,
@@ -39,16 +76,22 @@ const UploadFeaturedImage = () => {
           },
         }
       );
-      setSuccess(response.data.message);
+      showAlert("success", "Imagen subida", response.data.message);
       setDescription("");
       setSelectedFile(null);
-    } catch (err) {
-      console.error("Error al subir la imagen:", err);
-      setError(
-        err.response?.data?.error || "Ocurrió un error al subir la imagen."
-      );
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        showAlert("error", "Error de validación", error.errors[0].message);
+      } else {
+        console.error("Error al subir la imagen:", error);
+        showAlert(
+          "error",
+          "Error al subir la imagen",
+          error.response?.data?.error || "Ocurrió un error inesperado."
+        );
+      }
     } finally {
-      setIsUploading(false); // Habilitar botón después de completar
+      setIsUploading(false);
     }
   };
 
@@ -58,7 +101,6 @@ const UploadFeaturedImage = () => {
         Subir Imagen Destacada
       </h2>
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Entrada de archivo */}
         <div>
           <label
             htmlFor="file"
@@ -72,10 +114,16 @@ const UploadFeaturedImage = () => {
             accept="image/png, image/jpeg"
             onChange={handleFileChange}
             className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+            ref={fileInputRef}
           />
         </div>
-
-        {/* Campo de descripción */}
+        {selectedFile && (
+          <ImagePreview
+            src={URL.createObjectURL(selectedFile)}
+            size={(selectedFile.size / 1024).toFixed(2)}
+            onReset={handleResetFile}
+          />
+        )}
         <div>
           <label
             htmlFor="description"
@@ -83,16 +131,14 @@ const UploadFeaturedImage = () => {
           >
             Descripción:
           </label>
-          <input
-            type="text"
+          <textarea
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            rows="4"
+            className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm resize-none"
           />
         </div>
-
-        {/* Botón de envío */}
         <button
           type="submit"
           disabled={isUploading}
@@ -111,19 +157,11 @@ const UploadFeaturedImage = () => {
           Regresar
         </Link>
       </form>
-
-      {/* Mensaje sobre el límite de imágenes */}
       <p className="mt-4 text-sm text-gray-600 text-center">
-        Nota: Solo se permiten un máximo de 10 imágenes para no saturar el servidor. Sin embargo, es posible editar y actualizar las imágenes en el futuro.
+        Nota: Solo se permiten un máximo de 10 imágenes para no saturar el
+        servidor. Sin embargo, es posible editar y actualizar las imágenes en el
+        futuro.
       </p>
-
-      {/* Mensajes */}
-      {error && (
-        <p className="mt-4 text-center text-sm text-red-600">{error}</p>
-      )}
-      {success && (
-        <p className="mt-4 text-center text-sm text-green-600">{success}</p>
-      )}
     </div>
   );
 };

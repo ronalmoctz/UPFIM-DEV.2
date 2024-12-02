@@ -24,8 +24,7 @@ const FormInsert = () => {
   } = useForm({
     resolver: zodResolver(actividadSchema),
   });
-  const { imagenPreview, imagenSize, handleChange, resetImage } =
-    useImageUpload(setValue);
+  const { imagenPreview, imagenSize, handleChange, resetImage } = useImageUpload(setValue);
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);

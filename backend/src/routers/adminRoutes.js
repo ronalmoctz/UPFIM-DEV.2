@@ -1,7 +1,11 @@
 const express = require('express');
-const { registerAdminController } = require('../controllers/adminController');
 const {
-
+  registerAdminController,
+  getAdmin,
+  deleteAdmin,
+  updateAdmin
+} = require('../controllers/adminController');
+const {
   getTalleres,
   getTallerCrud,
   insertarTaller,
@@ -20,18 +24,10 @@ const uploadActividad = require('../middleware/uploadMiddleware');
 
 const router = express.Router();
 
-router.post(
-  '/register',
-  // verifyToken,
-  // checkRole(['admin']),
-  registerAdminController,
-);
-// router.post(
-//   '/featured-gallery',
-//   // verifyToken,
-//   // checkRole(['admin']),
-//   addFeaturedImage,
-// );
+router.post('/register',registerAdminController,);
+router.get('/getAdmin', getAdmin);
+router.delete('/deleteAdmin', deleteAdmin);
+router.put('/updateAdmin', updateAdmin);
 
 router.get('/getTallerCrud', getTallerCrud);
 router.get('/getTalleres', getTalleres);
@@ -39,17 +35,9 @@ router.post('/insertarTaller', uploadTaller.single('imagen'), insertarTaller);
 router.delete('/deleteTaller/:id_taller', deleteTaller);
 
 router.get('/getActividades', getActividades);
-router.post(
-  '/insertActividad',
-  uploadActividad.single('imagen'),
-  insertActividad,
-);
+router.post('/insertActividad',uploadActividad.single('imagen'),insertActividad,);
 router.delete('/deleteActividad/:id_actividad', deleteActividad);
-router.put(
-  '/updateActividad/:id_actividad',
-  uploadActividad.single('imagen'),
-  updateActividad,
-);
+router.put('/updateActividad/:id_actividad',uploadActividad.single('imagen'),updateActividad,);
 router.get('/getActividad/:id_actividad', getActividadById);
 
 module.exports = router;

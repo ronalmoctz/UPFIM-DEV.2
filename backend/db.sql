@@ -723,3 +723,116 @@ BEGIN
         SET idx = idx + 1;
     END WHILE;
 END
+------------------------------------------------------------------------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE deleteFeaturedImage(IN image_id INT)
+BEGIN
+    DELETE FROM featured_images WHERE id = image_id;
+END $$
+
+DELIMITER ;
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE usertable (
+  id_User INT(11) NOT NULL AUTO_INCREMENT,
+  userName VARCHAR(45) NOT NULL,
+  password VARCHAR(200) NOT NULL,
+  userRol VARCHAR(45) NOT NULL,
+  PRIMARY KEY (id_User)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+CREATE TABLE admin (
+    id_admin INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(45) NOT NULL,
+    apellidoPaterno VARCHAR(45) NOT NULL,
+    apellidoMaterno VARCHAR(45) NOT NULL,
+    email VARCHAR(45) NOT NULL,
+    estatus TINYINT DEFAULT 1,
+    idUser_fk INT,
+    FOREIGN KEY (idUser_fk) REFERENCES usertable(id_User) ON DELETE CASCADE
+)
+------------------------------------------------------------------------------------------------------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE getAdmin()
+BEGIN
+    SELECT 
+        a.id_admin AS ID_Admin,
+        u.userName AS Usuario,
+        a.nombre AS Nombre,
+        a.apellidoPaterno AS Apellido_Paterno,
+        a.apellidoMaterno AS Apellido_Materno,
+        a.email AS Correo_Electronico,
+        CASE 
+            WHEN a.estatus = 1 THEN 'Activo' 
+            ELSE 'Inactivo'
+        END AS Estatus
+    FROM 
+        admin a
+    INNER JOIN 
+        usertable u ON a.idUser_fk = u.id_User;
+END //
+DELIMITER ;
+------------------------------------------------------------------------------------------------------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE deleteAdmin(IN adminId INT)
+BEGIN
+    -- Declarar una variable para almacenar el id_User relacionado
+    DECLARE userId INT;
+    -- Obtener el id_User relacionado al admin
+    SELECT idUser_fk INTO userId
+    FROM admin
+    WHERE id_admin = adminId;
+    -- Verificar si existe un usuario relacionado
+    IF userId IS NOT NULL THEN
+        -- Eliminar el registro del admin
+        DELETE FROM admin
+        WHERE id_admin = adminId;
+        -- Eliminar el registro del usuario en usertable
+        DELETE FROM usertable
+        WHERE id_User = userId;
+    END IF;
+END;
+//
+DELIMITER ;
+------------------------------------------------------------------------------------------------------------------------------------------------
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `changePassword`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `changePassword`(
+    IN `userNameVar` VARCHAR(45),
+    IN `newPassword` VARCHAR(200)
+)
+BEGIN
+    UPDATE `usertable` 
+    SET `password` = `newPassword` 
+    WHERE `userName` = `userNameVar`;
+
+    SELECT "password_update" AS `message`;
+END$$
+DELIMITER ;
+------------------------------------------------------------------------------------------------------------------------------------------------
+DELIMITER $$
+CREATE PROCEDURE updateAdmin (
+    IN p_id_admin INT, 
+    IN p_username VARCHAR(45), 
+    IN p_nombre VARCHAR(45), 
+    IN p_apellidoPaterno VARCHAR(45), 
+    IN p_apellidoMaterno VARCHAR(45), 
+    IN p_email VARCHAR(45), 
+    IN p_estatus TINYINT
+)
+BEGIN
+    UPDATE usertable u
+    INNER JOIN admin a ON u.id_User = a.idUser_fk
+    SET u.userName = p_username
+    WHERE a.id_admin = p_id_admin;
+    UPDATE admin
+    SET nombre = p_nombre,
+        apellidoPaterno = p_apellidoPaterno,
+        apellidoMaterno = p_apellidoMaterno,
+        email = p_email,
+        estatus = p_estatus
+    WHERE id_admin = p_id_admin;
+END$$
+DELIMITER ;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
