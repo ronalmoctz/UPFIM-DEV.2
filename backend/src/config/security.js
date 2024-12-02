@@ -1,8 +1,14 @@
 const helmet = require('helmet');
 
-// Security headers middleware
 const securityHeaders = helmet({
-  contentSecurityPolicy: false,
+  contentSecurityPolicy: {
+    useDefaults: true,
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+    },
+  },
   frameguard: { action: 'deny' },
   referrerPolicy: { policy: 'same-origin' },
 });

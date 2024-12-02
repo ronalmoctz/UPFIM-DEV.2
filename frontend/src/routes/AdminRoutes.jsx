@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-import React, { useEffect } from "react";
-import { Navigate, Routes, Route } from "react-router-dom";
-=======
-
-import React from "react";
-import { Routes, Route } from "react-router-dom";
->>>>>>> a06228b1467a851f8ec7ccc0e0501732a8ec75ef
+import { React, useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Sidebar from "../components/Admin/components/Sidebar";
 import routes from "../constants/routesConfig";
 

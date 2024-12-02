@@ -10,17 +10,47 @@ const rateLimit = require('express-rate-limit');
 
 const router = express.Router();
 
-// Rate limiter to restrict the number of login attempts from the same IP
+/**
+ * @swagger
+ * tags:
+ *   name: Authentication
+ *   description: Endpoints relacionados con autenticación
+ */
+
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Inicia sesión en el sistema
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userName:
+ *                 type: string
+ *                 description: Nombre de usuario
+ *               password:
+ *                 type: string
+ *                 description: Contraseña del usuario
+ *     responses:
+ *       200:
+ *         description: Login exitoso
+ *       429:
+ *         description: Demasiados intentos de inicio de sesión
+ */
 const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // Limit each IP to 5 requests per windowMs
+  windowMs: 15 * 60 * 1000,
+  max: 5,
   message: {
     message:
       'Too many login attempts from this IP, please try again after 15 minutes.',
   },
 });
 
-//Router for login
 router.post(
   '/login',
   [
@@ -28,14 +58,45 @@ router.post(
     body('password').isString().notEmpty(),
   ],
   validateRequest,
-  loginLimiter, // Apply rate limiter middleware
-  loginController
+  loginLimiter,
+  loginController,
 );
 
-// Ruta para renovar el token usando el refresh token
+/**
+ * @swagger
+ * /refresh-token:
+ *   post:
+ *     summary: Renueva el token de acceso usando un refresh token
+ *     tags: [Authentication]
+ *     responses:
+ *       200:
+ *         description: Token renovado exitosamente
+ */
 router.post('/refresh-token', refreshTokenController);
 
-//Router for register
+/**
+ * @swagger
+ * /register:
+ *   post:
+ *     summary: Registra un nuevo usuario
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userName:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               userRol:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Usuario registrado exitosamente
+ */
 router.post(
   '/register',
   [
@@ -44,7 +105,7 @@ router.post(
     body('userRol').isString().notEmpty(),
   ],
   validateRequest,
-  registerUserController
+  registerUserController,
 );
 
 module.exports = router;

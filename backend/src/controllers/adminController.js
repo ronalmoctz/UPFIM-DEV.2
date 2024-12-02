@@ -65,4 +65,31 @@ const registerAdminController = async (req, res, next) => {
   }
 };
 
-module.exports = { registerUserController, registerAdminController };
+const getAdminInfoController = async (req, res, next) => {
+  try {
+    const { adminId } = req.params;
+
+    // Validación básica de entrada
+    if (!adminId || isNaN(Number(adminId))) {
+      logger.warn('adminId no válido proporcionado en la solicitud.');
+      throw AppError.validationError('ID de administrador no válido.');
+    }
+
+    // Llamada al servicio
+    const adminInfo = await getAdminInfo(Number(adminId));
+
+    res.status(200).json({
+      status: 'success',
+      data: adminInfo,
+    });
+  } catch (error) {
+    logger.error(`Error en getAdminInfoController: ${error.message}`);
+    next(error); // Enviar error al middleware global
+  }
+};
+
+module.exports = {
+  registerUserController,
+  registerAdminController,
+  getAdminInfoController,
+};

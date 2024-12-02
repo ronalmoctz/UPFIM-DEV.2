@@ -1,0 +1,245 @@
+paths:
+  /login:
+    post:
+      summary: Inicia sesión en el sistema
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userName:
+                  type: string
+                  description: Nombre de usuario
+                password:
+                  type: string
+                  description: Contraseña
+      responses:
+        '200':
+          description: Login exitoso
+        '401':
+          description: Credenciales inválidas
+  /admin/register:
+    post:
+      summary: Registra un nuevo administrador
+      tags:
+        - Admin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idUser:
+                  type: integer
+                  description: ID del usuario
+                userName:
+                  type: string
+                  description: Nombre de usuario
+                pass:
+                  type: string
+                  description: Contraseña del usuario
+                adminName:
+                  type: string
+                  description: Nombre del administrador
+                surnameP:
+                  type: string
+                  description: Apellido paterno del administrador
+                surnameM:
+                  type: string
+                  description: Apellido materno del administrador
+                email:
+                  type: string
+                  description: Correo electrónico del administrador
+      responses:
+        '200':
+          description: Administrador registrado exitosamente
+        '400':
+          description: Error en los datos enviados
+        '401':
+          description: Acceso no autorizado
+  /admin/getTallerCrud:
+    get:
+      summary: Obtiene información de los talleres en formato CRUD
+      tags:
+        - Admin
+      responses:
+        '200':
+          description: Información de talleres obtenida exitosamente
+        '401':
+          description: Acceso no autorizado
+  /admin/getTalleres:
+    get:
+      summary: Lista los talleres disponibles
+      tags:
+        - Admin
+      responses:
+        '200':
+          description: Lista de talleres obtenida exitosamente
+        '401':
+          description: Acceso no autorizado
+  /admin/insertarTaller:
+    post:
+      summary: Inserta un nuevo taller
+      tags:
+        - Admin
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                imagen:
+                  type: string
+                  format: binary
+                  description: Imagen del taller
+                nombre:
+                  type: string
+                  description: Nombre del taller
+                descripcion:
+                  type: string
+                  description: Descripción del taller
+      responses:
+        '200':
+          description: Taller insertado exitosamente
+        '400':
+          description: Error al insertar el taller
+        '401':
+          description: Acceso no autorizado
+  /admin/deleteTaller/{id_taller}:
+    delete:
+      summary: Elimina un taller por ID
+      tags:
+        - Admin
+      parameters:
+        - name: id_taller
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del taller a eliminar
+      responses:
+        '200':
+          description: Taller eliminado exitosamente
+        '404':
+          description: Taller no encontrado
+        '401':
+          description: Acceso no autorizado
+  /admin/getActividades:
+    get:
+      summary: Obtiene la lista de actividades
+      tags:
+        - Admin
+      responses:
+        '200':
+          description: Lista de actividades obtenida exitosamente
+        '401':
+          description: Acceso no autorizado
+  /admin/insertActividad:
+    post:
+      summary: Inserta una nueva actividad
+      tags:
+        - Admin
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                imagen:
+                  type: string
+                  format: binary
+                  description: Imagen de la actividad
+                nombre:
+                  type: string
+                  description: Nombre de la actividad
+                descripcion:
+                  type: string
+                  description: Descripción de la actividad
+      responses:
+        '200':
+          description: Actividad insertada exitosamente
+        '400':
+          description: Error al insertar la actividad
+        '401':
+          description: Acceso no autorizado
+  /admin/deleteActividad/{id_actividad}:
+    delete:
+      summary: Elimina una actividad por ID
+      tags:
+        - Admin
+      parameters:
+        - name: id_actividad
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de la actividad a eliminar
+      responses:
+        '200':
+          description: Actividad eliminada exitosamente
+        '404':
+          description: Actividad no encontrada
+        '401':
+          description: Acceso no autorizado
+  /admin/updateActividad/{id_actividad}:
+    put:
+      summary: Actualiza una actividad por ID
+      tags:
+        - Admin
+      parameters:
+        - name: id_actividad
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de la actividad a actualizar
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                imagen:
+                  type: string
+                  format: binary
+                  description: Imagen actualizada de la actividad
+                nombre:
+                  type: string
+                  description: Nombre actualizado de la actividad
+                descripcion:
+                  type: string
+                  description: Descripción actualizada de la actividad
+      responses:
+        '200':
+          description: Actividad actualizada exitosamente
+        '404':
+          description: Actividad no encontrada
+        '401':
+          description: Acceso no autorizado
+  /admin/getActividad/{id_actividad}:
+    get:
+      summary: Obtiene una actividad por ID
+      tags:
+        - Admin
+      parameters:
+        - name: id_actividad
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de la actividad a consultar
+      responses:
+        '200':
+          description: Detalles de la actividad obtenidos exitosamente
+        '404':
+          description: Actividad no encontrada
+        '401':
+          description: Acceso no autorizado

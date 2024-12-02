@@ -20,13 +20,11 @@ const insertAdmin = async (adminData) => {
     return result;
   } catch (error) {
     await connection.rollback(); // Reverse transaction on error
-    logger.error(`Transaccion in insertAdmin: ${error.message}`);
+    logger.error(`Transaction in insertAdmin: ${error.message}`);
 
     //Validating specific errors
     if (error.code === 'ER_DUP_ENTRY') {
-      throw AppError.validationError(
-        'Duplicate entry dectected for admin data',
-      );
+      throw AppError.validationError('Duplicate entry detected for admin data');
     }
     throw AppError.dbError();
   } finally {
@@ -34,4 +32,28 @@ const insertAdmin = async (adminData) => {
   }
 };
 
-module.exports = { insertAdmin };
+// -> Obtener la informacion del administrador
+const getAdminInfo = async (adminId) => {
+  const query = `CALL GetAdminInfo(?);`;
+
+  try {
+    const [rows] = await pool.execute(query, [adminId]);
+    if (!rows[0] || rows[0].length === 0) {
+      logger.warn(`No admin found with id ${adminId}`);
+      throw AppError.notFoundError(`No admin found with id ${adminId}`);
+    }
+
+    logger.info(`Found admin with id ${adminId}`);
+    return rows[0][0];
+  } catch (error) {
+    logger.error(`Error to try catch info to admin: ${error.message}`);
+    if (error.code === 'ER_SP_DOES_NOT_EXIST') {
+      throw AppError.adError(
+        'The storage procedure GetAdminInfo doesnt exist in database',
+      );
+    }
+    throw AppError.dbError('A error happened to try recovery admin info');
+  }
+};
+
+module.exports = { insertAdmin, getAdminInfo };

@@ -1,7 +1,9 @@
 const express = require('express');
-const { registerAdminController } = require('../controllers/adminController');
 const {
-
+  registerAdminController,
+  getAdminInfoController,
+} = require('../controllers/adminController');
+const {
   getTalleres,
   getTallerCrud,
   insertarTaller,
@@ -32,6 +34,8 @@ router.post(
 //   // checkRole(['admin']),
 //   addFeaturedImage,
 // );
+
+router.get('/admin/:adminId', getAdminInfoController);
 
 router.get('/getTallerCrud', getTallerCrud);
 router.get('/getTalleres', getTalleres);

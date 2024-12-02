@@ -1,4 +1,6 @@
 const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swaggerConfig');
 const cookieParser = require('cookie-parser');
 const { logger } = require('./utils/logger');
 const { requestLogger } = require('./middleware/requestLogger');
@@ -6,6 +8,7 @@ const { errorHandler } = require('./middleware/errorHandler');
 const { securityHeaders } = require('./config/security');
 const authRoutes = require('./routers/authRoutes');
 const adminRoutes = require('./routers/adminRoutes');
+const teacherRoutes = require('./routers/teacherRoutes');
 const alumnosRoutes = require('./routers/alumnosRoutes');
 const actividadesRoutes = require('./routers/actividadesRoutes');
 const loginRoute = require('./routers/loginRoute');
@@ -16,6 +19,8 @@ const cors = require('cors');
 const { sendEmail } = require('./controllers/emailController');
 
 const app = express();
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(cookieParser());
 
@@ -40,6 +45,7 @@ app.options('*', cors());
 
 app.use('/api', adminRoutes);
 app.use('/api', alumnosRoutes);
+app.use('/api', teacherRoutes);
 app.use('/api', docentesRoutes);
 app.use('/api', actividadesRoutes);
 app.use('/api', featuredImagesRoutes);
@@ -56,4 +62,5 @@ const PORT = process.env.PORT || 3000;
 // Start the server
 app.listen(PORT, () => {
   logger.info(`Server is running on http://localhost:${PORT}`);
+  logger.info(`Swagger is running on http://localhost:${PORT}/api-docs`);
 });
