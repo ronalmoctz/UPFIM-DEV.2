@@ -1,0 +1,131 @@
+import React, { useState } from "react";
+import logo from "../../../assets/logo-borde.webp";
+import { RiMenu3Line } from "react-icons/ri";
+import { CgProfile } from "react-icons/cg";
+import {
+  FaStar,
+  FaRegCalendarAlt,
+  FaPalette,
+  FaUserGraduate,
+} from "react-icons/fa";
+import { GrGallery } from "react-icons/gr";
+import { MdAdminPanelSettings, MdOutlinePassword } from "react-icons/md";
+import { LiaChalkboardTeacherSolid } from "react-icons/lia";
+import { GiExitDoor } from "react-icons/gi";
+import { NavLink } from "react-router-dom";
+
+const menuItems = [
+  {
+    icons: <CgProfile size={25} />,
+    label: "Perfil",
+    path: "perfil", 
+  },
+  {
+    icons: <FaStar size={25} />,
+    label: "Calificaciones",
+    path: "calificaciones", 
+  },
+  {
+    icons: <FaRegCalendarAlt size={25} />,
+    label: "Actividades",
+    path: "actividades", 
+  },
+  {
+    icons: <FaPalette size={25} />,
+    label: "Talleres",
+    path: "talleres", 
+  },
+  {
+    icons: <GrGallery size={25} />,
+    label: "Galería",
+    path: "galleria", 
+  },
+  {
+    icons: <MdAdminPanelSettings size={25} />,
+    label: "Administradores",
+    path: "admins", 
+  },
+  {
+    icons: <FaUserGraduate size={25} />,
+    label: "Alumnos",
+    path: "alumnado",
+  },
+  {
+    icons: <LiaChalkboardTeacherSolid size={25} />,
+    label: "Docentes",
+    path: "docentes", 
+  },
+  {
+    icons: <MdOutlinePassword size={25} />,
+    label: "Contraseña",
+    path: "changePassword", 
+  },
+];
+
+export default function Sidebar() {
+  const [open, setOpen] = useState(true);
+
+  return (
+    <nav
+      className={`shadow-md h-screen p-2 flex flex-col duration-500 bg-white text-black ${
+        open ? "w-60" : "w-16"
+      }`}
+    >
+      <div className="px-3 py-2 h-20 flex justify-between items-center">
+        <img
+          src={logo}
+          alt="Logo"
+          className={`${open ? "w-10" : "w-0"} rounded-md`}
+        />
+        {open && <span className="text-xl font-semibold">SICD</span>}
+        <div>
+          <RiMenu3Line
+            size={25}
+            className={`duration-500 cursor-pointer ${!open && "rotate-180"}`}
+            onClick={() => setOpen(!open)}
+          />
+        </div>
+      </div>
+      <ul className="flex-1">
+        {menuItems.map((item, index) => (
+          <li
+            key={index}
+            className="px-3 py-2 my-2 hover:bg-gray-200 rounded-md duration-300 cursor-pointer flex gap-2 items-center relative group"
+          >
+            <NavLink to={item.path} className="flex gap-2 items-center w-full">
+              <div>{item.icons}</div>
+              <p
+                className={`${
+                  !open && "w-0 translate-x-24"
+                } duration-500 overflow-hidden`}
+              >
+                {item.label}
+              </p>
+            </NavLink>
+            <p
+              className={`${
+                open && "hidden"
+              } absolute left-32 shadow-md rounded-md
+              w-0 p-0 text-black bg-white duration-100 overflow-hidden group-hover:w-fit group-hover:p-2 group-hover:left-16
+            `}
+            >
+              {item.label}
+            </p>
+          </li>
+        ))}
+      </ul>
+      <div className="flex items-center gap-2 px-3 py-2">
+        <div>
+          <GiExitDoor size={30} />
+        </div>
+        <div
+          className={`leading-5 ${
+            !open && "w-0 translate-x-24"
+          } duration-500 overflow-hidden`}
+        >
+          <p>Salir</p>
+        </div>
+      </div>
+    </nav>
+  );
+}

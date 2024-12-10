@@ -130,7 +130,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="alumnos"
+            to="alumnado"
             className={({ isActive }) =>
               `flex items-center px-4 py-2 transition-colors duration-200 mb-4 ${
                 isActive

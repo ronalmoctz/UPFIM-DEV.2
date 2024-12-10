@@ -4,19 +4,18 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Sidebar from "./components/Admin/components/Sidebar";
-import Perfil from "./components/Admin/pages/Perfil";
-import Calificaciones from "./components/Admin/pages/Calificaciones";
-import Actividades from "./components/Admin/pages/Actividades";
-import Talleres from "./components/Admin/pages/Talleres";
-import Galleria from "./components/Admin/pages/Galleria";
-import Admins from "./components/Admin/pages/Administradores";
-import Alumnos from "./components/Admin/pages/Alumnos";
-import Docentes from "./components/Admin/pages/Docentes";
-import ChangePassword from "./components/Admin/pages/ChangePassword";
-import FormInsert from "./components/Admin/CrudActividades/FormInsert/FormInsert";
-import FormUpdate from "./components/Admin/CrudActividades/FormUpdate/FormUpdate";
-import InsertGaleria from './components/Admin/CrudGalleria/FormInsert/Index'
+import Sidebar from "../components/Sidebar";
+import Perfil from "../pages/Perfil";
+import Calificaciones from "../pages/Calificaciones";
+import Actividades from "../pages/Actividades";
+import Talleres from "../pages/Talleres";
+import Galleria from "../pages/Galleria";
+import Admins from "../pages/Administradores";
+import Alumnos from "../pages/Alumnos";
+import Docentes from "../pages/Docentes";
+import ChangePassword from "../pages/ChangePassword";
+import FormInsert from "../CrudActividades/FormInsert/FormInsert";
+import FormUpdate from "../CrudActividades/FormUpdate/FormUpdate";
 const App = () => {
   return (
     <div>
@@ -32,10 +31,7 @@ const App = () => {
           <Route path="/edit-products/:id_actividad" element={<FormUpdate />} />
 
           <Route path="/talleres" element={<Talleres />} />
-          
           <Route path="/galeria" element={<Galleria />} />
-          <Route path="/insertGaleria" element={<InsertGaleria />} />
-
           <Route path="/admins" element={<Admins />} />
           <Route path="/alumnos" element={<Alumnos />} />
           <Route path="/docentes" element={<Docentes />} />

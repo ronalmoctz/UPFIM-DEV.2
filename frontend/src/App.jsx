@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import useDarkMode from "./Hooks/useDarkMode";
 import MainRoutes from "./routes/MainRoutes.jsx";
@@ -11,19 +10,25 @@ const App = () => {
   return (
     <AuthProvider>
       <div className={`${darkMode ? "dark" : ""} font-onest`}>
-        <Routes>
-          {/* Rutas generales */}
-          <Route
-            path="/*"
-            element={
-              <MainRoutes darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-            }
-          />
-          <Route path="/dash/*" element={<RoleBasedRoutes />} />
-        </Routes>
+        <AuthProvider>
+          <div className={`${darkMode ? "dark" : ""} font-onest`}>
+            <Routes>
+              {/* Rutas generales */}
+              <Route
+                path="/*"
+                element={
+                  <MainRoutes
+                    darkMode={darkMode}
+                    toggleDarkMode={toggleDarkMode}
+                  />
+                }
+              />
+              <Route path="/dash/*" element={<RoleBasedRoutes />} />
+            </Routes>
+          </div>
+        </AuthProvider>
       </div>
     </AuthProvider>
   );
 };
-
 export default App;

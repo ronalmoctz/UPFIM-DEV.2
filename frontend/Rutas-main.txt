@@ -4,15 +4,12 @@ import useDarkMode from "./Hooks/useDarkMode";
 import MainRoutes from "./routes/MainRoutes.jsx";
 import { AuthProvider } from "./Hooks/AuthContext";
 import RoleBasedRoutes from "./routes/RoleBasedRoutes.jsx";
-
 const App = () => {
   const [darkMode, toggleDarkMode] = useDarkMode();
-
   return (
     <AuthProvider>
       <div className={`${darkMode ? "dark" : ""} font-onest`}>
         <Routes>
-          {/* Rutas generales */}
           <Route
             path="/*"
             element={
@@ -25,5 +22,4 @@ const App = () => {
     </AuthProvider>
   );
 };
-
 export default App;

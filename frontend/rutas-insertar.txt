@@ -1,0 +1,12 @@
+metodo post 
+http://localhost:3000/api/register
+
+{
+  "idUser": 9,
+  "userName": "MarMar",
+  "password": "mario465",
+  "adminName": "Mario",
+  "surnameP": "Pascual",
+  "surnameM": "Martinez",
+  "email": "marmar@example.com"
+}

@@ -3,7 +3,7 @@ const router = express.Router();
 const {
     getAllFeaturedImages,
     getByIdfeaturedImages,
-    insertFeaturedImages 
+    insertFeaturedImages,
 } = require('../controllers/featuredImagesController');
 const uploadFeaturedImage = require("../middleware/uploadFeaturedImages");
 router.get('/getAllFeaturedImages', getAllFeaturedImages);
