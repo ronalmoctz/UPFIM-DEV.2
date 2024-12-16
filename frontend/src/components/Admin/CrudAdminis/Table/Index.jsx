@@ -1,39 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { TbEdit, TbTrash, TbPlus, TbSearch } from "react-icons/tb";
-import axios from "axios";
-import img from "../../../../assets/nodata.webp";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { TbEdit, TbTrash, TbPlus, TbSearch } from 'react-icons/tb';
+import axios from 'axios';
+import img from '../../../../assets/nodata.webp';
+import { Link, useNavigate } from 'react-router-dom';
 const Table = () => {
   const navigate = useNavigate();
   const [adminData, setAdminData] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/getAdmin");
-        setAdminData(response.data);
+        const response = await axios.get(
+          'http://localhost:3000/api/admin/getAdmins',
+          {
+            withCredentials: true,
+          }
+        );
+        if (Array.isArray(response.data.data)) {
+          setAdminData(response.data.data);
+        } else {
+          console.error('Datos inválidos recibidos', response.data);
+          setAdminData([]);
+        }
       } catch (error) {
-        console.error("Error al obtener datos de admin:", error);
+        console.error('Error al obtener datos de admin:', error);
       }
     };
+
     fetchAdminData();
   }, []);
   const handleDelete = async (email) => {
     if (
-      window.confirm("¿Estás seguro de que deseas eliminar este administrador?")
+      window.confirm('¿Estás seguro de que deseas eliminar este administrador?')
     ) {
       try {
-        await axios.delete("http://localhost:3000/api/deleteAdmin", {
+        await axios.delete('http://localhost:3000/api/deleteAdmin', {
           data: { email },
         });
         setAdminData(
           adminData.filter((admin) => admin.Correo_Electronico !== email)
         );
-        alert("Administrador eliminado exitosamente.");
+        alert('Administrador eliminado exitosamente.');
       } catch (error) {
-        console.error("Error al eliminar administrador:", error);
-        alert("Hubo un error al eliminar el administrador.");
+        console.error('Error al eliminar administrador:', error);
+        alert('Hubo un error al eliminar el administrador.');
       }
     }
   };
@@ -52,7 +63,7 @@ const Table = () => {
           Lista de Administradores
         </h2>
         <Link
-          to={"/insertAdmin"}
+          to={'/insertAdmin'}
           className="flex items-center text-verde hover:text-verdeHover hover:font-semibold mb-4 sm:mb-0"
         >
           <TbPlus size={30} className="mr-2" />
@@ -132,11 +143,10 @@ const Table = () => {
                     {admin.Estatus}
                   </td>
                   <td className="px-6 py-4">
-
                     <button
                       onClick={() =>
-                        navigate("/editAdmin", {
-                          state: { admin }, 
+                        navigate('/editAdmin', {
+                          state: { admin },
                         })
                       }
                     >
@@ -154,7 +164,6 @@ const Table = () => {
                         className="text-red-500 hover:text-verde"
                       />
                     </button>
-
                   </td>
                 </motion.tr>
               ))}

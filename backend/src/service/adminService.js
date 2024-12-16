@@ -1,6 +1,8 @@
 const pool = require('../database/db');
 const AppError = require('../errors/AppError');
 const { logger } = require('../utils/logger');
+const LogService = require('../utils/LogsService');
+const { binarySearch } = require('../utils/binarySearch');
 
 const insertAdmin = async (adminData) => {
   const { idUser, userName, pass, adminName, surnameP, surnameM, email } =
@@ -38,22 +40,105 @@ const getAdminInfo = async (adminId) => {
 
   try {
     const [rows] = await pool.execute(query, [adminId]);
-    if (!rows[0] || rows[0].length === 0) {
-      logger.warn(`No admin found with id ${adminId}`);
+
+    if (!rows || rows.length === 0 || rows[0].length === 0) {
+      LogService.logWarning(`No admin found with id ${adminId}`);
       throw AppError.notFoundError(`No admin found with id ${adminId}`);
     }
 
-    logger.info(`Found admin with id ${adminId}`);
+    LogService.logInfo(`Found admin with id ${adminId}`);
     return rows[0][0];
   } catch (error) {
-    logger.error(`Error to try catch info to admin: ${error.message}`);
+    LogService.logError(`Error while retrieving admin info: ${error.message}`);
     if (error.code === 'ER_SP_DOES_NOT_EXIST') {
       throw AppError.adError(
-        'The storage procedure GetAdminInfo doesnt exist in database',
+        'The stored procedure GetAdminInfo doesnt exist in database',
       );
     }
-    throw AppError.dbError('A error happened to try recovery admin info');
+    throw AppError.dbError(
+      'An error occurred while trying to retrieve admin info',
+    );
   }
 };
 
-module.exports = { insertAdmin, getAdminInfo };
+const getAdmins = async () => {
+  const connection = await pool.getConnection();
+  try {
+    const [result] = await connection.query('CALL getAdmins()');
+    console.log(result);
+    return result[0]; //The first result is the array of admins
+  } catch (error) {
+    logger.error(`Error to try catch admins: ${error.message}`);
+    throw AppError.dbError('A error happened to try recovery admins');
+  } finally {
+    connection.release();
+  }
+};
+
+const updateAdmin = async (id, adminData) => {
+  const { userName, nombre, apellidoPaterno, apellidoMaterno, email, estatus } =
+    adminData;
+
+  try {
+    //get all admins and sort by name
+    const [admins] = await connection.query(
+      'SELECT id_admin, nombre FROM admin',
+    );
+
+    //Sorting admins by name
+    admins.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+    //Searching admin by name
+    const adminIndex = binarySearch(admins, (admin) =>
+      admin.nombre.localeCompare(nombre),
+    );
+    if (adminIndex === -1) {
+      throw AppError.validationError('Admin not found');
+    }
+
+    await connection.beginTransaction();
+
+    //call updateAdmin procedure
+    await connection.query('CALL updateAdmin (?,?,?,?,?,?,?)', [
+      id,
+      userName,
+      nombre,
+      apellidoPaterno,
+      apellidoMaterno,
+      email,
+      estatus,
+    ]);
+
+    await connection.commit(); // Confirm transaction
+    return { id, ...adminData };
+  } catch (error) {
+    logger.error(`Transaction in updateAdmin: ${error.message}`);
+    await connection.rollback(); // Reverse transaction on error
+    throw AppError.dbError('A error happened to try recovery admins');
+  } finally {
+    connection.release(); // Release the connection
+  }
+};
+
+const deleteAdmin = async (adminId) => {
+  const connection = await pool.getConnection();
+  try {
+    const [result] = await connection.query('CALL deleteAdmin(?)', [adminId]);
+    console.log(result, 'was deleted', adminId);
+    return result;
+  } catch (error) {
+    logger.error(`Error to try catch deleteAdmin: ${error.message}`);
+    await connection.rollback();
+    throw AppError.dbError('A error happened to try delete admin');
+  } finally {
+    connection.release();
+  }
+};
+
+module.exports = {
+  insertAdmin,
+  getAdminInfo,
+  getAdmins,
+  updateAdmin,
+  deleteAdmin,
+};

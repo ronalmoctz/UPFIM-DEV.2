@@ -1,36 +1,39 @@
 const AppError = require('../errors/AppError');
-const { logger } = require('../utils/logger');
+const LogService = require('../utils/LogsService');
+const { v4: uuidv4 } = require('uuid'); // UUID para errores críticos
 
-// Global error handler middleware
 const errorHandler = (err, req, res, next) => {
+  //generate unique id for each error
+  let uniqueId;
   if (!(err instanceof AppError)) {
-    // Wrap unexpected errors in AppError for uniformity
-    err = new AppError('An unexpected error ocurred', 500);
-    err.isOperational = false; // Non-operational errors are unexpected
+    uniqueId = uuidv4();
+
+    // Critical logger error with LogService
+    LogService.logError(err, req);
+
+    err = new AppError(
+      `Unexpected Errro[ID: ${uniqueId}]`,
+      500,
+      false,
+      //indicate isent a operational error
+    );
   }
 
+  //Define response
   const statusCode = err.statusCode || 500;
   const response = {
     status: err.status,
     message: err.isOperational ? err.message : 'Internal Server Error',
   };
 
-  // Add astack trance only in non-production enviroments
-  if (process.env.NODE_ENV !== 'production') response.stack = err.stack;
+  // Agree the error stack in environments not in production
+  if (process.env.NODE_ENV !== 'production') {
+    response.stack = err.stack;
+  }
 
-  if (statusCode >= 500) {
-    // Log the error
-    logger.error({
-      message: err.message,
-      stack: err.stack,
-      statusCode: err.statusCode,
-      requestUrl: req.originalUrl,
-      method: req.method,
-      ip: req.ip,
-    });
-  } else {
-    logger.warn({
-      message: err.message,
+  // Error logger not critical or warning
+  if (statusCode < 500) {
+    LogService.logWarning(err.message, {
       statusCode,
       requestUrl: req.originalUrl,
       method: req.method,
@@ -38,7 +41,11 @@ const errorHandler = (err, req, res, next) => {
     });
   }
 
+  // Send the response
   res.status(statusCode).json(response);
-};
 
-module.exports = { errorHandler };
+  // Prevent the error from reaching the global error handler
+  next();
+}; // Error handler global
+
+module.exports = errorHandler;

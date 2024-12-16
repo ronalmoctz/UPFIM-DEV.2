@@ -1,7 +1,10 @@
 const express = require('express');
 const {
   registerAdminController,
-  // getAdminInfoController,
+  getAdminProfileController,
+  getAdminsController,
+  updateAdminController,
+  deleteAdminController,
 } = require('../controllers/adminController');
 const {
   getTalleres,
@@ -17,25 +20,55 @@ const {
 const uploadTaller = require('../middleware/uploadTaller');
 const uploadActividad = require('../middleware/uploadMiddleware');
 
-// const verifyToken = require('../middleware/verifyToken');
-// const checkRole = require('../middleware/checkRole');
+const verifyToken = require('../middleware/verifyToken');
+const checkRole = require('../middleware/checkRole');
 
 const router = express.Router();
 
 router.post(
-  '/register',
-  // verifyToken,
-  // checkRole(['admin']),
+  '/admin/register',
+  verifyToken,
+  checkRole(['admin']),
   registerAdminController,
 );
+
 // router.post(
-//   '/featured-gallery',
-//   // verifyToken,
-//   // checkRole(['admin']),
+//   '/admin/featured-gallery',
+// // verifyToken,
+// // checkRole(['admin']),
 //   addFeaturedImage,
 // );
 
-// router.get('/admin/:adminId', getAdminInfoController);
+/**
+ * Admin CRUD
+ */
+
+router.get(
+  '/admin/profile',
+  verifyToken,
+  checkRole(['admin']),
+  getAdminProfileController,
+);
+router.get(
+  '/admin/getAdmins',
+  verifyToken,
+  checkRole(['admin']),
+  getAdminsController,
+);
+router.put(
+  '/updateAdmin/:id_admin',
+  // verifyToken,
+  // checkRole(['admin']),
+  updateAdminController,
+);
+router.delete(
+  '/deleteAdmin/:adminId',
+  // verifyToken,
+  // checkRole(['admin']),
+  deleteAdminController,
+);
+
+// -> END
 
 router.get('/getTallerCrud', getTallerCrud);
 router.get('/getTalleres', getTalleres);

@@ -14,6 +14,33 @@ class AppError extends Error {
   static validationError(message = 'Invalid Input') {
     return new AppError(message, 400);
   }
+
+  static notFoundError(message = 'Not Found') {
+    return new AppError(message, 404);
+  }
+
+  static unauthorizedError(message = 'Unauthorized') {
+    return new AppError(message, 401);
+  }
+
+  static authError(message = 'Authentication Error') {
+    return new AppError(message, 401);
+  }
+  static forbiddenError(message = 'Acess Forbidden') {
+    return new AppError(message, 403);
+  }
+
+  static notFoundError(message = 'Resource Not Found') {
+    return new AppError(message, 404);
+  }
+
+  static serviceUnavailable(message = 'Service Unavailable') {
+    return new AppError(message, 503);
+  }
+
+  static adError(message = 'Admin Error') {
+    return new AppError(message, 500);
+  }
 }
 
 module.exports = AppError;

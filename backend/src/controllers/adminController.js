@@ -1,39 +1,15 @@
 const bcrypt = require('bcrypt');
 const AppError = require('../errors/AppError');
 const { logger } = require('../utils/logger');
+const LogService = require('../utils/LogsService');
 const { createUser } = require('../service/userService');
-const { insertAdmin } = require('../service/adminService');
-const db = require('../database/db');
-
-const getAdmin = async (req, res) => {
-  try {
-    const [results] = await db.query('CALL getAdmin()');
-    res.json(results[0]);
-  } catch (err) {
-    console.error('Error al obtener datos:', err);
-    res.status(500).json({ error: 'Error al obtener datos' });
-  }
-};
-
-const deleteAdmin = async (req, res) => {
-  const { email } = req.body;
-  try {
-    const [admin] = await db.query(
-      'SELECT id_admin FROM admin WHERE email = ?',
-      [email],
-    );
-    if (admin.length === 0) {
-      return res.status(404).json({ message: 'El administrador no existe.' });
-    }
-    await db.query('CALL deleteAdmin(?)', [admin[0].id_admin]);
-    res.status(200).json({ message: 'Administrador eliminado exitosamente.' });
-  } catch (error) {
-    console.error('Error al eliminar administrador:', error.message);
-    res
-      .status(500)
-      .json({ error: 'Hubo un error al intentar eliminar el administrador.' });
-  }
-};
+const {
+  getAdminInfo,
+  insertAdmin,
+  getAdmins,
+  updateAdmin,
+  deleteAdmin,
+} = require('../service/adminService');
 
 const registerUserController = async (req, res, next) => {
   const { userName, password, userRol } = req.body;
@@ -93,91 +69,133 @@ const registerAdminController = async (req, res, next) => {
   }
 };
 
-// const getAdminInfoController = async (req, res, next) => {
-//   try {
-//     const { adminId } = req.params;
+const getAdminProfileController = async (req, res, next) => {
+  try {
+    const adminId = req.user.id; // Recupera el ID del token decodificado
+    const adminInfo = await getAdminInfo(adminId);
 
-//     // Validación básica de entrada
-//     if (!adminId || isNaN(Number(adminId))) {
-//       logger.warn('adminId no válido proporcionado en la solicitud.');
-//       throw AppError.validationError('ID de administrador no válido.');
-//     }
+    if (!adminInfo) {
+      logger.warn(`Admin with ID ${adminId} not found`);
+      return res.status(404).json({
+        success: false,
+        message: `No admin found with id ${adminId}`,
+      });
+    }
 
-//     // Llamada al servicio
-//     const adminInfo = await getAdminInfo(Number(adminId));
+    res.status(200).json({
+      success: true,
+      data: adminInfo,
+    });
+  } catch (error) {
+    logger.error(`Error in getAdminProfileController: ${error.message}`);
+    next(error);
+  }
+};
 
-//     res.status(200).json({
-//       status: 'success',
-//       data: adminInfo,
-//     });
-//   } catch (error) {
-//     logger.error(`Error en getAdminInfoController: ${error.message}`);
-//     next(error); // Enviar error al middleware global
+const getAdminsController = async (req, res, next) => {
+  try {
+    const admins = await getAdmins();
 
-const updateAdmin = async (req, res) => {
+    if (Array.isArray(admins)) {
+      res.status(200).json({
+        success: true,
+        data: admins,
+      });
+    } else {
+      res.status(500).json({
+        success: false,
+        message: 'Error to get admins',
+      });
+    }
+    console.log(admins);
+  } catch (error) {
+    logger.error(`Error in getAdminsController: ${error.message}`);
+    next(error);
+  }
+};
+
+const validateAdminData = (adminData) => {
   const {
     id_admin,
-    username,
+    userName,
     nombre,
     apellidoPaterno,
     apellidoMaterno,
     email,
     estatus,
-  } = req.body;
+  } = adminData;
   if (
     !id_admin ||
-    !username ||
+    !userName ||
     !nombre ||
     !apellidoPaterno ||
     !apellidoMaterno ||
     !email ||
     typeof estatus === 'undefined'
   ) {
-    return res.status(400).json({
-      error:
-        'Todos los campos son obligatorios. Por favor, verifica los datos ingresados.',
-    });
-  }
-  let parsedEstatus;
-  if (estatus === 'Activo') {
-    parsedEstatus = 1;
-  } else if (estatus === 'Inactivo') {
-    parsedEstatus = 0;
-  } else if (typeof estatus === 'number') {
-    parsedEstatus = estatus;
-  } else {
-    return res.status(400).json({
-      error: 'El campo estatus debe ser "Activo", "Inactivo", 1 o 0.',
-    });
+    throw AppError.validationError('All fields are required');
   }
 
+  let parsedEstatus;
+  if (estatus === 'Activo') parsedEstatus = 1;
+  else if (estatus === 'Inactivo') parsedEstatus = 0;
+  else if (typeof estatus === 'number') parsedEstatus = estatus;
+  else {
+    throw AppError.validationError(
+      'The estatus field must be "Activo", "Inactivo", 1 or 0',
+    );
+  }
+
+  return {
+    id_admin,
+    userName,
+    nombre,
+    apellidoPaterno,
+    apellidoMaterno,
+    email,
+    estatus,
+  };
+};
+
+const updateAdminController = async (req, res, next) => {
   try {
-    await db.query('CALL updateAdmin(?, ?, ?, ?, ?, ?, ?)', [
-      id_admin,
-      username,
-      nombre,
-      apellidoPaterno,
-      apellidoMaterno,
-      email,
-      parsedEstatus,
-    ]);
-    res
-      .status(200)
-      .json({ message: 'Administrador actualizado exitosamente.' });
-  } catch (error) {
-    console.error('Error al actualizar administrador:', error.message);
-    res.status(500).json({
-      error:
-        'Error al actualizar el administrador. Intenta nuevamente más tarde.',
+    const validateData = validateAdminData(req.body);
+
+    const updatedAdmin = await updateAdmin(validateData.id_admin, validateData);
+
+    res.status(200).json({
+      success: true,
+      message: 'Admin updated successfully',
+      data: updatedAdmin,
     });
+    console.log(updatedAdmin);
+  } catch (error) {
+    logger.error(`Error in updateAdminController: ${error.message}`);
+    next(new AppError('Error in updateAdminController', 500));
+  }
+};
+
+const deleteAdminController = async (req, res, next) => {
+  const { adminId } = req.body;
+
+  try {
+    const result = await deleteAdmin(adminId);
+    res.status(200).json({
+      success: true,
+      message: 'Admin deleted successfully',
+      data: result,
+    });
+  } catch (error) {
+    logger.error(`Error in deleteAdminController: ${error.message}`);
+    next(new AppError('Error in deleting admin', 500));
   }
 };
 
 module.exports = {
   registerUserController,
   registerAdminController,
-  // getAdminInfoController,
-  getAdmin,
-  deleteAdmin,
-  updateAdmin,
+  getAdminProfileController,
+  getAdminsController,
+  updateAdminController,
+  deleteAdminController,
 };

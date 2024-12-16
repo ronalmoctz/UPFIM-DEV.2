@@ -59,7 +59,7 @@ const loginController = async (req, res, next) => {
     res.cookie('jwt', accesToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'Strict',
+      sameSite: 'Lax',
       maxAge: 30 * 60 * 1000,
     });
 
@@ -67,7 +67,7 @@ const loginController = async (req, res, next) => {
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'Strict',
+      sameSite: 'Lax',
       maxAge: 30 * 24 * 60 * 60 * 1000,
     });
 

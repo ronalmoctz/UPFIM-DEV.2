@@ -60,7 +60,7 @@ const RegisterForm = () => {
     setIsSubmitting(true);
 
     try {
-      await axios.post("http://localhost:3000/api/register", formData);
+      await axios.post("http://localhost:3000/api/admin/register", formData);
       showAlert("success", "Success", "Admin registered successfully!");
       setFormData({
         userName: "",

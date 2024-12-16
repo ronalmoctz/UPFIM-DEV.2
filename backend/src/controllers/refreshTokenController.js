@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const AppError = require('../errors/AppError');
 
 const refreshTokenController = (req, res, next) => {
-  const refeshToken = req.cookie.refeshToken;
+  const refeshToken = req.cookies.refeshToken;
 
   if (!refeshToken) {
     return next(new AppError('No refresh token provided', 401));
@@ -20,7 +20,7 @@ const refreshTokenController = (req, res, next) => {
         role: req.id_User ? req.id_User.userRol : null,
       },
       process.env.JWT_TOKEN,
-      { expiresIn: '30min', algorithm: 'HS256' }
+      { expiresIn: '30min', algorithm: 'HS256' },
     );
 
     // Send new accessToken
@@ -32,6 +32,7 @@ const refreshTokenController = (req, res, next) => {
     });
 
     res.json({ message: 'Token renovado exitosamente' });
+    console.log('Refresh Token:', req.cookies.refreshToken);
   } catch (error) {
     console.error('Error al verificar refresh token', error);
     return next(new AppError('Refresh token no válido o expirado', 401));
