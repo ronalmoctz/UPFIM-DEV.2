@@ -1,4 +1,34 @@
 # UPFIM-DEV.2
+<p align="lefth">
+  <img src="https://imgs.search.brave.com/zFuqnL4utRRgcn8Iad8NJ4oSFUW4flJGs9edqNNwths/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGZp/bS5lZHUubXgvd3At/Y29udGVudC91cGxv/YWRzLzIwMjIvMDkv/TE9HTy1VUEZJTS1T/aW1wbGUtVHJhbnNw/YXJlbnRlLTEwMjR4/ODY5LnBuZw" alt="Logo UPFIM" width="150">
+</p>
+
+## **Contribuidores**
+<table>
+  <tr align="center">
+    <td>
+      <a href="https://github.com/ronalmoctz">
+        <img src="https://avatars.githubusercontent.com/u/71199060?v=4" alt="Ronal Moctezuma" width="100" style="border-radius:50%;"><br>
+        <strong>Ronal Moctezuma</strong><br>
+        <em>Encargado de backend</em>
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/Alberto0511">
+        <img src="https://avatars.githubusercontent.com/u/162728112?v=4" alt="Alberto Alarcon" width="100" style="border-radius:50%;"><br>
+        <strong>Alberto Alarcón</strong><br>
+        <em>Encargado de frontend</em>
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/ImTheSrPina">
+        <img src="https://avatars.githubusercontent.com/u/124635877?v=4" alt="Noel Piña" width="100" style="border-radius:50%;"><br>
+        <strong>Noel Piña</strong><br>
+        <em>Modelado base de datos</em>
+      </a>
+    </td>
+  </tr>
+</table>
 
 ## Descripción
 
