@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const { registerStudentsMassive } = require('../controllers/alumnoController');
+const {
+  registerStudentsController,
+} = require('../controllers/alumnoController');
 const db = require('../database/db');
 const insertService = require('../service/testAlumnoInsert');
 
 router.get('/getAlumnos', async (req, res) => {
   try {
     const [rows] = await db.query(
-      'SELECT nombre, aPater, aMater, correo FROM alumnos'
+      'SELECT nombre, aPater, aMater, correo FROM alumnos',
     );
     res.status(200).json({
       success: true,
@@ -35,7 +37,7 @@ const fileFilter = (req, file, cb) => {
   } else {
     cb(
       new Error('Invalid file type. Only Excel or CSV files are allowed.'),
-      false
+      false,
     ); //Rejec file
   }
 };
@@ -44,7 +46,11 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({ dest: 'upload/', fileFilter });
 
 // Router for uploading the Excel/CSV file
-router.post('/alumno/update', upload.single('File'), registerStudentsMassive);
+router.post(
+  '/alumno/update',
+  upload.single('File'),
+  registerStudentsController,
+);
 
 router.post('/alumno/insert', async (req, res) => {
   const {

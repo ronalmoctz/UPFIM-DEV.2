@@ -1,11 +1,11 @@
 const pool = require('../database/db');
 const AppError = require('../errors/AppError');
-const { logger } = require('../utils/logger');
+const LogService = require('../utils/LogsService');
 
-const insertStudentsMassive = async (alumnos) => {
+const insertStudens = async (alumnos) => {
   const connection = await pool.getConnection();
   try {
-    await connection.beginTransaction(); //Start transaction
+    await connection.beginTransaction();
 
     const result = [];
     for (const alumno of alumnos) {
@@ -29,22 +29,23 @@ const insertStudentsMassive = async (alumnos) => {
       result.push(queryResult);
     }
 
-    await connection.commit(); //Confirm transaction
+    await connection.commit();
     return result;
   } catch (error) {
-    await connection.rollback(); //Reverse transaction on error
-
+    await connection.rollback();
     if (error.code === 'ER_DUP_ENTRY') {
-      logger.warn(`Duplicate entry  error: ${error.message}`);
+      LogService.logWarning('Duplicate entry detected for student data', {
+        error: error.message,
+      });
       throw AppError.validationError(
-        'Duplicate entry detected in student data',
+        'Duplicate entry detected for student data',
       );
     }
-    logger.error(`Transaction error: ${error.message}`);
-    throw error.isOperational ? error : AppError.dbError(); // Wrap non-operational errors as AppError
+    LogService.logError(`Error while inserting students: ${error.message}`);
+    throw AppError.dbError('Database errror transaction failed');
   } finally {
-    connection.release(); //open the connection
+    connection.release();
   }
 };
 
-module.exports = { insertStudentsMassive };
+module.exports = { insertStudens };

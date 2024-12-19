@@ -1,56 +1,48 @@
 const fs = require('fs').promises;
-const { insertStudentsMassive } = require('../service/alumnoService');
+const { insertStudens } = require('../service/alumnoService');
 const { parseExcel } = require('../helpers/excelHelper');
 const AppError = require('../errors/AppError');
-const { logger } = require('../utils/logger');
+const LogService = require('../utils/LogsService');
 
-const safeDeleteFile = async (path) => {
+const safeDeleteFile = async (filePath) => {
   try {
-    await fs.unlink(path);
-    console.log('Archivo eliminado correctamente');
+    await fs.unlink(filePath);
+    LogService.logInfo(`File ${filePath} deleted successfully`);
   } catch (error) {
-    logger.error({ message: 'Error al eliminar archivo', error });
+    LogService.logError(
+      `Error while deleting file ${filePath}: ${error.message}`,
+    );
   }
 };
 
-const registerStudentsMassive = async (req, res, next) => {
+const registerStudentsController = async (req, res, next) => {
   try {
-    console.log('Iniciando el proceso de registro masivo de alumnos');
     if (!req.file) {
-      return next(new AppError('Can not update the file, file is emply', 400));
+      return next(new AppError('No file uploaded', 400));
     }
 
-    console.log('Archivo recibido:', req.file);
-
-    //Proccess Excel file and get data
     const alumnos = await parseExcel(req.file.path);
     if (!alumnos || alumnos.length === 0) {
-      return next(new AppError('El archivo no contiene datos validos', 400));
+      return next(
+        new AppError.validationError('No students found in file', 400),
+      );
     }
-    console.log('Alumnos extraídos del archivo:', alumnos);
 
-    //Insert students massive form
-    const result = await insertStudentsMassive(alumnos);
-    console.log('Resultado de la inserción masiva:', result);
-
-    //Delete the file after processing
+    const result = await insertStudens(alumnos);
     await safeDeleteFile(req.file.path);
-    console.log('Archivo eliminado correctamente');
 
-    res.status(200).json({ message: 'Student now register success', result });
+    res
+      .status(200)
+      .json({ message: 'Students registered successfully', data: result });
   } catch (error) {
-    console.error('Error durante el registro masivo de alumnos:', error);
-    // Ensure the file is deleted even if there's an error
+    LogService.logError(
+      `Error in registerStudentsController: ${error.message}`,
+    );
     if (req.file) {
-      await safeDeleteFile(req.file.path); // Delete the file in case of error
-      next(
-        new AppError(
-          error.message || 'Error inesperado en el registro masivo',
-          500,
-        ),
-      ); // Send error to errorHandler middleware
+      await safeDeleteFile(req.file.path);
     }
+    next(new AppError('Error in registerStudentsController', 500));
   }
 };
 
-module.exports = { registerStudentsMassive };
+module.exports = { registerStudentsController };

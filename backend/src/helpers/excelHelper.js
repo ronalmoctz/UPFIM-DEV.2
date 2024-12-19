@@ -1,118 +1,80 @@
-const xlsx = require('xlsx');
-const fs = require('fs').promises;
+const ExcelJS = require('exceljs');
 const bcrypt = require('bcrypt');
+const fs = require('fs').promises;
 
-//Configuration
-const DEFAULT_DOMAIN = '@upfim.edu.mx';
-const DEFAULT_PASSWRD = 'default_password';
+const DEFAULT_DOMAIN = '@upf.edu.mx';
+const DEFAULT_PASSWORD = 'defaultPassword';
 
-//Normalize headers for the files
-const normalizeHeaders = (alumno) => {
-  return {
-    matricula:
-      alumno['Matrícula'] ??
-      alumno['ID Usuario'] ??
-      alumno['UserID'] ??
-      'matricula_default',
-    nombreCompleto:
-      alumno['Nombre Completo'] ??
-      alumno['Nombre'] ??
-      alumno['Full Name'] ??
-      'Nombre Desconocido',
-    pass: alumno['Contraseña'] ?? alumno['Password'] ?? DEFAULT_PASSWRD,
-    studentGroup: alumno['Grupo'] ?? alumno['Group'] ?? 'Grupo Default',
-    sexo: alumno['Sexo'] ?? alumno['Gender'] ?? 'Desconocido',
-    lengua: alumno['Lengua'] ?? alumno['Language'] ?? 'N/A',
-    programa:
-      alumno['Programa educativo'] ??
-      alumno['Programa'] ??
-      alumno['Program'] ??
-      'Sin Programa',
-    cuatrimestre: alumno['Cuatrimestre'] ?? alumno['Semester'] ?? 1,
-  };
-};
+//Narmalize headers for the Excel file
+const normalizeHeaders = (row) => ({
+  matricula:
+    row['Matrícula'] ||
+    row['ID Usuario'] ||
+    row['UserID'] ||
+    'matricula_default',
+  nombreCompleto:
+    row['Nombre Completo'] ||
+    row['Nombre'] ||
+    row['Full Name'] ||
+    'Nombre Desconocido',
+  pass: row['Contraseña'] || row['Password'] || DEFAULT_PASSWRD,
+  studentGroup: row['Grupo'] || row['Group'] || 'Grupo Default',
+  sexo: row['Sexo'] || row['Gender'] || 'Desconocido',
+  lengua: row['Lengua'] || row['Language'] || 'N/A',
+  programa:
+    row['Programa educativo'] ||
+    row['Programa'] ||
+    row['Program'] ||
+    'Sin Programa',
+  cuatrimestre: row['Cuatrimestre'] || row['Semester'] || 1,
+});
 
-// Función para separar nombre completo en nombre, apellido paterno y materno
-/**
- * The function `separarNombreCompleto` takes a full name as input, splits it into first name, paternal
- * surname, and maternal surname, and returns them as an object.
- * @param nombreCompleto - The function `separarNombreCompleto` takes a full name as input and
- * separates it into three parts: first name, paternal last name, and maternal last name. The input
- * parameter `nombreCompleto` should be a string containing the full name of a person.
- * @returns The function `separarNombreCompleto` is returning an object with three properties:
- * `nombre`, `apellidoPaterno`, and `apellidoMaterno`.
- */
-const separarNombreCompleto = (nombreCompleto) => {
+//Split full name into first name, paternal, and maternal last names
+const splitFullName = (fullName) => {
   const parts = fullName.trim().split(' ');
-
-  let nombre = parts[0];
-  let apellidoPaterno = '';
-  let apellidoMaterno = '';
-
-  //Case when have more to three parts
-  if (parts.length >= 3) {
-    if (['de', 'del', 'la'].includes(parts[1].toLowerCase())) {
-      apellidoPaterno = `${parts[1]} ${parts[2]}`;
-      apellidoMaterno = parts.length > 3 ? parts[3] : '';
-    } else if (parts.length === 4) {
-      // Normal structure
-      nombre = `${parts[0]} ${parts[1]}`;
-      apellidoPaterno = parts[1];
-      apellidoMaterno = parts[2];
-    } else {
-      nombre = parts[0];
-      apellidoPaterno = parts[1];
-      apellidoMaterno = parts[2];
-    }
-  } else {
-    apellidoPaterno = parts[1] || '';
-  }
-
+  const nombre = parts[0];
+  const apellidoPaterno = parts[1] || '';
+  const apellidoMaterno = parts.slice(2).join(' ') || '';
   return { nombre, apellidoPaterno, apellidoMaterno };
 };
 
-/**
- * The function `parseExcel` reads an Excel file, extracts data from the first sheet, and converts it
- * to JSON format.
- * @param filePath - The `filePath` parameter in the `parseExcel` function is the path to the Excel
- * file that you want to parse and extract data from. This function reads the Excel file from the
- * specified path, processes it, and then logs the extracted data in JSON format.
- */
+// Parse Excel file and normalize data
 const parseExcel = async (filePath) => {
-  const buffer = await fs.readFile(filePath);
-  const workbook = xlsx.read(buffer, { type: 'buffer' });
-  const sheetName = workbook.SheetNames[0];
-  const sheet = workbook.Sheets[sheetName];
-  const alumnos = xlsx.utils.sheet_to_json(sheet, { defval: '' });
-  console.log('Datos sin normalizar:', alumnos);
+  const workbook = new ExcelJS.Workbook();
+  await workbook.xlsx.readFile(filePath);
+  const worksheet = workbook.worksheets[0];
+  const alumnos = [];
 
-  return await Promise.all(
-    alumnos.map(async (alumno) => {
-      const normalizedAlumno = normalizeHeaders(alumno);
+  worksheet.eachRow((row, rowIndex) => {
+    if (rowIndex === 1) return; // Skip headers row
+    const rowData = row.values.reduce((acc, value, index) => {
+      acc[worksheet.getRow(1).getCell(index).value] = value || '';
+      return acc;
+    }, {});
+    alumnos.push(normalizeHeaders(rowData));
+  });
 
-      // Separamos nombre completo
-      const { nombre, apellidoPaterno, apellidoMaterno } =
-        separarNombreCompleto(normalizedAlumno.nombreCompleto);
-
-      // Hasheamos la contraseña
-      const hashedPassword = await bcrypt.hash(normalizedAlumno.pass, 10);
-
-      // Generamos el correo con la matrícula
-      const correo = `${normalizedAlumno.matricula}${DEFAULT_DOMAIN}`;
+  return Promise.all(
+    alumnos.map(async (alumnos) => {
+      const { nombre, apellidoPaterno, apellidoMaterno } = splitFullName(
+        alumnos.nombreCompleto,
+      );
+      const hashedPassword = await bcrypt.hash(alumnos.pass, 10);
+      const correo = `${alumnos.matricula}${DEFAULT_DOMAIN}`;
 
       return {
-        idUser: normalizedAlumno.matricula,
-        userName: normalizedAlumno.matricula,
+        idUser: alumnos.matricula,
+        userName: alumnos.matricula,
         pass: hashedPassword,
-        studentName: nombre,
+        studenName: nombre,
         surnameP: apellidoPaterno,
         surnameM: apellidoMaterno,
-        studentGroup: normalizedAlumno.studentGroup,
         email: correo,
-        sexo: normalizedAlumno.sexo,
-        lengua: normalizedAlumno.lengua,
-        programa: normalizedAlumno.programa,
-        cuatrimestre: normalizedAlumno.cuatrimestre,
+        studentGroup: alumnos.studentGroup,
+        sexo: alumnos.sexo,
+        lengua: alumnos.lengua,
+        programa: alumnos.programa,
+        cuatrimestre: alumnos.cuatrimestre,
       };
     }),
   );
