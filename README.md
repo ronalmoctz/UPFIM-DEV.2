@@ -45,8 +45,6 @@
 ![CSS](https://img.shields.io/badge/CSS-3-264de4)
 
 ---
-> ⚠️ **Advertencia**: NO SE DARA ACCESO A LA BASE DE DATOS.
-
 
 ## **Guía de instalación**
 
@@ -95,11 +93,10 @@
     npm install
 
 3. Accede al frontend en http://localhost:5173.
-> 🗒️ **Nota** Asegúrate de que el backend esté corriendo antes de iniciar el frontend.
 
 
 ### **inicar la aplicacion de manera simultanea**
-1. PAara inicar la aplicacion se requiere que
+1. Para inicar la aplicacion se requiere que
    estes en la carpeta raiz del proyecto `UPFIM-DEV.2`:
     ```bash
     npm run dev
@@ -167,5 +164,4 @@
 ## **Licencia**
 > 🛑 **Stop** Este proyecto se encuentra bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
 
-## **Notas finales**
-> 💡 Sugerencia: Si encuentras algún problema, abre un issue en el repositorio oficial, se agradeceria mucho.
+
